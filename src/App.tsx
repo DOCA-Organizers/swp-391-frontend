@@ -1,9 +1,10 @@
+import DocaPage from "pages/docaPage";
 import LoginPage from "./pages/loginPage";
 
 function App() {
   return (
     <>
-      <LoginPage />
+      <LoginPage/>
     </>
   );
 }
