@@ -93,7 +93,7 @@ export default function SlideBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}
-       sx={{backgroundColor: "#FFE7BA",
+       sx={{backgroundColor: "#FFA538",
       }}>
         <Toolbar>
           <IconButton

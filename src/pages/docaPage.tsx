@@ -5,6 +5,7 @@ import Slidebar from "../components/sidebar/Sidebar";
 import PrimarySearchAppBar from "../components/searchbar/SearchBar";
 import SlideBar from "../components/sidebar/Sidebar";
 import Post from "../components/post/Post";
+import Summary from "components/Summary";
 
 const tilleStyle = { 
     color: "red",
@@ -17,6 +18,7 @@ const DocaPage = () => {
            <PrimarySearchAppBar/>
            <SlideBar/>
             <Post/>
+            <Summary/>
         </Container>
     );
 };
