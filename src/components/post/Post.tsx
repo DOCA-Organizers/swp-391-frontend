@@ -32,7 +32,7 @@ export default function Post() {
   };
 
   return (
-    <Card sx={{ maxWidth: 600,
+    <Card sx={{ maxWidth: 650,
                 maxHeight: 800 }}>
       <CardHeader
         avatar={
