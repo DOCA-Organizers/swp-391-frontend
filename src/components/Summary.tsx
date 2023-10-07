@@ -5,13 +5,15 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 
 const card = (
   <React.Fragment>
     <CardContent>
       <Typography sx={{ fontSize: 20, fontWeight: 'bold' }} color="#4F709C" gutterBottom>
-        Nguyễn Văn Nam
+        Nguyễn Văn Nam 
+        <CheckCircleIcon/>
       </Typography>
       <Typography variant="h6" component="div" color="#4F709C" sx={{fontSize: 16}}>
         #Hastag
@@ -36,7 +38,8 @@ const card = (
 
 export default function Summary() {
   return (
-    <Box sx={{ width: 450}}>
+    <Box sx={{ maxWidth: 350,
+              maxHeight: 500}}>
       <Card variant="outlined" sx ={{backgroundColor:"#FFA538"}}>
         {card}
       </Card>

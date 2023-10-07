@@ -25,6 +25,7 @@ import SmsFailedIcon from '@mui/icons-material/SmsFailed';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import PrimarySearchAppBar from 'components/searchbar/SearchBar';
 
 const drawerWidth = 240;
 
@@ -93,7 +94,7 @@ export default function SlideBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}
-       sx={{backgroundColor: "#FFA538",
+       sx={{backgroundColor: "#FFE7BA"
       }}>
         <Toolbar>
           <IconButton
@@ -101,13 +102,22 @@ export default function SlideBar() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(open && { display: 'none' }),}}
           >
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{color:"black"}}>
-            Công cụ
-          </Typography>
+          <Box
+            component="img"
+              sx={{
+                height: 233,
+                width: 350,
+                maxHeight: { xs: 233, md: 167 },
+                maxWidth: { xs: 350, md: 250 },
+  }}
+            alt="The house from the offer."
+            src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/387736918_3658586854467413_8771190963321184561_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=49d041&_nc_ohc=JSGee5heXWQAX-VLck6&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfB_JgrB8LiNh7aCQck8lQRgocvOWCOxshaaeeuEQotNFA&oe=6526A316"
+          />
+          <PrimarySearchAppBar/>
         </Toolbar>
       </AppBar>
       <Drawer

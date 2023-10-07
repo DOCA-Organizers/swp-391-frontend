@@ -10,33 +10,24 @@ import { relative } from "path";
 
 
 
-
 const DocaPage = () => {
     return (
-        <Box sx={{flexBasis: 800}}>
-        <Box sx={{margin: "60px 30px 10px 250px",
-                backgroundColor: "#FFE7BA"}}>
-            <SlideBar/>
-            <Box sx={{mb: 3}}>
-                <PrimarySearchAppBar/>
-            </Box>
-            <Box sx={{ml: 3}}>
-                <Post/>
-            </Box>   
-            <Box sx={{position: 'relative',
-                    left: '45vw',
-                    bottom: '95vh'
+        <Box sx={{
+                backgroundColor: '#F0F0F0' }}>
+                <SlideBar/>
+            <Box sx={{ marginTop: '125px'}}>
+                <Box sx={{position: 'relative', left: '20%',
+                        maxWidth: '50%'
                         }}>
-                <Summary/>
-            </Box>
-        </Box>
-        <Box sx={{backgroundColor: "red",
-                maxWidth:'15vw', 
-                position: 'relative',
-                top: '50vh'
-                }}>
-            Luân
-        </Box>
+                    <Post/>
+                </Box>
+                <Box sx={{position: 'relative', left: '70%',
+                        maxWidth: '30%', bottom: '713px'
+                        }}>
+                    <Summary/>
+                </Box>
+                
+            </Box>   
         </Box>
     );
 };
