@@ -2,10 +2,16 @@ import React from "react";
 import Box from "@mui/material/Box";
 import {
   Button,
+  Checkbox,
+  Container,
   FormControl,
+  FormControlLabel,
   FormGroup,
   Grid,
   InputLabel,
+  ListItem,
+  Paper,
+  TextField,
   Typography,
 } from "@mui/material";
 import styled from "styled-components";
@@ -24,9 +30,13 @@ const pStyle = {
   color: "#18345E",
 };
 
-const itemData = {
-  img: "D:SWP391DOCA_Projectswp391-frontendsrcassetsHuy's logo.png",
-};
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "#ffff",
@@ -35,17 +45,21 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 const Login = () => {
   return (
-    <Grid
-      container
-      justifyContent="center"
-      alignItems="center"
-      direction="column"
-      style={{ height: "800", width: "50%" }}
+    <Container
+      sx={{
+        justifyContent: "center",
+      }}
     >
-      <Box style={boxStyle}>
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
-          <img src="D:\SWP391\DOCA_Project\swp391-frontend\src\assets\Huy's logo.png"></img>
-          <Typography >Login Page</Typography>
+      <Grid style={boxStyle}>
+        <img
+          src={require("../assets/Huy's logo.png")}
+          height={100}
+          width={100}
+        ></img>
+        <Typography sx={{}}>Login Page</Typography>
+      </Grid>
+      <Grid>
+        <ListItem>
           <FormControl
             id="margin-normal"
             margin="normal"
@@ -53,89 +67,73 @@ const Login = () => {
             variant="outlined"
           >
             <InputLabel htmlFor="outlined-username">Account</InputLabel>
-            <ControlPointDuplicateRounded
-              name="username"
-              control={control}
-              render={({ field }) => (
-                <OutlinedInput
-                  {...field}
-                  {...addErrorIntoField(errors["username"])}
-                  errors={errors}
-                  id="outlined outlined-username"
-                  type="text"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <PersonIcon />
-                    </InputAdornment>
-                  }
-                  label="Số Điện Thoại"
-                />
-              )}
-            />
-            {errors["username"] ? (
-              <ErrorMessage message={errors["username"].message} />
-            ) : null}
           </FormControl>
+        </ListItem>
 
+        <ListItem>
           <FormControl
             id="margin-normal"
             margin="normal"
             fullWidth
             variant="outlined"
           >
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <OutlinedInput
-                  {...field}
-                  {...addErrorIntoField(errors["password"])}
-                  errors={errors}
-                  id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Mật khẩu"
-                />
-              )}
-            />
-            {errors["password"] ? (
-              <ErrorMessage message={errors["password"].message} />
-            ) : null}
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <Item>
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                </Item>
+              </Grid>
+              <Grid item xs={8}>
+                <Item
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="standard-basic"
+                    label="Standard"
+                    variant="standard"
+                  />
+                </Item>
+              </Grid>
+            </Grid>
           </FormControl>
+        </ListItem>
 
+        <ListItem>
           <FormGroup>
             <FormControlLabel
               control={<Checkbox defaultChecked />}
-              label="Lưu Đăng Nhập"
+              label="Remember account"
             />
           </FormGroup>
-
+        </ListItem>
+        <ListItem>
           <ColorButton
             type="submit"
             fullWidth
             variant="contained"
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 10, color: "#1D5B9D" }}
           >
-            Login
+            <Typography
+              sx={{
+                color: "white",
+              }}
+            ></Typography>
           </ColorButton>
-        </form>
-      </Box>
-    </Grid>
+        </ListItem>
+      </Grid>
+    </Container>
   );
 };
 
 export default Login;
+
+// #09319E
+// #D4C608
+// #AA9BAB
