@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const Registration = () => {
-  return (
-    
-  )
-}
+  return;
+};
 
-export default Registration
+export default Registration;
