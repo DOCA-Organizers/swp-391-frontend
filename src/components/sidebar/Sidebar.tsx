@@ -26,6 +26,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PrimarySearchAppBar from 'components/searchbar/SearchBar';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -94,30 +95,28 @@ export default function SlideBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}
-       sx={{backgroundColor: "#FFE7BA"
-      }}>
+        sx={{
+          backgroundColor: "white"
+        }}>
         <Toolbar>
           <IconButton
             color="default"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }),}}
+            sx={{ mr: 2, ...(open && { display: 'none' }), }}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
-          <Box
-            component="img"
-              sx={{
-                height: 233,
-                width: 350,
-                maxHeight: { xs: 233, md: 167 },
-                maxWidth: { xs: 350, md: 250 },
-  }}
-            alt="The house from the offer."
-            src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t39.30808-6/387736918_3658586854467413_8771190963321184561_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=49d041&_nc_ohc=JSGee5heXWQAX-VLck6&_nc_ht=scontent.fsgn5-8.fna&oh=00_AfB_JgrB8LiNh7aCQck8lQRgocvOWCOxshaaeeuEQotNFA&oe=6526A316"
-          />
-          <PrimarySearchAppBar/>
+          <Box sx={{
+              height: '100%',
+              width: "250px",
+          }}>
+            <img src={require("../../assets/Huy's logo (1).png")} 
+                style={{height: 150, width: 230}}
+            />
+          </Box>
+          <PrimarySearchAppBar />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -141,64 +140,60 @@ export default function SlideBar() {
         </DrawerHeader>
         <Divider />
         <List>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <HomeIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Trang chủ" />
-              </ListItemButton>
-            </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <ExploreIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Khám phá" />
-              </ListItemButton>
-            </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemIcon>
+                <NotificationsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Notifications" />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <NotificationsIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Thông báo" />
-              </ListItemButton>
-            </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemIcon>
+                <BookmarkIcon />
+              </ListItemIcon>
+              <ListItemText primary="Bookmarks" />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem>
+          <ListItem>
+            <NavLink to="my_profile" style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}>
               <ListItemButton>
                 <ListItemIcon>
-                  <BookmarkIcon/>
+                  <AccountBoxIcon />
                 </ListItemIcon>
-                <ListItemText primary= "Đã lưu" />
+                <ListItemText primary="My Profile" />
               </ListItemButton>
-            </ListItem>
-
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccountBoxIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Hồ sơ" />
-              </ListItemButton>
-            </ListItem>
+            </NavLink>
+          </ListItem>
         </List>
         <Divider />
         <Button variant="contained" disableElevation
-          sx = {{
+          sx={{
             borderRadius: 80,
             backgroundColor: "#F9AC33"
           }}
         >
-            Đăng xuất 
+          Log out
         </Button>
       </Drawer>
       <Main open={open}>
-       
-      
+
+
       </Main>
     </Box>
   );

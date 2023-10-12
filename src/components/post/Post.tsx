@@ -33,8 +33,11 @@ export default function Post() {
 
   return (
     <Card sx={{ maxWidth: 650,
-                maxHeight: 800 }}>
-      <CardHeader
+                maxHeight: 800,
+                backgroundColor: 'white',
+                borderRadius: '3%'
+                }}>
+      <CardHeader sx={{color: '#F9AC33'}}
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"
             src='https://cdn-icons-png.flaticon.com/128/706/706807.png'
@@ -76,11 +79,11 @@ export default function Post() {
         <IconButton aria-label="comment">
           <ChatBubbleOutlineOutlinedIcon/>
         </IconButton>
-        <IconButton aria-label="report">
-          <FlagOutlinedIcon/>
-        </IconButton>
         <IconButton aria-label="bookmark">
           <BookmarkBorderOutlinedIcon/>
+        </IconButton>
+        <IconButton aria-label="report">
+          <FlagOutlinedIcon/>
         </IconButton>
       </CardActions>
     </Card>

@@ -91,16 +91,16 @@ export default function PrimarySearchAppBar() {
   return (
     <Box sx={{ flexGrow: 1,
                color:"black",
-               border: "3px solid #F9AC33",
+               border: "3px solid FF8C00",
                borderRadius: "50px",
-               backgroundColor: "#F9AC33",
+               backgroundColor: "#FF8C00",
                }}>
           <Search> 
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Tìm kiếm bài viết, thú cưng"
+              placeholder="Find post, pet,..."
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
