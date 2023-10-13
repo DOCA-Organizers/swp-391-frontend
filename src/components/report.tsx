@@ -11,16 +11,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+
 import styled from "styled-components";
 
 type Props = {};
-
-const [reason, setReason] = React.useState("");
-
-const handleChange = (event: SelectChangeEvent) => {
-  setReason(event.target.value as string);
-};
 
 const Item = styled("div")(({ theme }) => ({
   borderColor: theme.palette.mode === "dark" ? "#444d58" : "#ced7e0",
@@ -30,6 +25,11 @@ const Item = styled("div")(({ theme }) => ({
 }));
 
 const Report = (props: Props) => {
+  const [reason, setReason] = useState("");
+  const handleChange = (event: SelectChangeEvent) => {
+    setReason(event.target.value as string);
+  };
+
   return (
     <Container>
       <Box

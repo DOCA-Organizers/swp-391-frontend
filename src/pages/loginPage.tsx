@@ -1,15 +1,9 @@
-import Category from "components/category";
-import Login from "../components/login";
-import React from "react";
-import Registration from "../components/registration";
-import Report from "components/report";
+import Profile from "../components/profile";
 
-type Props = {};
-
-const LoginPage = (props: Props) => {
+const LoginPage = () => {
   return (
     <div>
-      <Report />
+      <Profile />
     </div>
   );
 };
