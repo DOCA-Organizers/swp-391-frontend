@@ -9,6 +9,7 @@ import {
   FormGroup,
   Grid,
   InputLabel,
+  List,
   ListItem,
   Paper,
   TextField,
@@ -18,9 +19,10 @@ import styled from "styled-components";
 
 type Props = {};
 const boxStyle = {
-  width: 450,
-  height: 400,
+  width: 200,
+  height: 125,
   margin: "0 auto",
+  paddingRight: 800,
 };
 
 const pStyle = {
@@ -48,17 +50,43 @@ const Login = () => {
     <Container
       sx={{
         justifyContent: "center",
+        position: "relative",
+        left: 65,
       }}
     >
       <Grid style={boxStyle}>
         <img
           src={require("../assets/Huy's logo.png")}
-          height={100}
-          width={100}
+          height={110}
+          width={140}
         ></img>
-        <Typography sx={{}}>Login Page</Typography>
       </Grid>
-      <Grid>
+      <Grid
+        sx={{
+          paddingLeft: 50,
+          position: "relative",
+          left: 70,
+          bottom: 30,
+          height: 50,
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: "30px",
+            textDecoration: "bold",
+            fontWeight: "bold",
+          }}
+        >
+          Login Page
+        </Typography>
+      </Grid>
+      <List
+        sx={{
+          position: "relative",
+          left: 200,
+          top: 50,
+        }}
+      >
         <ListItem>
           <FormControl
             id="margin-normal"
@@ -66,7 +94,28 @@ const Login = () => {
             fullWidth
             variant="outlined"
           >
-            <InputLabel htmlFor="outlined-username">Account</InputLabel>
+            <Grid container spacing={7}>
+              <Grid item xs={2}>
+                <Item>
+                  <Typography>Account :</Typography>
+                </Item>
+              </Grid>
+              <Grid
+                item
+                xs={8}
+                sx={{
+                  position: "relative",
+                  bottom: 15,
+                }}
+              >
+                <TextField
+                  id="standard-basic"
+                  label="Input your account"
+                  variant="standard"
+                  sx={{ width: 400 }}
+                />
+              </Grid>
+            </Grid>
           </FormControl>
         </ListItem>
 
@@ -76,30 +125,29 @@ const Login = () => {
             margin="normal"
             fullWidth
             variant="outlined"
+            sx={{ height: 20 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
+            <Grid container spacing={7}>
+              <Grid item xs={2}>
                 <Item>
-                  <InputLabel htmlFor="outlined-adornment-password">
-                    Password
-                  </InputLabel>
+                  <Typography>Password :</Typography>
                 </Item>
               </Grid>
-              <Grid item xs={8}>
-                <Item
-                  component="form"
-                  sx={{
-                    "& > :not(style)": { m: 1, width: "25ch" },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    id="standard-basic"
-                    label="Standard"
-                    variant="standard"
-                  />
-                </Item>
+              <Grid
+                item
+                xs={8}
+                sx={{
+                  position: "relative",
+                  bottom: 15,
+                  height: 50,
+                }}
+              >
+                <TextField
+                  id="standard-basic"
+                  label="Input your password"
+                  variant="standard"
+                  sx={{ width: 400 }}
+                />
               </Grid>
             </Grid>
           </FormControl>
@@ -113,21 +161,27 @@ const Login = () => {
             />
           </FormGroup>
         </ListItem>
-        <ListItem>
+        <ListItem
+          sx={{
+            position: "relative",
+            left: 500,
+          }}
+        >
           <ColorButton
             type="submit"
             fullWidth
             variant="contained"
-            style={{ marginTop: 10, color: "#1D5B9D" }}
+            style={{
+              marginTop: 10,
+              maxHeight: 100,
+              maxWidth: 100,
+              color: "#1D5B9D",
+            }}
           >
-            <Typography
-              sx={{
-                color: "white",
-              }}
-            ></Typography>
+            <Typography sx={{ color: "white" }}>Login</Typography>
           </ColorButton>
         </ListItem>
-      </Grid>
+      </List>
     </Container>
   );
 };

@@ -37,7 +37,6 @@ const Registration = () => {
     <Container
       sx={{
         position: "relative",
-        left: 40,
       }}
     >
       <Box
@@ -49,6 +48,8 @@ const Registration = () => {
             paddingLeft: 20,
             paddingTop: 1,
             paddingBottom: 1,
+            position: "relative",
+            left: 30,
           },
         }}
       >
@@ -72,6 +73,8 @@ const Registration = () => {
             fontSize: "30px",
             textDecoration: "bold",
             fontWeight: "bold",
+            position: "relative",
+            left: 70,
           }}
         >
           Registration
@@ -90,51 +93,64 @@ const Registration = () => {
         component="form"
         sx={{
           "& > :not(style)": { m: 1, width: "40ch" },
+          position: "relative",
+          left: 300,
+          top: 20,
+          fontWeight: "bold",
         }}
         noValidate
         autoComplete="off"
       >
         <div>
-          <Typography>Account:</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Account:</Typography>
           <TextField
             id="filled-basic"
             label="Input username here"
             variant="filled"
+            sx={{ width: 500, color: "#D9D9D9" }}
           />
         </div>
         <div>
-          <Typography>Password:</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Password:</Typography>
           <TextField
             id="filled-basic"
             label="Input password here"
             variant="filled"
+            sx={{ width: 500, color: "#D9D9D9" }}
           />
         </div>
         <div>
-          <Typography>Fullname:</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Fullname:</Typography>
           <TextField
             id="filled-basic"
             label="Input fullname here"
             variant="filled"
+            sx={{ width: 500, color: "#D9D9D9" }}
           />
         </div>
         <div>
-          <Typography>Date of birth:</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Date of birth:</Typography>
           <TextField
             id="filled-basic"
             label="Input date of birth here"
             variant="filled"
+            sx={{ width: 500, color: "#D9D9D9" }}
           />
         </div>
         <div>
-          <Typography>Email:</Typography>
+          <Typography sx={{ fontWeight: "bold" }}>Email:</Typography>
           <TextField
             id="filled-basic"
             label="Input email here"
             variant="filled"
+            sx={{ width: 500, color: "#D9D9D9" }}
           />
         </div>
-        <Stack spacing={2} direction="row">
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ position: "relative", top: 30 }}
+        >
           <Button
             variant="contained"
             sx={{
