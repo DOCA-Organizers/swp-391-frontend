@@ -66,6 +66,7 @@ const Registration = () => {
           left: 70,
           bottom: 30,
           height: 50,
+          width: 50,
         }}
       >
         <Typography
@@ -84,6 +85,7 @@ const Registration = () => {
             fontSize: "20px",
             textDecoration: "bold",
             fontWeight: "bold",
+            width: 400,
           }}
         >
           (Fill your information in the blanks)
@@ -92,7 +94,6 @@ const Registration = () => {
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "40ch" },
           position: "relative",
           left: 300,
           top: 20,
@@ -149,12 +150,13 @@ const Registration = () => {
         <Stack
           spacing={2}
           direction="row"
-          sx={{ position: "relative", top: 30 }}
+          sx={{ width: 200, position: "relative", top: 30, left: 300 }}
         >
           <Button
             variant="contained"
             sx={{
               color: "#1D5B9D",
+              width: 80,
             }}
           >
             <Typography sx={{ color: "white" }}>Save</Typography>
@@ -163,6 +165,7 @@ const Registration = () => {
             variant="contained"
             sx={{
               color: "#1D5B9D",
+              width: 80,
             }}
           >
             <Typography sx={{ color: "white" }}>Cancel</Typography>
