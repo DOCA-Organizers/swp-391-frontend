@@ -19,9 +19,11 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.black, 0),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    textDecorationColor: 'black',
+    backgroundColor: alpha(theme.palette.common.white, 1),
+  border: '3px solid #999',
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -43,17 +45,22 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  color: 'white',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    fontWeight: 'bold',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      width: '110ch',
     },
   },
+  '&:hover': {
+    color: 'black',
+    backgroundColor: alpha(theme.palette.common.white, 0.5)
+  }
 }));
 
 export default function PrimarySearchAppBar() {
@@ -83,14 +90,17 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1,
-               color:"orange",
+               color:"black",
+               border: "3px solid FF8C00",
+               borderRadius: "50px",
+               backgroundColor: "#FF8C00",
                }}>
           <Search> 
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Tìm kiếm bài viết, thú cưng"
+              placeholder="Find post, pet,..."
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
