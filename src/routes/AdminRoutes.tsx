@@ -20,6 +20,7 @@ function AdminRoutes(props: Props) {
                 }
             >
                 <Route index element={<DocaPage/>} />
+                
                 <Route path= "*" element={<PageNotFound/>}/>
             </Route>
         </Routes>

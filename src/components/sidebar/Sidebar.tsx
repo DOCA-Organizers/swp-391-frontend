@@ -192,8 +192,6 @@ export default function SlideBar() {
         </Button>
       </Drawer>
       <Main open={open}>
-
-
       </Main>
     </Box>
   );
