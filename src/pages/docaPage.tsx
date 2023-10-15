@@ -7,22 +7,20 @@ import SlideBar from "../components/sidebar/Sidebar";
 import Post from "../components/post/Post";
 import Summary from "components/Summary";
 
-const tilleStyle = { 
-    color: "red",
-    margin: "80px 20px 20px 250px"
+const tilleStyle = {
+  color: "red",
+  margin: "80px 20px 20px 250px",
 };
 
 const DocaPage = () => {
-    return (
-        <Container style = {tilleStyle}>
-           <PrimarySearchAppBar/>
-           <SlideBar/>
-            <Post/>
-            <Summary/>
-        </Container>
-    );
+  return (
+    <Container style={tilleStyle}>
+      <PrimarySearchAppBar />
+      <SlideBar />
+      <Post />
+      <Summary />
+    </Container>
+  );
 };
 
-
-
-export default DocaPage
+export default DocaPage;

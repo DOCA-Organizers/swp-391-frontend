@@ -36,6 +36,10 @@ function MyFormHelperText() {
 const Registration = () => {
   const [account, setaccount] = useState("");
   const [password, setpassword] = useState("");
+  const [fullName, setfullName] = useState("");
+  const [dateOfBirth, setdateOfBirth] = useState("");
+  const [email, setemail] = useState("");
+  const [isRemembered, setisRemembered] = useState("");
 
   return (
     <Container
@@ -128,7 +132,7 @@ const Registration = () => {
         <div>
           <Typography sx={{ fontWeight: "bold" }}>Fullname:</Typography>
           <TextField
-            id="filled-basic"
+            id="fullName"
             label="Input fullname here"
             variant="filled"
             sx={{ width: 500, color: "#D9D9D9" }}
@@ -137,7 +141,7 @@ const Registration = () => {
         <div>
           <Typography sx={{ fontWeight: "bold" }}>Date of birth:</Typography>
           <TextField
-            id="filled-basic"
+            id="dateOfBirth"
             label="Input date of birth here"
             variant="filled"
             sx={{ width: 500, color: "#D9D9D9" }}
@@ -146,7 +150,7 @@ const Registration = () => {
         <div>
           <Typography sx={{ fontWeight: "bold" }}>Email:</Typography>
           <TextField
-            id="filled-basic"
+            id="email"
             label="Input email here"
             variant="filled"
             sx={{ width: 500, color: "#D9D9D9" }}

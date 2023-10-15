@@ -41,7 +41,8 @@ const ColorButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#00689B",
 }));
 
-const [account, setaccount] = useState("");
+const [account, setAccount] = useState("");
+const [password, setPassword] = useState("");
 
 const Login = () => {
   return (
@@ -109,7 +110,7 @@ const Login = () => {
               >
                 <TextField
                   id="account"
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setAccount(e.target.value)}
                   label="Input your account"
                   variant="standard"
                   sx={{ width: 400 }}
@@ -144,6 +145,7 @@ const Login = () => {
               >
                 <TextField
                   id="password"
+                  onChange={(e) => setPassword(e.target.value)}
                   label="Input your password"
                   variant="standard"
                   sx={{ width: 400 }}
