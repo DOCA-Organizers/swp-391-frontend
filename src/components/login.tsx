@@ -53,6 +53,7 @@ const Login = () => {
         left: 65,
       }}
     >
+      <Box></Box>
       <Grid style={boxStyle}>
         <img
           src={require("../assets/Huy's logo.png")}
