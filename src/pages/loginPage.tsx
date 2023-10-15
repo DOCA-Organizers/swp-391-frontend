@@ -3,6 +3,8 @@ import Profile from "../components/profile";
 import Registration from "components/registration";
 import MyAvatar from "components/myAvatar";
 import Category from "components/category";
+import Login from "components/login";
+import { Box } from "@mui/material";
 
 const LoginPage = () => {
   // const [formData, setformData] = useState({
@@ -11,11 +13,7 @@ const LoginPage = () => {
   //   isRemember: "",
   // });
 
-  return (
-    <div>
-      <Profile />
-    </div>
-  );
+  return <Login />;
 };
 
 export default LoginPage;

@@ -1,3 +1,4 @@
+import RegistrationPage from "pages/registrationPage";
 import LoginPage from "./pages/loginPage";
 
 function App() {

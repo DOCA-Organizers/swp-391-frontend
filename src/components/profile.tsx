@@ -14,7 +14,7 @@ const Item = styled("div")(({ theme }) => ({
 
 const Profile = (props: Props) => {
   return (
-    <Container>
+    <Container sx={{ backgroundColor: "F0F0F0" }}>
       <Grid sx={{ width: 50, position: "relative", left: 900, top: 10 }}>
         <Avatar>
           <img

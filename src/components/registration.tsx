@@ -11,6 +11,7 @@ import {
   useFormControl,
 } from "@mui/material";
 import React from "react";
+import { useState } from "react";
 
 type Props = {};
 
@@ -33,6 +34,9 @@ function MyFormHelperText() {
 }
 
 const Registration = () => {
+  const [account, setaccount] = useState("");
+  const [password, setpassword] = useState("");
+
   return (
     <Container
       sx={{
@@ -105,7 +109,7 @@ const Registration = () => {
         <div>
           <Typography sx={{ fontWeight: "bold" }}>Account:</Typography>
           <TextField
-            id="filled-basic"
+            id="account"
             label="Input username here"
             variant="filled"
             sx={{ width: 500, color: "#D9D9D9" }}
@@ -114,12 +118,13 @@ const Registration = () => {
         <div>
           <Typography sx={{ fontWeight: "bold" }}>Password:</Typography>
           <TextField
-            id="filled-basic"
+            id="password"
             label="Input password here"
             variant="filled"
             sx={{ width: 500, color: "#D9D9D9" }}
           />
         </div>
+
         <div>
           <Typography sx={{ fontWeight: "bold" }}>Fullname:</Typography>
           <TextField

@@ -1,5 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
+
 import {
   Button,
   Checkbox,
@@ -16,6 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import styled from "styled-components";
+import { useState } from "react";
 
 type Props = {};
 const boxStyle = {
@@ -32,18 +34,14 @@ const pStyle = {
   color: "#18345E",
 };
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+const Item = styled(Paper)(({ theme }) => ({}));
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "#ffff",
   backgroundColor: "#00689B",
 }));
+
+const [account, setaccount] = useState("");
 
 const Login = () => {
   return (
@@ -81,7 +79,7 @@ const Login = () => {
         </Typography>
       </Grid>
 
-      <List
+      <Grid
         sx={{
           position: "relative",
           left: 200,
@@ -96,7 +94,7 @@ const Login = () => {
             variant="outlined"
           >
             <Grid container spacing={7}>
-              <Grid item xs={2}>
+              <Grid item xs={2} sx={{ height: 50 }}>
                 <Item>
                   <Typography>Account :</Typography>
                 </Item>
@@ -110,7 +108,8 @@ const Login = () => {
                 }}
               >
                 <TextField
-                  id="standard-basic"
+                  id="account"
+                  onChange={(e) => setUsername(e.target.value)}
                   label="Input your account"
                   variant="standard"
                   sx={{ width: 400 }}
@@ -144,7 +143,7 @@ const Login = () => {
                 }}
               >
                 <TextField
-                  id="standard-basic"
+                  id="password"
                   label="Input your password"
                   variant="standard"
                   sx={{ width: 400 }}
@@ -182,7 +181,7 @@ const Login = () => {
             <Typography sx={{ color: "white" }}>Login</Typography>
           </ColorButton>
         </ListItem>
-      </List>
+      </Grid>
     </Container>
   );
 };
