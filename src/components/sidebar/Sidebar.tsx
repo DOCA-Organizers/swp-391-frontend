@@ -25,6 +25,8 @@ import SmsFailedIcon from '@mui/icons-material/SmsFailed';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import PrimarySearchAppBar from 'components/searchbar/SearchBar';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -93,21 +95,28 @@ export default function SlideBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}
-       sx={{backgroundColor: "#FFA538",
-      }}>
+        sx={{
+          backgroundColor: "white"
+        }}>
         <Toolbar>
           <IconButton
             color="default"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(open && { display: 'none' }), }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{color:"black"}}>
-            Công cụ
-          </Typography>
+          <Box sx={{
+              height: '100%',
+              width: "250px",
+          }}>
+            <img src={require("../../assets/Huy's logo (1).png")} 
+                style={{height: 150, width: 230}}
+            />
+          </Box>
+          <PrimarySearchAppBar />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -131,64 +140,58 @@ export default function SlideBar() {
         </DrawerHeader>
         <Divider />
         <List>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <HomeIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Trang chủ" />
-              </ListItemButton>
-            </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <ExploreIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Khám phá" />
-              </ListItemButton>
-            </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemIcon>
+                <NotificationsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Notifications" />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <NotificationsIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Thông báo" />
-              </ListItemButton>
-            </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemIcon>
+                <BookmarkIcon />
+              </ListItemIcon>
+              <ListItemText primary="Bookmarks" />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem>
+          <ListItem>
+            <NavLink to="my_profile" style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}>
               <ListItemButton>
                 <ListItemIcon>
-                  <BookmarkIcon/>
+                  <AccountBoxIcon />
                 </ListItemIcon>
-                <ListItemText primary= "Đã lưu" />
+                <ListItemText primary="My Profile" />
               </ListItemButton>
-            </ListItem>
-
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccountBoxIcon/>
-                </ListItemIcon>
-                <ListItemText primary= "Hồ sơ" />
-              </ListItemButton>
-            </ListItem>
+            </NavLink>
+          </ListItem>
         </List>
         <Divider />
         <Button variant="contained" disableElevation
-          sx = {{
+          sx={{
             borderRadius: 80,
             backgroundColor: "#F9AC33"
           }}
         >
-            Đăng xuất 
+          Log out
         </Button>
       </Drawer>
       <Main open={open}>
-       
-      
       </Main>
     </Box>
   );

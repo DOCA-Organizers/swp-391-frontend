@@ -1,18 +1,13 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
@@ -24,6 +19,7 @@ interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
 
+
 export default function Post() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -32,9 +28,12 @@ export default function Post() {
   };
 
   return (
-    <Card sx={{ maxWidth: 600,
-                maxHeight: 800 }}>
-      <CardHeader
+    <Card sx={{ maxWidth: 650,
+                maxHeight: 800,
+                backgroundColor: 'white',
+                borderRadius: '3%'
+                }}>
+      <CardHeader sx={{color: '#F9AC33'}}
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"
             src='https://cdn-icons-png.flaticon.com/128/706/706807.png'
@@ -76,11 +75,11 @@ export default function Post() {
         <IconButton aria-label="comment">
           <ChatBubbleOutlineOutlinedIcon/>
         </IconButton>
-        <IconButton aria-label="report">
-          <FlagOutlinedIcon/>
-        </IconButton>
         <IconButton aria-label="bookmark">
           <BookmarkBorderOutlinedIcon/>
+        </IconButton>
+        <IconButton aria-label="report">
+          <FlagOutlinedIcon/>
         </IconButton>
       </CardActions>
     </Card>
