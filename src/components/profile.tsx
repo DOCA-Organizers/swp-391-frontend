@@ -15,10 +15,10 @@ const Item = styled("div")(({ theme }) => ({
 const Profile = (props: Props) => {
   return (
     <Container>
-      <Grid>
+      <Grid sx={{ width: 50, position: "relative", left: 900, top: 10 }}>
         <Avatar>
           <img
-            src={require("../assets/Huy's logo.png")}
+            src={require("../assets/dogcat.jpg")}
             height={110}
             width={140}
           ></img>
@@ -26,8 +26,12 @@ const Profile = (props: Props) => {
         <Typography sx={{ fontWeight: "bold" }}>namnguyen2u3</Typography>
         <Typography sx={{ fontWeight: "bold" }}>Member</Typography>
       </Grid>
-      <Grid container spacing={2}>
-        <Grid xs={3}>
+      <Grid
+        container
+        spacing={4}
+        sx={{ paddingTop: 10, width: 900, position: "relative", left: 170 }}
+      >
+        <Grid xs={3} sx={{}}>
           <Item>
             <Typography>Joined :</Typography>
           </Item>

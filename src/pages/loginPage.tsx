@@ -5,9 +5,15 @@ import MyAvatar from "components/myAvatar";
 import Category from "components/category";
 
 const LoginPage = () => {
+  // const [formData, setformData] = useState({
+  //   username: "",
+  //   password: "",
+  //   isRemember: "",
+  // });
+
   return (
     <div>
-      <Registration />
+      <Profile />
     </div>
   );
 };

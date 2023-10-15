@@ -1,11 +1,18 @@
-import React from 'react'
+import { Grid } from "@mui/material";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const header = (props: Props) => {
   return (
-    <div>header</div>
-  )
-}
+    <Grid>
+      <img
+        src={require("../assets/Huy's logo.png")}
+        height={110}
+        width={140}
+      ></img>
+    </Grid>
+  );
+};
 
-export default header
+export default header;
