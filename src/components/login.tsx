@@ -17,9 +17,37 @@ import {
   Typography,
 } from "@mui/material";
 import styled from "styled-components";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
+import * as yup from "yup";
+import { LoginRequest } from "interfaces/login/loginRequest";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { addErrorIntoField } from "../utils/utils";
+import ErrorMessage from "./errors/errorMessage";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import LoginAPI from "./service/login/loginAPI";
 
 type Props = {};
+
+const leftGridStyle = {
+  marginTop: "20px",
+};
+
+const rightGridStyle = {
+  marginTop: "20px",
+  width: "100%",
+};
+
+const titleStyle = {
+  fontWeight: "bolder",
+};
+
+const gridStyle = {
+  marginTop: "10px",
+  marginBottom: "10px",
+  width: 600,
+};
+
 const boxStyle = {
   width: 200,
   height: 125,
@@ -41,33 +69,68 @@ const ColorButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#00689B",
 }));
 
-const [account, setAccount] = useState("");
-const [password, setPassword] = useState("");
+const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
+const passwordRegExp =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/g;
+
+const validationSchema = yup.object({
+  username: yup.string().required("Cannot empty in the Account blank!"),
+  // .matches(usernameRegExp, "Cannot start or end with the special word"),
+
+  password: yup.string().required("Please, input your password!"),
+  // .matches(
+  //   passwordRegExp,
+  //   "Password have al least 8 word, an uppercase, a lowercase, a digit and a special word!"
+  // ),
+});
 
 const Login = () => {
+  const [account, setAccount] = useState("");
+  const [password, setPassword] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<any>({
+    mode: "onTouched",
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onError = (error: any) => {
+    console.log(error);
+  };
+
+  const onSubmit: SubmitHandler<LoginRequest> = async (params) => {
+    try {
+      const response = await LoginAPI.login({
+        username: params.username,
+        password: params.password,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log("Error submitting", error);
+    }
+  };
+
   return (
-    <Container
-      sx={{
-        justifyContent: "center",
-        position: "relative",
-        left: 65,
-      }}
+    <Box
+      style={{ backgroundColor: "white", height: "100%", paddingTop: "72px" }}
     >
-      <Box></Box>
       <Grid style={boxStyle}>
         <img
           src={require("../assets/Huy's logo.png")}
           height={110}
           width={140}
-        ></img>
+        />
       </Grid>
       <Grid
         sx={{
-          paddingLeft: 50,
           position: "relative",
-          left: 70,
           bottom: 30,
           height: 50,
+          width: 300,
         }}
       >
         <Typography
@@ -75,117 +138,98 @@ const Login = () => {
             fontSize: "30px",
             textDecoration: "bold",
             fontWeight: "bold",
+            position: "relative",
+            left: 500,
           }}
         >
           Login Page
         </Typography>
       </Grid>
 
-      <Grid
-        sx={{
-          position: "relative",
-          left: 200,
-          top: 50,
-        }}
+      <Box
+        p={3}
+        sx={{ flexGrow: 1, position: "relative", left: 200, width: 500 }}
       >
-        <ListItem>
-          <FormControl
-            id="margin-normal"
-            margin="normal"
-            fullWidth
-            variant="outlined"
-          >
-            <Grid container spacing={7}>
-              <Grid item xs={2} sx={{ height: 50 }}>
-                <Item>
-                  <Typography>Account :</Typography>
-                </Item>
-              </Grid>
-              <Grid
-                item
-                xs={8}
-                sx={{
-                  position: "relative",
-                  bottom: 15,
-                }}
-              >
-                <TextField
-                  id="account"
-                  onChange={(e) => setAccount(e.target.value)}
-                  label="Input your account"
-                  variant="standard"
-                  sx={{ width: 400 }}
-                />
-              </Grid>
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
+          {/* Account */}
+          <Grid container={true} style={gridStyle}>
+            <Grid style={leftGridStyle} item xs={2}>
+              <Typography style={titleStyle} sx={{ lineHeight: "56px" }}>
+                Account
+              </Typography>
             </Grid>
-          </FormControl>
-        </ListItem>
-
-        <ListItem>
-          <FormControl
-            id="margin-normal"
-            margin="normal"
-            fullWidth
-            variant="outlined"
-            sx={{ height: 20 }}
-          >
-            <Grid container spacing={7}>
-              <Grid item xs={2}>
-                <Item>
-                  <Typography>Password :</Typography>
-                </Item>
-              </Grid>
-              <Grid
-                item
-                xs={8}
-                sx={{
-                  position: "relative",
-                  bottom: 15,
-                  height: 50,
-                }}
-              >
-                <TextField
-                  id="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  label="Input your password"
-                  variant="standard"
-                  sx={{ width: 400 }}
-                />
-              </Grid>
+            <Grid
+              item
+              style={rightGridStyle}
+              xs={10}
+              sx={{ position: "relative" }}
+            >
+              <Controller
+                name="username"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    {...addErrorIntoField(errors["username"])}
+                    sx={{ lineHeight: "56px" }}
+                    {...register("username")}
+                    type="text"
+                    fullWidth
+                  />
+                )}
+              />
+              {errors["username"] ? (
+                <ErrorMessage message={errors["username"].message} />
+              ) : null}
             </Grid>
-          </FormControl>
-        </ListItem>
+          </Grid>
 
-        <ListItem>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              label="Remember account"
-            />
-          </FormGroup>
-        </ListItem>
-        <ListItem
-          sx={{
-            position: "relative",
-            left: 500,
-          }}
-        >
-          <ColorButton
-            type="submit"
-            fullWidth
-            variant="contained"
-            style={{
-              marginTop: 10,
-              maxHeight: 100,
-              maxWidth: 100,
-              color: "#1D5B9D",
-            }}
+          {/*  Password */}
+          <Grid container={true} style={gridStyle}>
+            <Grid style={leftGridStyle} item xs={2}>
+              <Typography style={titleStyle} sx={{ lineHeight: "56px" }}>
+                Password
+              </Typography>
+            </Grid>
+            <Grid item style={rightGridStyle} xs={10}>
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    {...addErrorIntoField(errors["password"])}
+                    sx={{ lineHeight: "56px" }}
+                    {...register("password")}
+                    type="password"
+                    fullWidth
+                  />
+                )}
+              />
+              {errors["password"] ? (
+                <ErrorMessage message={errors["password"].message} />
+              ) : null}
+            </Grid>
+          </Grid>
+
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            sx={{ padding: "0 20px", position: "relative", left: 300, top: 15 }}
           >
-            <Typography sx={{ color: "white" }}>Login</Typography>
-          </ColorButton>
-        </ListItem>
-      </Grid>
-    </Container>
+            <Button
+              variant="contained"
+              size="large"
+              type="submit"
+              style={{ width: "30%" }}
+            >
+              Login
+            </Button>
+          </Grid>
+        </form>
+      </Box>
+    </Box>
   );
 };
 

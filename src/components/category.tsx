@@ -58,7 +58,7 @@ const theme = createTheme({
 });
 
 const divStyle = {
-  backgroundColor: "#F0F0F0",
+  backgroundColor: "white",
 };
 
 const itemImg = {
@@ -72,25 +72,7 @@ const padding = styled("div")({
 const Category = () => {
   return (
     <div style={divStyle}>
-      <Box>
-        <Box
-          sx={{
-            "& > *": {
-              minWidth: 130,
-              flexBasis: 800,
-              minHeight: 100,
-              paddingLeft: 20,
-              paddingTop: 1,
-              paddingBottom: 1,
-            },
-          }}
-        >
-          <img
-            src={require("../assets/Huy's logo.png")}
-            height={100}
-            width={100}
-          ></img>
-        </Box>
+      <Box sx={{ position: "relative", top: 30 }}>
         <Box
           sx={{
             flexGrow: 1,
@@ -101,40 +83,131 @@ const Category = () => {
             "& > *": { minWidth: 0, flexBasis: 700 },
             borderTop: "4px solid",
             borderColor: "#1D5B9D",
+            paddingTop: 3,
           }}
         >
           {(["md"] as const).map((size) => (
             <div key={size}>
               <MyComponent>Dog Forums</MyComponent>
               <div style={{ width: "100%" }}>
-                <List style={{ border: 0.5 }}>
-                  <ListItem>
+                <List>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Dog Chat</ListItemButton>
                   </ListItem>
-                  <ListItem>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Dog Health and Nutrition</ListItemButton>
                   </ListItem>
-                  <ListItem>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Dog Services</ListItemButton>
                   </ListItem>
-                  <ListItem>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Dog Show and Events</ListItemButton>
                   </ListItem>
                 </List>
               </div>
-              <MyComponent>Cat Forums</MyComponent>
+              <MyComponent sx={{ position: "relative" }}>
+                Cat Forums
+              </MyComponent>
               <div style={{ width: "100%" }}>
                 <List>
-                  <ListItem>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Cat Chat</ListItemButton>
                   </ListItem>
-                  <ListItem>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Cat Health and Nutrition</ListItemButton>
                   </ListItem>
-                  <ListItem>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Cat Services</ListItemButton>
                   </ListItem>
-                  <ListItem>
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
                     <ListItemButton>Cat Show and Events</ListItemButton>
                   </ListItem>
                 </List>

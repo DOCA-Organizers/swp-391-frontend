@@ -3,11 +3,19 @@ import React from "react";
 
 type Props = {};
 
-const header = (props: Props) => {
+const Header = (props: Props) => {
   return (
-    <Grid>
+    <Grid
+      sx={{
+        backgroundColor: "F0F0F0",
+        height: 70,
+        position: "relative",
+        left: 310,
+        width: 100,
+      }}
+    >
       <img
-        src={require("../assets/Huy's logo.png")}
+        src={require("../../assets/Huy's logo.png")}
         height={110}
         width={140}
       ></img>
@@ -15,4 +23,4 @@ const header = (props: Props) => {
   );
 };
 
-export default header;
+export default Header;
