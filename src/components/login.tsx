@@ -25,7 +25,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addErrorIntoField } from "../utils/utils";
 import ErrorMessage from "./errors/errorMessage";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import LoginAPI from "./service/login/loginAPI";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 type Props = {};
 
@@ -104,16 +105,37 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<LoginRequest> = async (params) => {
     try {
-      const response = await LoginAPI.login({
-        username: params.username,
-        password: params.password,
-      });
-      console.log(response);
+      axios
+        .post("api/login", {
+          username: params.username,
+          password: params.password,
+        })
+        .then(function (response) {
+          if (response.data) {
+            console.log(response.data.role.id);
+            switch (response.data.role.id) {
+              case 1:
+                //Navigate("/admin");
+                break;
+              default:
+                console.log("Default");
+            }
+          }
+        })
+        .catch(function (e) {
+          console.log(e);
+        });
+
+      // const response = await LoginAPI.login({
+      //   username: params.username,
+      //   password: params.password,
+      // });
+
+      // console.log("Response: ", response);
     } catch (error) {
       console.log("Error submitting", error);
     }
   };
-
   return (
     <Box
       style={{ backgroundColor: "white", height: "100%", paddingTop: "72px" }}

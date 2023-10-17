@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <CssBaseline />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<RegistrationPage />} />
         {/* <Route
           path={ROUTE_PATH.ADMIN}
           element={<AdminRoutes user={} isAllowed={true}/>}

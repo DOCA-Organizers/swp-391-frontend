@@ -14,7 +14,6 @@ import { LoginRequest } from "interfaces/login/loginRequest";
 import React from "react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import LoginAPI from "./service/login/loginAPI";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -52,7 +51,7 @@ const onError = (error: any) => {
 
 const onSubmit: SubmitHandler<LoginRequest> = async (params) => {
   try {
-    const response = await LoginAPI.login(params);
+    // const response = await LoginAPI.login(params);
   } catch (error) {
     console.log("Error submitting", error);
   }
@@ -61,9 +60,10 @@ const onSubmit: SubmitHandler<LoginRequest> = async (params) => {
 const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 const passwordRegExp =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/g;
+const fullNameReqExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 
 const validationSchema = yup.object({
-  account: yup
+  username: yup
     .string()
     .required("Cannot empty in the Account blank!")
     .matches(usernameRegExp, "Cannot start or end with the special word"),
@@ -73,10 +73,14 @@ const validationSchema = yup.object({
     .required("Please, input your password!")
     .matches(
       passwordRegExp,
-      "Password have al least 8 word, an uppercase, a lowercase, a digit and a special word!"
+      "Password have at least 8 word, an uppercase, a lowercase, a digit and a special word!"
     ),
 
   fullName: yup.string().required("Please input your name"),
+
+  dateOfBirth: yup.string().required("Please input your date of birth"),
+
+  email: yup.string().required("Please input your email"),
 
   // dateOfBirth: yup
   // .string()
