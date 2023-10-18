@@ -7,7 +7,7 @@ type Props = {};
 
 const LoginPage = (props: Props) => {
   return (
-    <Box>
+    <Box height={"100%"}>
       <Header />
       <Login />
     </Box>

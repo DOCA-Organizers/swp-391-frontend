@@ -1,15 +1,16 @@
 import axios, { AxiosError } from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "localhost:8080/api/",
+  baseURL: "http://localhost:8080/",
+  headers: { "Content-Type": "application/json" },
 });
 
 axiosClient.interceptors.response.use(
-  (response: any) => {
+  (response) => {
     return response.data;
   },
-  (err: AxiosError<{ content: string }>) => {
-    return err.response?.data;
+  (error: AxiosError<{ content: string }>) => {
+    return error.response?.data;
   }
 );
 

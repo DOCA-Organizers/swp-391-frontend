@@ -11,8 +11,13 @@ const LoginAPI = {
   //   }
   // }
 
+  // login: (params: LoginRequest) => {
+  //   return axiosClient.post<LoginRequest>("login", params);
+  // },
+
   login: (params: LoginRequest) => {
-    return axiosClient.post<LoginRequest>("login", params);
+    console.log("Params: ", params);
+    return axiosClient.post("login/", params);
   },
 };
 

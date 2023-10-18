@@ -8,7 +8,7 @@ const Header = (props: Props) => {
     <Grid
       sx={{
         backgroundColor: "F0F0F0",
-        height: 70,
+        height: 10,
         position: "relative",
         left: 310,
         width: 100,
