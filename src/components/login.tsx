@@ -51,9 +51,9 @@ const gridStyle = {
 
 const boxStyle = {
   width: 200,
-  height: 125,
+  height: 100,
   margin: "0 auto",
-  paddingRight: 800,
+  paddingRight: 750,
 };
 
 const pStyle = {
@@ -106,7 +106,7 @@ const Login = () => {
   const onSubmit: SubmitHandler<LoginRequest> = async (params) => {
     try {
       axios
-        .post("api/login", {
+        .post("api/login/", {
           username: params.username,
           password: params.password,
         })
@@ -138,7 +138,7 @@ const Login = () => {
   };
   return (
     <Box
-      style={{ backgroundColor: "white", height: "100%", paddingTop: "72px" }}
+      style={{ backgroundColor: "white", height: "100%", paddingTop: "40px" }}
     >
       <Grid style={boxStyle}>
         <img
@@ -161,7 +161,7 @@ const Login = () => {
             textDecoration: "bold",
             fontWeight: "bold",
             position: "relative",
-            left: 500,
+            left: 530,
           }}
         >
           Login Page
@@ -170,7 +170,7 @@ const Login = () => {
 
       <Box
         p={3}
-        sx={{ flexGrow: 1, position: "relative", left: 200, width: 500 }}
+        sx={{ flexGrow: 1, position: "relative", left: 230, width: 500 }}
       >
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           {/* Account */}
@@ -232,6 +232,15 @@ const Login = () => {
                 <ErrorMessage message={errors["password"].message} />
               ) : null}
             </Grid>
+          </Grid>
+
+          <Grid>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="Remember account"
+              />
+            </FormGroup>
           </Grid>
 
           <Grid
