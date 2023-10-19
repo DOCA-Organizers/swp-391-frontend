@@ -11,33 +11,35 @@ import { red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
+import { FavoriteBorder } from '@mui/icons-material';
+import Checkbox from '@mui/material/Checkbox';
+import Favorite from '@mui/icons-material/Favorite';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder'
+import BookmarkIcon from '@mui/icons-material/Bookmark'
+import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
+import Flag from '@mui/icons-material/Flag';
+import Badge from '@mui/material/Badge';
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
+
 
 
 export default function Post() {
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
-    <Card sx={{ maxWidth: 650,
-                maxHeight: 800,
-                backgroundColor: 'white',
-                borderRadius: '3%'
-                }}>
-      <CardHeader sx={{color: '#F9AC33'}}
+    <Card sx={{
+      maxWidth: 650,
+      maxHeight: 800,
+      backgroundColor: 'white',
+      borderRadius: '20px'
+    }}>
+      <CardHeader sx={{ color: '#F9AC33' }}
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"
             src='https://cdn-icons-png.flaticon.com/128/706/706807.png'
-          > 
+          >
           </Avatar>
         }
         action={
@@ -56,31 +58,38 @@ export default function Post() {
       />
       <CardContent>
         <Typography variant="body2" color="#000000">
-        Sunny day . . . Hypotizing photoshoot with my favours. 
-        Have a gud day !!!
+          Sunny day . . . Hypotizing photoshoot with my favours.
+          Have a gud day !!!
         </Typography>
         <Typography variant="button" color="#8A98A4">
-            <PlaceOutlinedIcon/>
-            Ho Chi Minh, Viet Nam
+          <PlaceOutlinedIcon />
+          Ho Chi Minh, Viet Nam
         </Typography>
       </CardContent>
-      <CardActions  
-                    sx ={{
-                        justifyContent: "space-between"
-                    }}            
-        >
-        <IconButton aria-label="like">
-          <FavoriteBorderOutlinedIcon/>
-        </IconButton>
-        <IconButton aria-label="comment">
-          <ChatBubbleOutlineOutlinedIcon/>
-        </IconButton>
-        <IconButton aria-label="bookmark">
-          <BookmarkBorderOutlinedIcon/>
-        </IconButton>
-        <IconButton aria-label="report">
-          <FlagOutlinedIcon/>
-        </IconButton>
+      <CardActions
+        sx={{
+          justifyContent: "space-between"
+        }}
+      >
+        <Badge badgeContent={15} color='primary'
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}>
+          <Checkbox aria-label='like' icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+        </Badge>
+
+        <Badge badgeContent={10} color='primary'
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}>
+          <IconButton aria-label="comment">
+            <ChatBubbleOutlineOutlinedIcon />
+          </IconButton>
+        </Badge>
+        <Checkbox aria-label='bookmark' icon={<BookmarkBorderIcon />} checkedIcon={<BookmarkIcon />} />
+        <Checkbox aria-label='report' icon={<FlagOutlinedIcon />} checkedIcon={<Flag />} />
       </CardActions>
     </Card>
   );
