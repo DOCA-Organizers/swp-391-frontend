@@ -4,6 +4,10 @@ import DocaPage from "pages/docaPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Report from "components/report";
 import AdminPage from "pages/admin/adminPage";
+import RegistrationPage from "pages/registrationPage";
+import LoginPage from "pages/loginPage";
+import CategoryPage from "pages/categoryPage";
+import ReportPage from "pages/reportPage";
 
 function App() {
   return (
@@ -22,7 +26,7 @@ function App() {
     <BrowserRouter>
       <CssBaseline />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<ReportPage />} />
         {/* <Route
     path={ROUTE_PATH.ADMIN}
     element={<AdminRoutes user={} isAllowed={true}/>}

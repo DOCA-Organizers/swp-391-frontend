@@ -4,14 +4,9 @@ import Box from "@mui/material/Box";
 import {
   Button,
   Checkbox,
-  Container,
-  FormControl,
   FormControlLabel,
   FormGroup,
   Grid,
-  InputLabel,
-  List,
-  ListItem,
   Paper,
   TextField,
   Typography,
@@ -24,8 +19,7 @@ import { LoginRequest } from "interfaces/login/loginRequest";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { addErrorIntoField } from "../utils/utils";
 import ErrorMessage from "./errors/errorMessage";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { Navigate } from "react-router-dom";
+
 import axios from "axios";
 
 type Props = {};
@@ -112,7 +106,7 @@ const Login = () => {
         })
         .then(function (response) {
           if (response.data) {
-            console.log(response.data.role.id);
+            console.log(response.data.username);
             switch (response.data.role.id) {
               case 1:
                 //Navigate("/admin");
@@ -140,13 +134,13 @@ const Login = () => {
     <Box
       style={{ backgroundColor: "white", height: "100%", paddingTop: "40px" }}
     >
-      <Grid style={boxStyle}>
+      {/* <Grid style={boxStyle}>
         <img
           src={require("../assets/Huy's logo.png")}
           height={110}
           width={140}
         />
-      </Grid>
+      </Grid> */}
       <Grid
         sx={{
           position: "relative",

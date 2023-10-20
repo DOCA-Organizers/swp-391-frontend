@@ -1,12 +1,12 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import Header from "components/header/header";
-import Registration from "components/registration";
+import RegistrationForm from "components/registrationForm";
 
 const RegistrationPage = () => {
   return (
     <Box>
       <Header />
-      <Registration />
+      <RegistrationForm />
     </Box>
   );
 };

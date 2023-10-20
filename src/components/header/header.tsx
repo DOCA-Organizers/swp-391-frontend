@@ -3,22 +3,21 @@ import React from "react";
 
 type Props = {};
 
+const boxStyle = {
+  width: 200,
+  height: 100,
+  margin: "0 auto",
+  paddingRight: 750,
+};
+
 const Header = (props: Props) => {
   return (
-    <Grid
-      sx={{
-        backgroundColor: "F0F0F0",
-        height: 10,
-        position: "relative",
-        left: 310,
-        width: 100,
-      }}
-    >
+    <Grid style={boxStyle}>
       <img
         src={require("../../assets/Huy's logo.png")}
         height={110}
         width={140}
-      ></img>
+      />
     </Grid>
   );
 };

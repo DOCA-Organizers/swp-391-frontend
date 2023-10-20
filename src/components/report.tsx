@@ -33,7 +33,7 @@ const Report = (props: Props) => {
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "40ch" },
+          "& > :not(style)": { m: 1, width: "40ch", height: 20 },
         }}
         noValidate
         autoComplete="off"
@@ -43,8 +43,8 @@ const Report = (props: Props) => {
             fontWeight: "bold",
             fontSize: 25,
             position: "relative",
-            left: 270,
-            top: 65,
+            left: 290,
+            top: 40,
           }}
         >
           USER REPORT :
