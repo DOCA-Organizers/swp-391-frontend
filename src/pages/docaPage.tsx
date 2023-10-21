@@ -9,36 +9,39 @@ import Summary from "components/Summary";
 import { relative } from "path";
 import CreatePost from "components/post/CreatePost";
 
-
-
 const DocaPage = () => {
-    return (
-        <Box sx={{
-            backgroundColor: '#F0F0F0',
-            paddingTop: '150px'
-        }}>
-            <SlideBar />
-            <Box>
-                <Box sx={{
-                    position: 'relative', left: '20%',
-                    maxWidth: '50%'
-                }}>
-                    <CreatePost />
-                    <Post />
-                </Box>
-                <Box sx={{
-                    position: 'relative', left: '70%',
-                    maxWidth: '30%', bottom: '930px'
-                }}>
-                    <Summary />
-                </Box>
-
-            </Box>
-
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#F0F0F0",
+        paddingTop: "150px",
+      }}
+    >
+      <SlideBar />
+      <Box>
+        <Box
+          sx={{
+            position: "relative",
+            left: "20%",
+            maxWidth: "50%",
+          }}
+        >
+          <CreatePost />
+          <Post />
         </Box>
-
-
-    );
+        <Box
+          sx={{
+            position: "relative",
+            left: "70%",
+            maxWidth: "30%",
+            bottom: "930px",
+          }}
+        >
+          <Summary />
+        </Box>
+      </Box>
+    </Box>
+  );
 };
 
 export default DocaPage;

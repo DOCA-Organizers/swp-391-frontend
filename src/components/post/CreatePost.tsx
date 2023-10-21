@@ -30,11 +30,12 @@ import {
 } from "@mui/material";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import Button from "@mui/material/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import breedAPI from "services/breed/breedAPI";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
+import ImageUploading, { ImageListType } from 'react-images-uploading';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -57,6 +58,13 @@ export default function CreatePost() {
   const [breed, setBreed] = useState("");
   const [breedList, setBreedList] = useState<any[]>([]);
   const [dataBreed, setDataBreed] = useState<any[]>([]);
+  // const inputRef = useRef(null);
+  // const [fileImg, setFileImg] = useState<MediaSource>();
+
+  const [images, setImages] = React.useState([]);
+  const maxNumber = 69;
+
+  
 
   useEffect(() => {
     const getBreedList = async () => {
@@ -74,6 +82,27 @@ export default function CreatePost() {
     initUseEffect();
   }, []);
 
+  
+  const onChangeImage = (
+    imageList: ImageListType,
+    addUpdateIndex: number[] | undefined
+  ) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList as never[]);
+  };
+  
+
+  // const handleImgClick = (inputRef: any) => {
+  //   inputRef.current.click();
+  // };
+
+  // const handleImgChange = (event:any) => {
+  //   const file = event.target.files[0];
+  //   console.log(file);
+  //   setFileImg(event.target.files[0]);
+  // };
+
   const handleRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
@@ -89,6 +118,7 @@ export default function CreatePost() {
       }
     });
   };
+
 
   console.log("Data Breed: ", dataBreed);
   const handleBreed = (event: SelectChangeEvent) => {
@@ -173,7 +203,7 @@ export default function CreatePost() {
   return (
     <Card
       sx={{
-        height: 300,
+        height: "auto",
         width: 650,
         borderRadius: "20px",
         marginBottom: 2,
@@ -189,7 +219,48 @@ export default function CreatePost() {
           aria-label="empty textarea"
           placeholder="Hello, What's on your mind"
         />
-        <Button
+        <Box>
+        <ImageUploading
+        multiple
+        value={images}
+        onChange={onChangeImage}
+        maxNumber={maxNumber}
+        dataURLKey="data_url"
+      >
+        {({
+          imageList,
+          onImageUpload,
+          onImageRemoveAll,
+          onImageUpdate,
+          onImageRemove,
+          isDragging,
+          dragProps,
+        }) => (
+          // write your building UI
+          <div className="upload__image-wrapper">
+            <button
+              style={isDragging ? { color: 'red' } : undefined}
+              onClick={onImageUpload}
+              {...dragProps}
+            >
+              Click or Drop here
+            </button>
+            &nbsp;
+            <button onClick={onImageRemoveAll}>Remove all images</button>
+            {imageList.map((image, index) => (
+              <div key={index} className="image-item">
+                <img src={image['data_url']} alt="" width="100" />
+                <div className="image-item__btn-wrapper">
+                  <button onClick={() => onImageUpdate(index)}>Update</button>
+                  <button onClick={() => onImageRemove(index)}>Remove</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </ImageUploading>
+        </Box>
+        {/* <Button onSubmit={handleImgClick}
           sx={{
             borderRadius: "20px",
             marginRight: 2,
@@ -201,9 +272,10 @@ export default function CreatePost() {
           startIcon={<CloudUploadIcon />}
         >
           Image
-          <VisuallyHiddenInput type="file" />
-        </Button>
+          <VisuallyHiddenInput type="file" ref={inputRef} onChange={handleImgChange}/>
+        </Button> */}
       </Box>
+      {/* {fileImg?<Box sx={{height: 'auto'}}><img height="300" width="500"src={URL.createObjectURL(fileImg)}/> </Box> : null} */}
       <Box
         sx={{
           marginTop: 2,
@@ -290,6 +362,7 @@ export default function CreatePost() {
         </Button>
       </Box>
     </Card>
+    
     // <Card
     //   sx={{
     //     maxWidth: 650,
