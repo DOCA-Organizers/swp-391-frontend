@@ -14,7 +14,7 @@ import {
   styled,
 } from "@mui/material";
 import { SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 type Props = {};
 
@@ -72,14 +72,6 @@ const padding = styled("div")({
   paddingLeft: 8,
 });
 
-const NavigationItem: React.FC<NavigationItemProps> = ({ text, linkTo }) => {
-  return (
-    <ListItem component={Link} to={linkTo}>
-      <ListItemText primary={text} />
-    </ListItem>
-  );
-};
-
 const Category = () => {
   return (
     <div style={divStyle}>
@@ -114,8 +106,40 @@ const Category = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <ListItemButton>Dog Chat</ListItemButton>
-                    <NavigationItem text="Home" linkTo="/" />
+                    <NavLink
+                      to="dogChat"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Dog Chat</ListItemButton>
+                    </NavLink>
+                  </ListItem>
+
+                  <ListItem
+                    sx={{
+                      backgroundColor: "#F0F0F0",
+                      width: 650,
+                      position: "relative",
+                      left: 20,
+                      height: 45,
+                      border: "3px solid",
+                      borderColor: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <NavLink
+                      to="dogHealthAndNutrition"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Dog Health and Nutrition</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -129,7 +153,16 @@ const Category = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <ListItemButton>Dog Health and Nutrition</ListItemButton>
+                    <NavLink
+                      to="dogServices"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Dog Services</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -143,21 +176,16 @@ const Category = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <ListItemButton>Dog Services</ListItemButton>
-                  </ListItem>
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "10px",
-                    }}
-                  >
-                    <ListItemButton>Dog Show and Events</ListItemButton>
+                    <NavLink
+                      to="dogShowAndEvents"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Dog Show and Events</ListItemButton>
+                    </NavLink>
                   </ListItem>
                 </List>
               </div>
@@ -178,7 +206,16 @@ const Category = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <ListItemButton>Cat Chat</ListItemButton>
+                    <NavLink
+                      to="catChat"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Chat</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -192,7 +229,16 @@ const Category = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <ListItemButton>Cat Health and Nutrition</ListItemButton>
+                    <NavLink
+                      to="catHealthAndNutrition"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Health and Nutrition</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -206,7 +252,16 @@ const Category = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <ListItemButton>Cat Services</ListItemButton>
+                    <NavLink
+                      to="catServices"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Services</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -220,7 +275,16 @@ const Category = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <ListItemButton>Cat Show and Events</ListItemButton>
+                    <NavLink
+                      to="catShowAndEvents"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Show and Events</ListItemButton>
+                    </NavLink>
                   </ListItem>
                 </List>
               </div>
