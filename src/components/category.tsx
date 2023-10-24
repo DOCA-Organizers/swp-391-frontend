@@ -14,7 +14,7 @@ import {
   styled,
 } from "@mui/material";
 import { SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 type Props = {};
 
@@ -113,9 +113,10 @@ const Category = () => {
                       borderColor: "white",
                       borderRadius: "10px",
                     }}
-                  >
+                  > 
+                  <NavLink to="dogchat">
                     <ListItemButton>Dog Chat</ListItemButton>
-                    <NavigationItem text="Home" linkTo="/" />
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{

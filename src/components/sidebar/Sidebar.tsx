@@ -112,7 +112,7 @@ export default function SlideBar() {
           <Box
             sx={{
               height: "100%",
-              width: "250px",
+              width: "auto",
             }}
           >
             <img
@@ -181,6 +181,7 @@ export default function SlideBar() {
               style={{
                 textDecoration: "none",
                 color: "inherit",
+                width: "100%"
               }}
             >
               <ListItemButton>
