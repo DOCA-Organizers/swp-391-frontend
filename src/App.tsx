@@ -33,15 +33,14 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path="/" element={<CategoryPage />}>
-          <Route path="dogChat" element={<Search}/>
-          <Route path="dogHealthAndNutrition" element={<Search}/> 
-          <Route path="dogServices" element={<Search}/>
-          <Route path="dogShowAndEvents" element={<Search}/>
-          <Route path="catChat" element={<Search}/>
-          <Route path="catHealthAndNutrition" element={<Search}/>
-          <Route path="catServices" element={<Search}/>
-          <Route path="catShowAndEvents" element={<Search}/>
-
+          <Route path="dogChat" element={<LoginPage />} />
+          <Route path="dogHealthAndNutrition" element={<LoginPage />} />
+          <Route path="dogServices" element={<LoginPage />} />
+          <Route path="dogShowAndEvents" element={<LoginPage />} />
+          <Route path="catChat" element={<LoginPage />} />
+          <Route path="catHealthAndNutrition" element={<LoginPage />} />
+          <Route path="catServices" element={<LoginPage />} />
+          <Route path="catShowAndEvents" element={<LoginPage />} />
         </Route>
 
         {/* <Route
