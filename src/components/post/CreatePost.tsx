@@ -329,7 +329,6 @@ export default function CreatePost() {
               autoWidth
               onChange={handleBreed}
             >
-              <MenuItem value="">None</MenuItem>
               {dataBreed.map((item: any) => {
                 return (
                   <MenuItem key={item.id} value={item.id}>

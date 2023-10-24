@@ -200,13 +200,7 @@ export default function Post() {
           >
             {[...new Array(50)]
               .map((index) => (
-                <Grid item key={index}>
-                  <Avatar
-                    sx={{ bgcolor: red[500] }}
-                    aria-label="recipe"
-                    src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
-                  />
-                </Grid>
+                'Comments'
               ))
               .join("\n")}
           </DialogContentText>
