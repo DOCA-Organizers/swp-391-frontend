@@ -156,7 +156,6 @@ const RegistrationForm = () => {
                   fullWidth
                   label="Input username here"
                   variant="filled"
-                  // sx={{ width: 500, color: "#D9D9D9" }}
                 />
               )}
             />
@@ -179,7 +178,6 @@ const RegistrationForm = () => {
                   fullWidth
                   label="Input username here"
                   variant="filled"
-                  // sx={{ width: 500, color: "#D9D9D9" }}
                 />
               )}
             />
@@ -203,7 +201,6 @@ const RegistrationForm = () => {
                   fullWidth
                   label="Input username here"
                   variant="filled"
-                  // sx={{ width: 500, color: "#D9D9D9" }}
                 />
               )}
             />
@@ -226,7 +223,6 @@ const RegistrationForm = () => {
                   fullWidth
                   label="Input username here"
                   variant="filled"
-                  // sx={{ width: 500, color: "#D9D9D9" }}
                 />
               )}
             />
@@ -249,7 +245,6 @@ const RegistrationForm = () => {
                   fullWidth
                   label="Input username here"
                   variant="filled"
-                  // sx={{ width: 500, color: "#D9D9D9" }}
                 />
               )}
             />

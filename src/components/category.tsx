@@ -6,12 +6,15 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListItemText,
   Paper,
   ThemeProvider,
   Typography,
   createTheme,
   styled,
 } from "@mui/material";
+import { SubmitHandler } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -69,6 +72,14 @@ const padding = styled("div")({
   paddingLeft: 8,
 });
 
+const NavigationItem: React.FC<NavigationItemProps> = ({ text, linkTo }) => {
+  return (
+    <ListItem component={Link} to={linkTo}>
+      <ListItemText primary={text} />
+    </ListItem>
+  );
+};
+
 const Category = () => {
   return (
     <div style={divStyle}>
@@ -104,6 +115,7 @@ const Category = () => {
                     }}
                   >
                     <ListItemButton>Dog Chat</ListItemButton>
+                    <NavigationItem text="Home" linkTo="/" />
                   </ListItem>
                   <ListItem
                     sx={{

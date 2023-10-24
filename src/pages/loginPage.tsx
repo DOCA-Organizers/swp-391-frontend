@@ -1,11 +1,9 @@
 import { Box } from "@mui/material";
 import Header from "components/header/header";
 import Login from "components/login";
-import React from "react";
+// import AuthContext from "context/AuthContext";
 
-type Props = {};
-
-const LoginPage = (props: Props) => {
+const LoginPage = () => {
   return (
     <Box height={"100%"}>
       <Header />

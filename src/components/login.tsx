@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 
 import {
@@ -7,11 +7,10 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
-  Paper,
   TextField,
   Typography,
 } from "@mui/material";
-import styled from "styled-components";
+
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import * as yup from "yup";
@@ -19,10 +18,7 @@ import { LoginRequest } from "interfaces/login/loginRequest";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { addErrorIntoField } from "../utils/utils";
 import ErrorMessage from "./errors/errorMessage";
-
 import axios from "axios";
-
-type Props = {};
 
 const leftGridStyle = {
   marginTop: "20px",
@@ -50,23 +46,9 @@ const boxStyle = {
   paddingRight: 750,
 };
 
-const pStyle = {
-  fontSize: 32,
-  fontWeight: "bold",
-  textAlign: "center",
-  color: "#18345E",
-};
-
-const Item = styled(Paper)(({ theme }) => ({}));
-
-const ColorButton = styled(Button)(({ theme }) => ({
-  color: "#ffff",
-  backgroundColor: "#00689B",
-}));
-
-const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
-const passwordRegExp =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/g;
+// const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
+// const passwordRegExp =
+//   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/g;
 
 const validationSchema = yup.object({
   username: yup.string().required("Cannot empty in the Account blank!"),
@@ -119,28 +101,15 @@ const Login = () => {
         .catch(function (e) {
           console.log(e);
         });
-
-      // const response = await LoginAPI.login({
-      //   username: params.username,
-      //   password: params.password,
-      // });
-
-      // console.log("Response: ", response);
     } catch (error) {
       console.log("Error submitting", error);
     }
   };
+
   return (
     <Box
       style={{ backgroundColor: "white", height: "100%", paddingTop: "40px" }}
     >
-      {/* <Grid style={boxStyle}>
-        <img
-          src={require("../assets/Huy's logo.png")}
-          height={110}
-          width={140}
-        />
-      </Grid> */}
       <Grid
         sx={{
           position: "relative",

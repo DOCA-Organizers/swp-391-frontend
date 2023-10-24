@@ -6,14 +6,10 @@ const LoginAPI = {
   // tokenLoad() {
   //   let config = {
   //     headers: {
-  //       'Authorization': 'Bearer ' + validToken()
+  //       'Authorization': 'Bearer ' + validToken(),
   //     }
   //   }
   // }
-
-  // login: (params: LoginRequest) => {
-  //   return axiosClient.post<LoginRequest>("login", params);
-  // },
 
   login: (params: LoginRequest) => {
     console.log("Params: ", params);
