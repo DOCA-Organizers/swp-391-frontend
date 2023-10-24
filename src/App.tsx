@@ -1,8 +1,7 @@
 import { CssBaseline } from "@mui/material";
-import { ROUTE_PATH } from "configs";
 import DocaPage from "pages/docaPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminRoutes from "routes/AdminRoutes";
+
 
 function App() {
   return (
