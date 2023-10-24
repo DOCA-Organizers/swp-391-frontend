@@ -15,6 +15,8 @@ import CategoryPage from "pages/categoryPage";
 import ReportPage from "pages/reportPage";
 import Category from "components/category";
 
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     // <BrowserRouter>
