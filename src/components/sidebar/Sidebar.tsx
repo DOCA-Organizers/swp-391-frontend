@@ -183,7 +183,7 @@ export default function SlideBar() {
         <Button variant="contained" disableElevation
           sx={{
             borderRadius: 80,
-            backgroundColor: "#F9AC33"
+            backgroundColor: "#FF8C00"
           }}
         >
           Log out

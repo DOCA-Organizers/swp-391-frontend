@@ -35,7 +35,8 @@ import breedAPI from "services/breed/breedAPI";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
-import ImageUploading, { ImageListType } from 'react-images-uploading';
+import ImageUploading, { ImageListType } from "react-images-uploading";
+import "./CreatePost.css";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -64,8 +65,6 @@ export default function CreatePost() {
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
 
-  
-
   useEffect(() => {
     const getBreedList = async () => {
       const data: any = await breedAPI.getBreedList();
@@ -82,7 +81,6 @@ export default function CreatePost() {
     initUseEffect();
   }, []);
 
-  
   const onChangeImage = (
     imageList: ImageListType,
     addUpdateIndex: number[] | undefined
@@ -91,7 +89,6 @@ export default function CreatePost() {
     console.log(imageList, addUpdateIndex);
     setImages(imageList as never[]);
   };
-  
 
   // const handleImgClick = (inputRef: any) => {
   //   inputRef.current.click();
@@ -118,7 +115,6 @@ export default function CreatePost() {
       }
     });
   };
-
 
   console.log("Data Breed: ", dataBreed);
   const handleBreed = (event: SelectChangeEvent) => {
@@ -220,45 +216,52 @@ export default function CreatePost() {
           placeholder="Hello, What's on your mind"
         />
         <Box>
-        <ImageUploading
-        multiple
-        value={images}
-        onChange={onChangeImage}
-        maxNumber={maxNumber}
-        dataURLKey="data_url"
-      >
-        {({
-          imageList,
-          onImageUpload,
-          onImageRemoveAll,
-          onImageUpdate,
-          onImageRemove,
-          isDragging,
-          dragProps,
-        }) => (
-          // write your building UI
-          <div className="upload__image-wrapper">
-            <button
-              style={isDragging ? { color: 'red' } : undefined}
-              onClick={onImageUpload}
-              {...dragProps}
-            >
-              Click or Drop here
-            </button>
-            &nbsp;
-            <button onClick={onImageRemoveAll}>Remove all images</button>
-            {imageList.map((image, index) => (
-              <div key={index} className="image-item">
-                <img src={image['data_url']} alt="" width="100" />
-                <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>Update</button>
-                  <button onClick={() => onImageRemove(index)}>Remove</button>
-                </div>
+          <ImageUploading
+            multiple
+            value={images}
+            onChange={onChangeImage}
+            maxNumber={maxNumber}
+            dataURLKey="data_url"
+          >
+            {({
+              imageList,
+              onImageUpload,
+              onImageRemoveAll,
+              onImageUpdate,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              // write your building UI
+              <div className="upload__image-wrapper">
+                <button
+                  className="btn btn4"
+                  style={isDragging ? { color: "red" } : undefined}
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  Click or Drop here
+                </button>
+                &nbsp;
+                <button
+                className="btn btn4"
+                onClick={onImageRemoveAll}>Remove all images</button>
+                {imageList.map((image, index) => (
+                  <div key={index} className="image-item">
+                    <img src={image["data_url"]} alt="" width="100" />
+                    <div className="image-item__btn-wrapper">
+                      <button className="btn btn4" onClick={() => onImageUpdate(index)}>
+                        Update
+                      </button>
+                      <button className="btn btn4" onClick={() => onImageRemove(index)}>
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
-      </ImageUploading>
+            )}
+          </ImageUploading>
         </Box>
         {/* <Button onSubmit={handleImgClick}
           sx={{
@@ -362,7 +365,7 @@ export default function CreatePost() {
         </Button>
       </Box>
     </Card>
-    
+
     // <Card
     //   sx={{
     //     maxWidth: 650,

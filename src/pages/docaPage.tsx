@@ -34,7 +34,7 @@ const DocaPage = () => {
             position: "relative",
             left: "70%",
             maxWidth: "30%",
-            bottom: "930px",
+            bottom: "1025px",
           }}
         >
           <Summary />

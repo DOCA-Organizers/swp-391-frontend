@@ -31,7 +31,7 @@ import {
   TextField,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 
 export default function Post() {
   const [expanded, setExpanded] = React.useState(false);
@@ -62,7 +62,7 @@ export default function Post() {
     <Card
       sx={{
         maxWidth: 650,
-        maxHeight: 800,
+        maxHeight: "auto",
         backgroundColor: "white",
         borderRadius: "20px",
       }}
@@ -85,6 +85,16 @@ export default function Post() {
         subheader="September 14, 2023"
       />
       <CardContent>
+        <Card
+          sx={{
+            marginBottom: 1,
+            backgroundColor: "#FF8C00",
+            width: "150px",
+            color: "#1D5B9D",
+          }}
+        >
+          <Typography marginLeft={1}>Category: Post</Typography>
+        </Card>
         <Card
           sx={{
             marginBottom: 1,
@@ -176,9 +186,9 @@ export default function Post() {
           display="flex"
           fontWeight="bold"
         >
-          Post of namnguyen2u3
+          namnguyen2u3's post
           <IconButton onClick={handleCloseCommentDialog}>
-            <ClearOutlinedIcon/>
+            <ClearOutlinedIcon />
           </IconButton>
         </DialogTitle>
 
@@ -189,12 +199,15 @@ export default function Post() {
             tabIndex={-1}
           >
             {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-              )
+              .map((index) => (
+                <Grid item key={index}>
+                  <Avatar
+                    sx={{ bgcolor: red[500] }}
+                    aria-label="recipe"
+                    src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
+                  />
+                </Grid>
+              ))
               .join("\n")}
           </DialogContentText>
         </DialogContent>
