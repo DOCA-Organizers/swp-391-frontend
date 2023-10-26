@@ -16,7 +16,6 @@ const Item = styled("div")(({ theme }) => ({
   borderColor: theme.palette.mode === "dark" ? "#444d58" : "#ced7e0",
   padding: theme.spacing(1),
   borderRadius: "4px",
-  textAlign: "center",
 }));
 
 const Profile = () => {
@@ -40,62 +39,126 @@ const Profile = () => {
         spacing={4}
         sx={{ paddingTop: 10, width: 900, position: "relative", left: 170 }}
       >
-        <Grid xs={3} sx={{}}>
-          <Item>
-            <Typography>Joined :</Typography>
+        <Grid xs={3}>
+          <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>
+            <Typography sx={{ fontWeight: "bold", fontSize: 17 }}>
+              Joined :
+            </Typography>
           </Item>
         </Grid>
         <Grid xs={9}>
-          <Item>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
             <Typography>{profile?.dateJoined}</Typography>
           </Item>
         </Grid>
         <Grid xs={3}>
-          <Item>Full name :</Item>
+          <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>
+            <Typography sx={{ fontWeight: "bold", fontSize: 17 }}>
+              Full name :
+            </Typography>
+          </Item>
         </Grid>
         <Grid xs={9}>
-          <Item>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
             <Typography>{profile?.fullName}</Typography>
           </Item>
         </Grid>
         <Grid xs={3}>
-          <Item>Management area :</Item>
+          <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>
+            <Typography sx={{ fontWeight: "bold", fontSize: 17 }}>
+              Management area :
+            </Typography>
+          </Item>
         </Grid>
         <Grid xs={9}>
-          <Item>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
             <Typography>{profile?.manage}</Typography>
           </Item>
         </Grid>
 
         <Grid xs={3}>
-          <Item>
-            <Typography>Email:</Typography>
+          <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>
+            <Typography sx={{ fontWeight: "bold", fontSize: 17 }}>
+              Email:
+            </Typography>
           </Item>
         </Grid>
         <Grid xs={9}>
-          <Item>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
             <Typography>{profile?.email}</Typography>
           </Item>
         </Grid>
 
         <Grid xs={3}>
-          <Item>
-            <Typography>Date of Birth :</Typography>
+          <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>
+            <Typography sx={{ fontWeight: "bold", fontSize: 17 }}>
+              Date of Birth :
+            </Typography>
           </Item>
         </Grid>
         <Grid xs={9}>
-          <Item>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
             <Typography>{profile?.dateOfBirth}</Typography>
           </Item>
         </Grid>
 
         <Grid xs={3}>
-          <Item>
-            <Typography>Gender :</Typography>
+          <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>
+            <Typography sx={{ fontWeight: "bold", fontSize: 17 }}>
+              Gender :
+            </Typography>
           </Item>
         </Grid>
         <Grid xs={9}>
-          <Item>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
             <Typography>{profile?.gender}</Typography>
           </Item>
         </Grid>

@@ -37,7 +37,7 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path="/">
-          <Route index element={<Profile />} />
+          <Route index element={<CategoryPage />} />
           <Route path="dog-chat" element={<DocaPage />} />
           <Route path="dog-health-nutrition" element={<DocaPage />} />
           <Route path="dog-services" element={<DocaPage />} />

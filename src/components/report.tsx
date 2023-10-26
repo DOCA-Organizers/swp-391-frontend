@@ -4,7 +4,6 @@ import {
   Container,
   FormControl,
   Grid,
-  InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -14,8 +13,6 @@ import {
 import { useState } from "react";
 
 import styled from "styled-components";
-
-type Props = {};
 
 const Item = styled("div")({
   borderRadius: "4px",
