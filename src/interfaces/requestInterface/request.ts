@@ -1,4 +1,4 @@
-export interface LoginRequest {
+export interface AccountRequest {
   username: string;
   password: string;
 }
@@ -13,6 +13,10 @@ export interface RegisRequest {
 
 export interface SearchContent {
   content: string;
+}
+
+export interface CategoryRequest {
+  categoryId: number;
 }
 
 export interface MyProfileRequest {
