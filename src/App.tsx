@@ -46,6 +46,8 @@ function App() {
           <Route path="cat-health-nutrition" element={<DocaPage />} />
           <Route path="cat-services" element={<DocaPage />} />
           <Route path="cat-show-events" element={<DocaPage />} />
+          <Route path="login" element={<LoginPage/>} />
+          <Route path="register" element={<RegistrationPage/>} />
         </Route>
 
         {/* <Route

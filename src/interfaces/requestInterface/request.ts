@@ -34,3 +34,7 @@ export interface MyProfileRequest {
 export interface ReportList {
   username: string;
 }
+
+export interface BookmarkedPost {
+  userID: string;
+}

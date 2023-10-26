@@ -107,7 +107,12 @@ const Login = () => {
 
   return (
     <Box
-      style={{ backgroundColor: "white", height: "100%", paddingTop: "40px" }}
+      style={{
+        backgroundColor: "white",
+        height: "100%",
+        paddingTop: "40px",
+        paddingLeft: "100px",
+      }}
     >
       <Grid
         sx={{
@@ -215,7 +220,7 @@ const Login = () => {
               variant="contained"
               size="large"
               type="submit"
-              style={{ width: "30%" }}
+              style={{ width: "30%", backgroundColor: "#1D5B9D" }}
             >
               Login
             </Button>
