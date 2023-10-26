@@ -14,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { RegisRequest } from "interfaces/requestInterface/request";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 const passwordRegExp =
@@ -59,6 +60,7 @@ const onError = (error: any) => {
 };
 
 const RegistrationForm = () => {
+  const Navigate = useNavigate();
   const onSubmit: SubmitHandler<RegisRequest> = async (params) => {
     try {
       axios
@@ -267,11 +269,15 @@ const RegistrationForm = () => {
             >
               <Typography sx={{ color: "white" }}>Save</Typography>
             </Button>
+
             <Button
               variant="contained"
               sx={{
                 backgroundColor: "#1D5B9D",
                 width: 80,
+              }}
+              onClick={() => {
+                Navigate(-1);
               }}
             >
               <Typography sx={{ color: "white" }}>Cancel</Typography>

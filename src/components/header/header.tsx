@@ -1,5 +1,5 @@
-import { Button, Grid, styled } from "@mui/material";
-import React from "react";
+import { Button, Grid } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const boxStyle = {
   width: 200,
@@ -18,39 +18,57 @@ const Header = () => {
           width={140}
         />
 
-        <Button
-          variant="contained"
-          type="submit"
-          sx={{
-            width: 100,
-            position: "relative",
-            left: 550,
-            bottom: 85,
-            borderRadius: 100,
-            backgroundColor: "#1D5B9D",
-            color: "white",
-            // fontWeight: "bold",
+        <NavLink
+          to="login"
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+            width: "100%",
           }}
         >
-          Login
-        </Button>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              width: 100,
+              position: "relative",
+              left: 550,
+              bottom: 85,
+              borderRadius: 100,
+              backgroundColor: "#1D5B9D",
+              color: "white",
+              // fontWeight: "bold",
+            }}
+          >
+            Login
+          </Button>
+        </NavLink>
 
-        <Button
-          variant="contained"
-          type="submit"
-          sx={{
-            width: 100,
-            position: "relative",
-            left: 650,
-            bottom: 85,
-            borderRadius: 100,
-            backgroundColor: "#1D5B9D",
-            color: "white",
-            // fontWeight: "bold",
+        <NavLink
+          to="register"
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+            width: "100%",
           }}
         >
-          Register
-        </Button>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              width: 100,
+              position: "relative",
+              left: 650,
+              bottom: 85,
+              borderRadius: 100,
+              backgroundColor: "#1D5B9D",
+              color: "white",
+              // fontWeight: "bold",
+            }}
+          >
+            Register
+          </Button>
+        </NavLink>
       </Grid>
     </Grid>
   );
