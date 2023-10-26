@@ -8,8 +8,21 @@ import Post from "../components/post/Post";
 import Summary from "components/Summary";
 import { relative } from "path";
 import CreatePost from "components/post/CreatePost";
+import { useState } from "react";
+import { ImageListType } from "react-images-uploading";
+
+export interface IState{
+  inforPost: {
+    content: string,
+    categoryPost: string,
+    typePet: string,
+    breedPet: string,
+    imageList: ImageListType
+  }[]
+}
 
 const DocaPage = () => {
+  const [inforPost, setInforPost] = useState<IState["inforPost"]>([])
   return (
     <Box
       sx={{
@@ -26,8 +39,8 @@ const DocaPage = () => {
             maxWidth: "50%",
           }}
         >
-          <CreatePost />
-          <Post />
+          <CreatePost inforPost={inforPost} setInforPost={setInforPost}/>
+          <Post inforPost={inforPost}/>
         </Box>
         <Box
           sx={{

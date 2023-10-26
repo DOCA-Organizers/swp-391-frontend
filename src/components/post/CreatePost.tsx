@@ -23,6 +23,7 @@ import {
   FormControlLabel,
   FormHelperText,
   FormLabel,
+  Input,
   Radio,
   RadioGroup,
   TextField,
@@ -30,13 +31,18 @@ import {
 } from "@mui/material";
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import Button from "@mui/material/Button";
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import breedAPI from "services/breed/breedAPI";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
 import ImageUploading, { ImageListType } from "react-images-uploading";
-import "./CreatePost.css";
+import "./CreatePost.css"
+import { IState as Props } from "pages/docaPage";
+
+interface Iprops {
+  inforPost: Props["inforPost"];
+  setInforPost: React.Dispatch<React.SetStateAction<Props["inforPost"]>>;
+}
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -53,18 +59,15 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function CreatePost() {
-  const [value, setValue] = useState("Post");
+export default function CreatePost({ inforPost, setInforPost }: Iprops) {
+  const [content, setContent] = useState("");
+  const [category, setCategory] = useState("Post");
   const [type, setType] = useState("");
   const [breed, setBreed] = useState("");
   const [breedList, setBreedList] = useState<any[]>([]);
   const [dataBreed, setDataBreed] = useState<any[]>([]);
-  // const inputRef = useRef(null);
-  // const [fileImg, setFileImg] = useState<MediaSource>();
-
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
-
   useEffect(() => {
     const getBreedList = async () => {
       const data: any = await breedAPI.getBreedList();
@@ -81,6 +84,11 @@ export default function CreatePost() {
     initUseEffect();
   }, []);
 
+  const onChangeContent = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value);
+  };
+  
+
   const onChangeImage = (
     imageList: ImageListType,
     addUpdateIndex: number[] | undefined
@@ -90,18 +98,8 @@ export default function CreatePost() {
     setImages(imageList as never[]);
   };
 
-  // const handleImgClick = (inputRef: any) => {
-  //   inputRef.current.click();
-  // };
-
-  // const handleImgChange = (event:any) => {
-  //   const file = event.target.files[0];
-  //   console.log(file);
-  //   setFileImg(event.target.files[0]);
-  // };
-
   const handleRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+    setCategory((event.target as HTMLInputElement).value);
   };
 
   const handleType = (event: SelectChangeEvent) => {
@@ -116,7 +114,6 @@ export default function CreatePost() {
     });
   };
 
-  console.log("Data Breed: ", dataBreed);
   const handleBreed = (event: SelectChangeEvent) => {
     setBreed(event.target.value as string);
   };
@@ -127,74 +124,23 @@ export default function CreatePost() {
     setExpanded(!expanded);
   };
 
-  const blue = {
-    100: "#DAECFF",
-    200: "#b6daff",
-    400: "#3399FF",
-    500: "#007FFF",
-    600: "#0072E5",
-    900: "#003A75",
-  };
-
-  const grey = {
-    50: "#f6f8fa",
-    100: "#eaeef2",
-    200: "#d0d7de",
-    300: "#afb8c1",
-    400: "#8c959f",
-    500: "#6e7781",
-    600: "#57606a",
-    700: "#424a53",
-    800: "#32383f",
-    900: "#24292f",
-  };
-
-  const Textarea = styled(BaseTextareaAutosize)(
-    ({ theme }) => `
-    width: 500px;
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 3;
-    border-radius: 20px 20px 0 20px;
-    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-    border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-    box-shadow: 0px 2px 2px ${
-      theme.palette.mode === "dark" ? grey[900] : grey[50]
-    };
-  
-
-
-    &:hover {
-      border-color: ${blue[400]};
-    }
-
-    &:focus {
-      border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${
-        theme.palette.mode === "dark" ? blue[500] : blue[200]
-      };
-    }
-
-    // firefox
-    &:focus-visible {
-      outline: 0;
-    }
-  `
-  );
-
-  const VisuallyHiddenInput = styled("input")({
-    clip: "rect(0 0 0 0)",
-    clipPath: "inset(50%)",
-    height: 1,
-    overflow: "hidden",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    whiteSpace: "nowrap",
-    width: 1,
-  });
+  const handlePost = (e:React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    setInforPost([...inforPost,{
+        content: content,
+        imageList: images,
+        categoryPost: category,
+        typePet: type,
+        breedPet: breed
+    }])
+    alert("Post successfully")
+    setContent("");
+    setImages([]);
+    setCategory("");
+    setType("");
+    setBreed("");
+    
+  }
 
   return (
     <Card
@@ -205,15 +151,22 @@ export default function CreatePost() {
         marginBottom: 2,
       }}
     >
+      <form onSubmit={handlePost}>
       <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
         <Avatar
           sx={{ bgcolor: red[500], marginLeft: 2, marginRight: 2 }}
           aria-label="recipe"
           src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
         ></Avatar>
-        <Textarea
-          aria-label="empty textarea"
+        <TextField
+          className="inputContent"
+          label='Content'
           placeholder="Hello, What's on your mind"
+          id="content-post"
+          onChange={onChangeContent}
+          value={content}
+          required={true}
+          multiline
         />
         <Box>
           <ImageUploading
@@ -243,17 +196,23 @@ export default function CreatePost() {
                   Click or Drop here
                 </button>
                 &nbsp;
-                <button
-                className="btn btn4"
-                onClick={onImageRemoveAll}>Remove all images</button>
+                <button className="btn btn4" onClick={onImageRemoveAll}>
+                  Remove all images
+                </button>
                 {imageList.map((image, index) => (
                   <div key={index} className="image-item">
                     <img src={image["data_url"]} alt="" width="100" />
                     <div className="image-item__btn-wrapper">
-                      <button className="btn btn4" onClick={() => onImageUpdate(index)}>
+                      <button
+                        className="btn btn4"
+                        onClick={() => onImageUpdate(index)}
+                      >
                         Update
                       </button>
-                      <button className="btn btn4" onClick={() => onImageRemove(index)}>
+                      <button
+                        className="btn btn4"
+                        onClick={() => onImageRemove(index)}
+                      >
                         Remove
                       </button>
                     </div>
@@ -263,22 +222,8 @@ export default function CreatePost() {
             )}
           </ImageUploading>
         </Box>
-        {/* <Button onSubmit={handleImgClick}
-          sx={{
-            borderRadius: "20px",
-            marginRight: 2,
-            marginLeft: 2,
-            height: 50,
-          }}
-          component="label"
-          variant="contained"
-          startIcon={<CloudUploadIcon />}
-        >
-          Image
-          <VisuallyHiddenInput type="file" ref={inputRef} onChange={handleImgChange}/>
-        </Button> */}
       </Box>
-      {/* {fileImg?<Box sx={{height: 'auto'}}><img height="300" width="500"src={URL.createObjectURL(fileImg)}/> </Box> : null} */}
+      
       <Box
         sx={{
           marginTop: 2,
@@ -292,7 +237,7 @@ export default function CreatePost() {
           <RadioGroup
             aria-labelledby="category_post"
             name="controlled-radio-buttons-group"
-            value={value}
+            value={category}
             onChange={handleRadio}
           >
             <FormControlLabel value="Post" control={<Radio />} label="Post" />
@@ -331,7 +276,7 @@ export default function CreatePost() {
             >
               {dataBreed.map((item: any) => {
                 return (
-                  <MenuItem key={item.id} value={item.id}>
+                  <MenuItem key={item.id} value={item.name}>
                     {item.name}
                   </MenuItem>
                 );
@@ -358,11 +303,13 @@ export default function CreatePost() {
         <Button
           variant="contained"
           disabled={false}
+          type="submit"
           sx={{ height: 50, width: 100 }}
         >
           Post
         </Button>
       </Box>
+      </form>
     </Card>
 
     // <Card

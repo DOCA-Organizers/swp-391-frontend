@@ -160,15 +160,6 @@ export default function SlideBar() {
           <ListItem>
             <ListItemButton>
               <ListItemIcon>
-                <NotificationsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Notifications" />
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem>
-            <ListItemButton>
-              <ListItemIcon>
                 <BookmarkIcon />
               </ListItemIcon>
               <ListItemText primary="Bookmarks" />

@@ -1,4 +1,4 @@
-interface NavigationItemProps {
-  text: string;
-  linkTo: string;
-}
+// interface NavigationItemProps {
+//   text: string;
+//   linkTo: string;
+// }

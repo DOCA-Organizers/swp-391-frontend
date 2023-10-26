@@ -14,6 +14,7 @@ import LoginPage from "pages/loginPage";
 import CategoryPage from "pages/categoryPage";
 import ReportPage from "pages/reportPage";
 import Category from "components/category";
+import SlideBar from "components/sidebar/Sidebar";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -34,8 +35,8 @@ function App() {
     <BrowserRouter>
       <CssBaseline />
       <Routes>
-        <Route path="/" element={<Category />}>
-          <Route path="/dogchat" element={<DocaPage />} />
+        <Route path="/" element={<DocaPage />}>
+          <Route path="dogchat" element={<DocaPage />} />
           <Route path="dogHealthAndNutrition" element={<LoginPage />} />
           <Route path="dogServices" element={<LoginPage />} />
           <Route path="dogShowAndEvents" element={<LoginPage />} />
