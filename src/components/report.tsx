@@ -4,25 +4,22 @@ import {
   Container,
   FormControl,
   Grid,
-  InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
-
-type Props = {};
 
 const Item = styled("div")({
   borderRadius: "4px",
   textAlign: "center",
 });
 
-const Report = (props: Props) => {
+const Report = () => {
   const [reason, setReason] = useState("");
   const handleChange = (event: SelectChangeEvent) => {
     setReason(event.target.value as string);

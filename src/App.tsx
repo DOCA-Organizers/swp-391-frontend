@@ -14,6 +14,8 @@ import LoginPage from "pages/loginPage";
 import CategoryPage from "pages/categoryPage";
 import ReportPage from "pages/reportPage";
 import Category from "components/category";
+import Post from "components/post/Post";
+import Profile from "components/profile";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -34,15 +36,16 @@ function App() {
     <BrowserRouter>
       <CssBaseline />
       <Routes>
-        <Route path="/" element={<CategoryPage />}>
-          <Route path="dogChat" element={<LoginPage />} />
-          <Route path="dogHealthAndNutrition" element={<LoginPage />} />
-          <Route path="dogServices" element={<LoginPage />} />
-          <Route path="dogShowAndEvents" element={<LoginPage />} />
-          <Route path="catChat" element={<LoginPage />} />
-          <Route path="catHealthAndNutrition" element={<LoginPage />} />
-          <Route path="catServices" element={<LoginPage />} />
-          <Route path="catShowAndEvents" element={<LoginPage />} />
+        <Route path="/">
+          <Route index element={<CategoryPage />} />
+          <Route path="dog-chat" element={<DocaPage />} />
+          <Route path="dog-health-nutrition" element={<DocaPage />} />
+          <Route path="dog-services" element={<DocaPage />} />
+          <Route path="dog-show-events" element={<DocaPage />} />
+          <Route path="cat-chat" element={<DocaPage />} />
+          <Route path="cat-health-nutrition" element={<DocaPage />} />
+          <Route path="cat-services" element={<DocaPage />} />
+          <Route path="cat-show-events" element={<DocaPage />} />
         </Route>
 
         {/* <Route

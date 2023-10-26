@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 
 import {
@@ -14,7 +13,7 @@ import {
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import * as yup from "yup";
-import { LoginRequest } from "interfaces/login/loginRequest";
+import { AccountRequest } from "interfaces/requestInterface/request";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { addErrorIntoField } from "../utils/utils";
 import ErrorMessage from "./errors/errorMessage";
@@ -79,7 +78,7 @@ const Login = () => {
     console.log(error);
   };
 
-  const onSubmit: SubmitHandler<LoginRequest> = async (params) => {
+  const onSubmit: SubmitHandler<AccountRequest> = async (params) => {
     try {
       axios
         .post("api/login/", {

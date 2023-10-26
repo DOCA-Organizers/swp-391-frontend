@@ -1,83 +1,16 @@
-import { Home, Padding } from "@mui/icons-material";
-import {
-  Box,
-  BoxProps,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Paper,
-  ThemeProvider,
-  Typography,
-  createTheme,
-  styled,
-} from "@mui/material";
-import { SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Box, List, ListItem, ListItemButton, styled } from "@mui/material";
 
-type Props = {};
+import { NavLink } from "react-router-dom";
 
 const MyComponent = styled("div")({
-  color: "darkslategray",
-  backgroundColor: "aliceblue",
+  color: "gray",
+  backgroundColor: "#FF8C00",
   padding: 8,
   borderRadius: 4,
 });
 
-function Item(props: BoxProps) {
-  const { sx, ...other } = props;
-  return (
-    <Box
-      sx={{
-        p: 1,
-        m: 1,
-        bgcolor: (theme) =>
-          theme.palette.mode === "dark" ? "#101010" : "grey.100",
-        color: (theme) =>
-          theme.palette.mode === "dark" ? "grey.300" : "grey.800",
-        border: "1px solid",
-        borderColor: (theme) =>
-          theme.palette.mode === "dark" ? "grey.800" : "grey.300",
-        borderRadius: 2,
-        fontSize: "0.875rem",
-        fontWeight: "700",
-        ...sx,
-      }}
-      {...other}
-    />
-  );
-}
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1D5B9D",
-    },
-    secondary: {
-      main: "#F0F0F0",
-    },
-  },
-});
-
 const divStyle = {
   backgroundColor: "white",
-};
-
-const itemImg = {
-  img: "D:SWP391DOCA_Projectswp391-frontendsrcassetsHuy's logo.png",
-};
-
-const padding = styled("div")({
-  paddingLeft: 8,
-});
-
-const NavigationItem: React.FC<NavigationItemProps> = ({ text, linkTo }) => {
-  return (
-    <ListItem component={Link} to={linkTo}>
-      <ListItemText primary={text} />
-    </ListItem>
-  );
 };
 
 const Category = () => {
@@ -99,7 +32,15 @@ const Category = () => {
         >
           {(["md"] as const).map((size) => (
             <div key={size}>
-              <MyComponent>Dog Forums</MyComponent>
+              <MyComponent
+                sx={{
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  color: "black",
+                }}
+              >
+                Dog Forums
+              </MyComponent>
               <div style={{ width: "100%" }}>
                 <List>
                   <ListItem
@@ -111,12 +52,21 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "20px",
                     }}
                   >
-                    <ListItemButton>Dog Chat</ListItemButton>
-                    <NavigationItem text="Home" linkTo="/" />
+                    <NavLink
+                      to="dog-chat"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Dog Chat</ListItemButton>
+                    </NavLink>
                   </ListItem>
+
                   <ListItem
                     sx={{
                       backgroundColor: "#F0F0F0",
@@ -126,11 +76,22 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "15px",
                     }}
                   >
-                    <ListItemButton>Dog Health and Nutrition</ListItemButton>
+                    <NavLink
+                      to="dog-health-nutrition"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                      end
+                    >
+                      <ListItemButton>Dog Health and Nutrition</ListItemButton>
+                    </NavLink>
                   </ListItem>
+
                   <ListItem
                     sx={{
                       backgroundColor: "#F0F0F0",
@@ -140,11 +101,22 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "15px",
                     }}
                   >
-                    <ListItemButton>Dog Services</ListItemButton>
+                    <NavLink
+                      to="dog-services"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                      end
+                    >
+                      <ListItemButton>Dog Services</ListItemButton>
+                    </NavLink>
                   </ListItem>
+
                   <ListItem
                     sx={{
                       backgroundColor: "#F0F0F0",
@@ -154,14 +126,29 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "20px",
                     }}
                   >
-                    <ListItemButton>Dog Show and Events</ListItemButton>
+                    <NavLink
+                      to="dog-show-events"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Dog Show and Events</ListItemButton>
+                    </NavLink>
                   </ListItem>
                 </List>
               </div>
-              <MyComponent sx={{ position: "relative" }}>
+              <MyComponent
+                sx={{
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  color: "black",
+                }}
+              >
                 Cat Forums
               </MyComponent>
               <div style={{ width: "100%" }}>
@@ -175,10 +162,19 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "20px",
                     }}
                   >
-                    <ListItemButton>Cat Chat</ListItemButton>
+                    <NavLink
+                      to="cat-chat"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Chat</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -189,10 +185,19 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "20px",
                     }}
                   >
-                    <ListItemButton>Cat Health and Nutrition</ListItemButton>
+                    <NavLink
+                      to="cat-health-nutrition"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Health and Nutrition</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -203,10 +208,19 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "20px",
                     }}
                   >
-                    <ListItemButton>Cat Services</ListItemButton>
+                    <NavLink
+                      to="cat-services"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Services</ListItemButton>
+                    </NavLink>
                   </ListItem>
                   <ListItem
                     sx={{
@@ -217,10 +231,19 @@ const Category = () => {
                       height: 45,
                       border: "3px solid",
                       borderColor: "white",
-                      borderRadius: "10px",
+                      borderRadius: "20px",
                     }}
                   >
-                    <ListItemButton>Cat Show and Events</ListItemButton>
+                    <NavLink
+                      to="cat-show-events"
+                      style={{
+                        textDecoration: "none",
+                        color: "inherit",
+                        width: "100%",
+                      }}
+                    >
+                      <ListItemButton>Cat Show and Events</ListItemButton>
+                    </NavLink>
                   </ListItem>
                 </List>
               </div>

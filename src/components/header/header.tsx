@@ -1,7 +1,5 @@
-import { Grid } from "@mui/material";
+import { Button, Grid, styled } from "@mui/material";
 import React from "react";
-
-type Props = {};
 
 const boxStyle = {
   width: 200,
@@ -10,14 +8,50 @@ const boxStyle = {
   paddingRight: 750,
 };
 
-const Header = (props: Props) => {
+const Header = () => {
   return (
-    <Grid style={boxStyle}>
-      <img
-        src={require("../../assets/Huy's logo.png")}
-        height={110}
-        width={140}
-      />
+    <Grid>
+      <Grid style={boxStyle}>
+        <img
+          src={require("../../assets/Huy's logo.png")}
+          height={110}
+          width={140}
+        />
+
+        <Button
+          variant="contained"
+          type="submit"
+          sx={{
+            width: 100,
+            position: "relative",
+            left: 550,
+            bottom: 85,
+            borderRadius: 100,
+            backgroundColor: "#1D5B9D",
+            color: "white",
+            // fontWeight: "bold",
+          }}
+        >
+          Login
+        </Button>
+
+        <Button
+          variant="contained"
+          type="submit"
+          sx={{
+            width: 100,
+            position: "relative",
+            left: 650,
+            bottom: 85,
+            borderRadius: 100,
+            backgroundColor: "#1D5B9D",
+            color: "white",
+            // fontWeight: "bold",
+          }}
+        >
+          Register
+        </Button>
+      </Grid>
     </Grid>
   );
 };

@@ -1,4 +1,4 @@
-import { LoginRequest } from "interfaces/login/loginRequest";
+import { AccountRequest } from "interfaces/requestInterface/request";
 
 import axiosClient from "../axiosClient";
 
@@ -11,7 +11,7 @@ const LoginAPI = {
   //   }
   // }
 
-  login: (params: LoginRequest) => {
+  login: (params: AccountRequest) => {
     console.log("Params: ", params);
     return axiosClient.post("login/", params);
   },

@@ -9,10 +9,11 @@ import {
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 import ErrorMessage from "./errors/errorMessage";
 import { addErrorIntoField } from "utils/utils";
-import { RegisRequest } from "interfaces/registration/regisRequest";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import { RegisRequest } from "interfaces/requestInterface/request";
 
 const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 const passwordRegExp =

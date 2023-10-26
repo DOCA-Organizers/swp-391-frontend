@@ -1,47 +1,28 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import ReportList from "service/reportPost/reportList";
+import { ReportList } from "interfaces/requestInterface/request";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import reportPost from "service/reportPost/reportPost";
 
-type Props = {};
-
-const TableAdmin = (props: Props) => {
-  const [ReportList, setReportList] = useState<ReportList[]>([]);
+const ReportList = () => {
+  const [ReportList, setReportList] = useState<ReportList[]>();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getReportList = async () => {
-      const data: any = await ReportList.getReportList();
-      console.log(data);
-      if (data.length > 0) {
-        setReportList(data);
-      }
-    };
-    const initUseEffect = async () => {
-      await getReportList();
-    };
-    initUseEffect();
+    try {
+      (async () => {
+        const response: any = await reportPost.getUserList();
+        if (!response || response.length <= 0) {
+          setReportList([]);
+        }
+        setReportList(response);
+      })();
+    } catch (error) {
+      console.log("Error: ", error);
+    }
   }, []);
 
-  return (
-    <Box sx={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={petList.map((pet, index) => {
-          return { stt: index + 1, ...pet };
-        })}
-        getRowId={(row) => row.id}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </Box>
-  )
+  return <Box sx={{ height: 400, width: "100%" }}></Box>;
 };
 
-export default TableAdmin;
+export default ReportList;
