@@ -1,22 +1,4 @@
 import { Box, List, ListItem, ListItemButton, styled } from "@mui/material";
-import { Home, Padding } from "@mui/icons-material";
-import {
-  Box,
-  BoxProps,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Paper,
-  ThemeProvider,
-  Typography,
-  createTheme,
-  styled,
-} from "@mui/material";
-import { SubmitHandler } from "react-hook-form";
-import { Link, NavLink } from "react-router-dom";
-
 import { NavLink } from "react-router-dom";
 
 const MyComponent = styled("div")({
@@ -81,9 +63,6 @@ const Category = () => {
                       }}
                     >
                       <ListItemButton>Dog Chat</ListItemButton>
-                  > 
-                  <NavLink to="dogchat">
-                    <ListItemButton>Dog Chat</ListItemButton>
                     </NavLink>
                   </ListItem>
 
