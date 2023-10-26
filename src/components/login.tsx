@@ -14,7 +14,7 @@ import {
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import * as yup from "yup";
-import { LoginRequest } from "interfaces/login/loginRequest";
+import { LoginRequest } from "interfaces/requestInterface/request";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { addErrorIntoField } from "../utils/utils";
 import ErrorMessage from "./errors/errorMessage";

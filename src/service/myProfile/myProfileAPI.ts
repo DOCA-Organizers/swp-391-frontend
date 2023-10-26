@@ -1,4 +1,4 @@
-import { MyProfileRequest } from "interfaces/myprofile/myProfileRequest";
+import { MyProfileRequest } from "interfaces/requestInterface/request";
 import axiosClient from "../axiosClient";
 
 const MyProfileAPI = {

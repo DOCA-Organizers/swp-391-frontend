@@ -9,7 +9,6 @@ type Props = {};
 const CategoryPage = (props: Props) => {
   return (
     <Box>
-      <SlideBar />
       <Header />
       <Category />
     </Box>

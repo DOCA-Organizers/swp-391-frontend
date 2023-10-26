@@ -1,4 +1,4 @@
-import { LoginRequest } from "interfaces/login/loginRequest";
+import { LoginRequest } from "interfaces/requestInterface/request";
 
 import axiosClient from "../axiosClient";
 

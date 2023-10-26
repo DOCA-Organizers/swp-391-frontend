@@ -1,4 +1,4 @@
-import { RegisRequest } from "interfaces/registration/regisRequest";
+import { RegisRequest } from "interfaces/requestInterface/request";
 import axiosClient from "../axiosClient";
 
 const RegistrationAPI = {
