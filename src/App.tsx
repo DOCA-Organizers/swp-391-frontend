@@ -16,6 +16,7 @@ import ReportPage from "pages/reportPage";
 import Category from "components/category";
 import Post from "components/post/Post";
 import Profile from "components/profile";
+import SlideBar from "components/sidebar/Sidebar";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 

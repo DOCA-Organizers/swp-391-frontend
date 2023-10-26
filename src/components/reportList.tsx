@@ -23,6 +23,11 @@ const ReportList = () => {
     }
   }, []);
 
+import React from 'react'
+
+type Props = {}
+
+const reportList = (props: Props) => {
   return (
     <Box sx={{ width: "100%" }}>
       {/* <DataGrid
