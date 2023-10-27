@@ -7,7 +7,7 @@ const reportPost = {
   },
 
   getUserList: () => {
-    return axiosClient.get<AccountRequest>("");
+    return axiosClient.get<AccountRequest[]>("");
   },
 };
 
