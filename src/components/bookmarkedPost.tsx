@@ -9,7 +9,7 @@ import {
 import { BookmarkedPost } from "interfaces/requestInterface/request";
 import { useState } from "react";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import ViewIcon from "@mui/icons-material/Visibility";
 
 const StyledGridOverlay = styled("div")(({ theme }) => ({
@@ -78,34 +78,34 @@ function CustomNoRowsOverlay() {
           </g>
         </g>
       </svg>
-      <Box sx={{ mt: 1 }}>Chưa có dữ liệu</Box>
+      <Box sx={{ mt: 1 }}>Still no data</Box>
     </StyledGridOverlay>
   );
 }
 
 const BookmarkedPost = () => {
   const [bookmarkedList, setbookmarkedList] = useState<BookmarkedPost>();
-
+  const Navigate = useNavigate();
   const columns: GridColDef[] = [
-    { field: "stt", headerName: "STT", width: 90 },
+    { field: "number", headerName: "Number", width: 90 },
     {
       field: "username",
-      headerName: "Tên tài khoản",
+      headerName: "Username",
       flex: 1,
     },
     {
       field: "fullName",
-      headerName: "Họ và tên",
+      headerName: "Full name",
       flex: 1,
     },
     {
-      field: "phone",
-      headerName: "Số điện thoại",
+      field: "phoneNumber",
+      headerName: "Phone number",
       flex: 1,
     },
     {
       field: "role",
-      headerName: "Mô tả",
+      headerName: "Role",
       flex: 1,
       renderCell: (param) => {
         if (param.row.roles[0].name === "Admin") {
@@ -119,7 +119,7 @@ const BookmarkedPost = () => {
     },
     {
       field: "action",
-      headerName: "Tác Vụ",
+      headerName: "Action",
       sortable: false,
       flex: 1,
       renderCell: (param) => {
@@ -128,9 +128,9 @@ const BookmarkedPost = () => {
             <Tooltip title="Xem Chi Tiết">
               <IconButton
                 aria-label="view detail"
-                // onClick={() => {
-                //   Navigate(`/admin/manage_account/view_detail/${param.row.id}`);
-                // }}
+                onClick={() => {
+                  Navigate("/post");
+                }}
               >
                 <ViewIcon />
               </IconButton>
