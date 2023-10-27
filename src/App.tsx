@@ -17,7 +17,6 @@ import Category from "components/category";
 import Post from "components/post/Post";
 import Profile from "components/profile";
 import SlideBar from "components/sidebar/Sidebar";
-import profilePage from "pages/profilePage";
 import ProfilePage from "pages/profilePage";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -40,10 +39,9 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path="/">
-          <Route index element={<CategoryPage/>} />
-          <Route path="dog-chat" element={<DocaPage />}/>
-          <Route path="dog-chat/my_profile" element={<ProfilePage/>}/>
-
+          <Route index element={<Profile />} />
+          <Route path="dog-chat" element={<DocaPage />} />
+          <Route path="dog-chat/my_profile" element={<ProfilePage />} />
           <Route path="dog-health-nutrition" element={<DocaPage />} />
           <Route path="dog-health-nutrition/my_profile" element={<ProfilePage/>}/>
 

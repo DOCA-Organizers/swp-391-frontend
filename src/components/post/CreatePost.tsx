@@ -36,7 +36,7 @@ import breedAPI from "services/breed/breedAPI";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import ImageUploading, { ImageListType } from "react-images-uploading";
-import "./CreatePost.css"
+import "./CreatePost.css";
 import { IState as Props } from "pages/docaPage";
 
 interface Iprops {
@@ -150,10 +150,9 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     initUseEffect();
   }, []);
 
-  const onChangeContent = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
+  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
-  
 
   const onChangeImage = (
     imageList: ImageListType,
@@ -190,23 +189,25 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     setExpanded(!expanded);
   };
 
-  const handlePost = (e:React.FormEvent<HTMLFormElement>): void => {
+  const handlePost = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setInforPost([...inforPost,{
+    setInforPost([
+      ...inforPost,
+      {
         content: content,
         imageList: images,
         categoryPost: category,
         typePet: type,
-        breedPet: breed
-    }])
-    alert("Post successfully")
+        breedPet: breed,
+      },
+    ]);
+    alert("Post successfully");
     setContent("");
     setImages([]);
     setCategory("");
     setType("");
     setBreed("");
-    
-  }
+  };
 
   return (
     <Card
@@ -218,162 +219,163 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
       }}
     >
       <form onSubmit={handlePost}>
-      <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
-        <Avatar
-          sx={{ bgcolor: red[500], marginLeft: 2, marginRight: 2 }}
-          aria-label="recipe"
-          src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
-        ></Avatar>
-        <TextField
-          className="inputContent"
-          placeholder="Hello, What's on your mind"
-          id="content-post"
-          onChange={onChangeContent}
-          value={content}
-          required={true}
-          multiline
-        />
-        <Box>
-          <ImageUploading
-            multiple
-            value={images}
-            onChange={onChangeImage}
-            maxNumber={maxNumber}
-            dataURLKey="data_url"
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageUpdate,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
-              // write your building UI
-              <div className="upload__image-wrapper">
-                <button
-                  className="btn btn4"
-                  style={isDragging ? { color: "red" } : undefined}
-                  onClick={onImageUpload}
-                  {...dragProps}
-                >
-                  Click or Drop here
-                </button>
-                &nbsp;
-                <button className="btn btn4" onClick={onImageRemoveAll}>
-                  Remove all images
-                </button>
-                {imageList.map((image, index) => (
-                  <div key={index} className="image-item">
-                    <img src={image["data_url"]} alt="" width="100" />
-                    <div className="image-item__btn-wrapper">
-                      <button
-                        className="btn btn4"
-                        onClick={() => onImageUpdate(index)}
-                      >
-                        Update
-                      </button>
-                      <button
-                        className="btn btn4"
-                        onClick={() => onImageRemove(index)}
-                      >
-                        Remove
-                      </button>
+        <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
+          <Avatar
+            sx={{ bgcolor: red[500], marginLeft: 2, marginRight: 2 }}
+            aria-label="recipe"
+            src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
+          ></Avatar>
+          <TextField
+            className="inputContent"
+            label="Content"
+            placeholder="Hello, What's on your mind"
+            id="content-post"
+            onChange={onChangeContent}
+            value={content}
+            required={true}
+            multiline
+          />
+          <Box>
+            <ImageUploading
+              multiple
+              value={images}
+              onChange={onChangeImage}
+              maxNumber={maxNumber}
+              dataURLKey="data_url"
+            >
+              {({
+                imageList,
+                onImageUpload,
+                onImageRemoveAll,
+                onImageUpdate,
+                onImageRemove,
+                isDragging,
+                dragProps,
+              }) => (
+                // write your building UI
+                <div className="upload__image-wrapper">
+                  <button
+                    className="btn btn4"
+                    style={isDragging ? { color: "red" } : undefined}
+                    onClick={onImageUpload}
+                    {...dragProps}
+                  >
+                    Click or Drop here
+                  </button>
+                  &nbsp;
+                  <button className="btn btn4" onClick={onImageRemoveAll}>
+                    Remove all images
+                  </button>
+                  {imageList.map((image, index) => (
+                    <div key={index} className="image-item">
+                      <img src={image["data_url"]} alt="" width="100" />
+                      <div className="image-item__btn-wrapper">
+                        <button
+                          className="btn btn4"
+                          onClick={() => onImageUpdate(index)}
+                        >
+                          Update
+                        </button>
+                        <button
+                          className="btn btn4"
+                          onClick={() => onImageRemove(index)}
+                        >
+                          Remove
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </ImageUploading>
+                  ))}
+                </div>
+              )}
+            </ImageUploading>
+          </Box>
         </Box>
-      </Box>
-      
-      <Box
-        sx={{
-          marginTop: 2,
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <FormControl>
-          <FormLabel id="category_post">Category Post</FormLabel>
-          <RadioGroup
-            aria-labelledby="category_post"
-            name="controlled-radio-buttons-group"
-            value={category}
-            onChange={handleRadio}
-          >
-            <FormControlLabel value="Post" control={<Radio />} label="Post" />
-            <FormControlLabel
-              value="Exchange"
-              control={<Radio />}
-              label="Exchange"
-            />
-          </RadioGroup>
-        </FormControl>
-        <FormControl sx={{ width: "20%" }}>
-          <InputLabel id="select_type_pet">Type</InputLabel>
-          <Select
-            labelId="select_type_pet"
-            id="select_type_pet"
-            value={type}
-            label="Type"
-            autoWidth
-            onChange={handleType}
-          >
-            <MenuItem value="">None</MenuItem>
-            <MenuItem value="dog">Dog</MenuItem>
-            <MenuItem value="cat">Cat</MenuItem>
-          </Select>
-        </FormControl>
-        {type ? (
-          <FormControl sx={{ width: "20%", marginLeft: "8px" }}>
-            <InputLabel id="select_breed">Breed</InputLabel>
-            <Select
-              labelId="select_breed"
-              id="select_breed"
-              value={breed}
-              label="Breed"
-              autoWidth
-              onChange={handleBreed}
-            >
-              {dataBreed.map((item: any) => {
-                return (
-                  <MenuItem key={item.id} value={item.name}>
-                    {item.name}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        ) : (
-          <FormControl sx={{ width: "20%", marginLeft: "8px" }} disabled>
-            <InputLabel id="select_breed">Breed</InputLabel>
-            <Select
-              labelId="select_breed"
-              id="select_breed"
-              value={breed}
-              label="Breed"
-              autoWidth
-              onChange={handleBreed}
-            >
-              <MenuItem value={"dog"}>Dog</MenuItem>
-              <MenuItem value={"cat"}>Cat</MenuItem>
-            </Select>
-          </FormControl>
-        )}
 
-        <Button
-          variant="contained"
-          disabled={false}
-          type="submit"
-          sx={{ height: 50, width: 100 }}
+        <Box
+          sx={{
+            marginTop: 2,
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
         >
-          Post
-        </Button>
-      </Box>
+          <FormControl>
+            <FormLabel id="category_post">Category Post</FormLabel>
+            <RadioGroup
+              aria-labelledby="category_post"
+              name="controlled-radio-buttons-group"
+              value={category}
+              onChange={handleRadio}
+            >
+              <FormControlLabel value="Post" control={<Radio />} label="Post" />
+              <FormControlLabel
+                value="Exchange"
+                control={<Radio />}
+                label="Exchange"
+              />
+            </RadioGroup>
+          </FormControl>
+          <FormControl sx={{ width: "20%" }}>
+            <InputLabel id="select_type_pet">Type</InputLabel>
+            <Select
+              labelId="select_type_pet"
+              id="select_type_pet"
+              value={type}
+              label="Type"
+              autoWidth
+              onChange={handleType}
+            >
+              <MenuItem value="">None</MenuItem>
+              <MenuItem value="dog">Dog</MenuItem>
+              <MenuItem value="cat">Cat</MenuItem>
+            </Select>
+          </FormControl>
+          {type ? (
+            <FormControl sx={{ width: "20%", marginLeft: "8px" }}>
+              <InputLabel id="select_breed">Breed</InputLabel>
+              <Select
+                labelId="select_breed"
+                id="select_breed"
+                value={breed}
+                label="Breed"
+                autoWidth
+                onChange={handleBreed}
+              >
+                {dataBreed.map((item: any) => {
+                  return (
+                    <MenuItem key={item.id} value={item.name}>
+                      {item.name}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          ) : (
+            <FormControl sx={{ width: "20%", marginLeft: "8px" }} disabled>
+              <InputLabel id="select_breed">Breed</InputLabel>
+              <Select
+                labelId="select_breed"
+                id="select_breed"
+                value={breed}
+                label="Breed"
+                autoWidth
+                onChange={handleBreed}
+              >
+                <MenuItem value={"dog"}>Dog</MenuItem>
+                <MenuItem value={"cat"}>Cat</MenuItem>
+              </Select>
+            </FormControl>
+          )}
+
+          <Button
+            variant="contained"
+            disabled={false}
+            type="submit"
+            sx={{ height: 50, width: 100 }}
+          >
+            Post
+          </Button>
+        </Box>
       </form>
     </Card>
 

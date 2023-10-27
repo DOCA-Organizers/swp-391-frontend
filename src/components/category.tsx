@@ -1,20 +1,5 @@
-import { Home, Padding } from "@mui/icons-material";
-import {
-  Box,
-  BoxProps,
-  Grid,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Paper,
-  ThemeProvider,
-  Typography,
-  createTheme,
-  styled,
-} from "@mui/material";
-import { SubmitHandler } from "react-hook-form";
-import { Link, NavLink } from "react-router-dom";
+import { Box, List, ListItem, ListItemButton, styled } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const MyComponent = styled("div")({
   color: "gray",

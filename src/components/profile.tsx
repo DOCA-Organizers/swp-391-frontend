@@ -7,6 +7,7 @@ import {
   styled,
 } from "@mui/material";
 import { MyProfileRequest } from "interfaces/requestInterface/request";
+
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -45,7 +46,13 @@ const Profile = () => {
       <Grid
         container
         spacing={4}
-        sx={{ paddingTop: 10, width: 900, position: "relative", left: 170 }}
+        sx={{
+          paddingTop: 10,
+          width: 900,
+          position: "relative",
+          left: 400,
+          top: 10,
+        }}
       >
         <Grid xs={3}>
           <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>

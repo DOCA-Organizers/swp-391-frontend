@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { ReportList } from "interfaces/requestInterface/request";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import reportPost from "service/reportPost/reportPost";
@@ -21,7 +22,7 @@ const ReportList = () => {
     } catch (error) {
       console.log("Error: ", error);
     }
-  }, []);
+  });
 
 
 type Props = {}
@@ -47,9 +48,10 @@ const reportList = (props: Props) => {
         pageSizeOptions={[5, 10]}
         disableRowSelectionOnClick
       /> */}
-    </Box>
-  );
+      </Box>
+    );
+  };
 };
-}
+
 
 export default ReportList;

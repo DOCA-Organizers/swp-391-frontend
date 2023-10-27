@@ -1,9 +1,8 @@
-import Header from "components/header/header";
+import { Box } from "@mui/material";
 import Profile from "components/profile";
 import SlideBar from "components/sidebar/Sidebar";
-import React from "react";
-import Box from "@mui/material/Box";
-import Logo from "components/header/logo";
+
+type Props = {};
 
 const ProfilePage = () => {
   return (

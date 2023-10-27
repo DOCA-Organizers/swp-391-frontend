@@ -13,8 +13,9 @@ import { addErrorIntoField } from "utils/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import { RegisRequest } from "interfaces/requestInterface/request";
+
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { RegisRequest } from "interfaces/requestInterface/request";
 
 const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 const passwordRegExp =
