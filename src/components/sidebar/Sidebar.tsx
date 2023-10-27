@@ -24,7 +24,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PrimarySearchAppBar from "components/searchbar/SearchBar";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -172,7 +172,7 @@ export default function SlideBar() {
               style={{
                 textDecoration: "none",
                 color: "inherit",
-                width: "100%"
+                width: "100%",
               }}
             >
               <ListItemButton>

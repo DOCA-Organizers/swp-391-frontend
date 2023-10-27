@@ -23,7 +23,6 @@ const ReportList = () => {
     }
   }, []);
 
-import React from 'react'
 
 type Props = {}
 
@@ -51,5 +50,6 @@ const reportList = (props: Props) => {
     </Box>
   );
 };
+}
 
 export default ReportList;

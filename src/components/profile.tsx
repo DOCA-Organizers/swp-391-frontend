@@ -20,18 +20,26 @@ const Item = styled("div")(({ theme }) => ({
 
 const Profile = () => {
   let { userID } = useParams();
-  const [profile, setProfile] = useState<MyProfileRequest>();
+  const [profile, setProfile] = useState<MyProfileRequest>({
+    dateJoined: "14 October 2023",
+    dateOfBirth: "05/08/2003",
+    email: "huylqse123456@fpt.edu.vn",
+    fullName: "Le Quang Huy",
+    gender: "Male",
+    manage: "Dog",
+    role: "Member",
+    userID: "1",
+    username: "huydepgai123",
+  });
 
   return (
     <Container sx={{ backgroundColor: "F0F0F0" }}>
       <Grid sx={{ width: 50, position: "relative", left: 900, top: 10 }}>
-        <Avatar>
-          <img
-            src={require("../assets/dogcat.jpg")}
-            height={110}
-            width={140}
-          ></img>
-        </Avatar>
+        <Avatar
+          sx={{ bgcolor: "#f44336" }}
+          aria-label="recipe"
+          src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
+        ></Avatar>
       </Grid>
 
       <Grid

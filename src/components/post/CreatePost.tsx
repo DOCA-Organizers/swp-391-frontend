@@ -64,7 +64,73 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   const [category, setCategory] = useState("Post");
   const [type, setType] = useState("");
   const [breed, setBreed] = useState("");
-  const [breedList, setBreedList] = useState<any[]>([]);
+  const [breedList, setBreedList] = useState<any[]>([
+    {
+     "type": "dog",
+     "name": "Ngao",
+     "id": "1"
+    },
+    {
+     "type": "dog",
+     "name": "Mực",
+     "id": "2"
+    },
+    {
+     "type": "dog",
+     "name": "Chó cỏ",
+     "id": "3"
+    },
+    {
+     "type": "dog",
+     "name": "Poodle",
+     "id": "4"
+    },
+    {
+     "type": "dog",
+     "name": "Đốm",
+     "id": "5"
+    },
+    {
+     "type": "dog",
+     "name": "Khác",
+     "id": "6"
+    },
+    {
+     "type": "cat",
+     "name": "mèo anh lông ngắn",
+     "id": "7"
+    },
+    {
+     "type": "cat",
+     "name": "mèo mướp",
+     "id": "8"
+    },
+    {
+     "type": "cat",
+     "name": "mèo ăn nhiều",
+     "id": "9"
+    },
+    {
+     "type": "cat",
+     "name": "mèo ba tư",
+     "id": "10"
+    },
+    {
+     "type": "cat",
+     "name": "mèo xiêm",
+     "id": "11"
+    },
+    {
+     "type": "cat",
+     "name": "Mèo chân ngắn Munchkin",
+     "id": "12"
+    },
+    {
+     "type": "cat",
+     "name": "Khác",
+     "id": "13"
+    }
+   ]);
   const [dataBreed, setDataBreed] = useState<any[]>([]);
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
@@ -72,7 +138,7 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     const getBreedList = async () => {
       const data: any = await breedAPI.getBreedList();
       // Nếu trả về object thì chỉ cần check có không
-      if (data.length > 0) {
+      if (data) {
         setBreedList(data);
       }
     };
@@ -160,7 +226,6 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
         ></Avatar>
         <TextField
           className="inputContent"
-          label='Content'
           placeholder="Hello, What's on your mind"
           id="content-post"
           onChange={onChangeContent}

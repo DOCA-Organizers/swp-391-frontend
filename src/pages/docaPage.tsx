@@ -27,7 +27,7 @@ const DocaPage = () => {
     <Box
       sx={{
         backgroundColor: "#F0F0F0",
-        paddingTop: "150px",
+        paddingTop: "140px",
       }}
     >
       <SlideBar />
