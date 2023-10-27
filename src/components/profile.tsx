@@ -38,7 +38,13 @@ const Profile = () => {
       <Grid
         container
         spacing={4}
-        sx={{ paddingTop: 10, width: 900, position: "relative", left: 170 }}
+        sx={{
+          paddingTop: 10,
+          width: 900,
+          position: "relative",
+          left: 400,
+          top: 10,
+        }}
       >
         <Grid xs={3}>
           <Item sx={{ border: "none", textAlign: "left", paddingLeft: 6 }}>

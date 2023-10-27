@@ -172,7 +172,7 @@ export default function SlideBar() {
               style={{
                 textDecoration: "none",
                 color: "inherit",
-                width: "100%"
+                width: "100%",
               }}
             >
               <ListItemButton>
