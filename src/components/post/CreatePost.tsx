@@ -32,12 +32,13 @@ import {
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import Button from "@mui/material/Button";
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import breedAPI from "services/breed/breedAPI";
+import breedAPI from "service/breedAPI";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import "./CreatePost.css";
 import { IState as Props } from "pages/docaPage";
+import { Blob } from "buffer";
 
 interface Iprops {
   inforPost: Props["inforPost"];

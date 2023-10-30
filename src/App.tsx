@@ -39,7 +39,7 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path="/">
-          <Route index element={<Profile />} />
+          <Route index element={<CategoryPage />} />
           <Route path="dog-chat" element={<DocaPage />} />
           <Route path="dog-chat/my_profile" element={<ProfilePage />} />
           <Route path="dog-health-nutrition" element={<DocaPage />} />

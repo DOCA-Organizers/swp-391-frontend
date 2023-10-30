@@ -108,12 +108,12 @@ export default function Post({ inforPost }: IProps) {
               {post.content}
             </Typography>
           </CardContent>
-          <ImageList sx={{ width: 650, height: 450 }} cols={4} rowHeight={"auto"}>
+          <ImageList sx={{ width: 650, height: 450 }} cols={1} rowHeight={"auto"}>
             {post.imageList.map((image) => (
-              <ImageListItem>
+              <ImageListItem sx={{border: "15px solid white"}}>
                 <img
                   srcSet={`${image.dataURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  src={`${image.dataURL}?w=164&h=164&fit=crop&auto=format`}
+                  src={image['data_url']} alt="" width= "500" height= "500"
                   loading="lazy"
                 />
               </ImageListItem>
@@ -394,7 +394,9 @@ export default function Post({ inforPost }: IProps) {
               ref={descriptionElementRef}
               tabIndex={-1}
             >
-              {[...new Array(50)].map((index) => "Comments").join("\n")}
+              {[...new Array(50)].map((index) => {
+                
+              }).join("\n")}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
