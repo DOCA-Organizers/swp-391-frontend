@@ -1,73 +1,116 @@
-import {
-  Box,
-  Container,
-  Grid,
-  Pagination,
-  Paper,
-  Stack,
-  styled,
-} from "@mui/material";
+import { Box, IconButton, Stack, Tooltip, Typography } from "@mui/material";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { SearchContent } from "interfaces/requestInterface/request";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import searchContent from "service/searchContent";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+const SearchComponent = () => {
+  const [SearchList, setSearchList] = useState<SearchContent[]>();
+  const navigate = useNavigate();
 
-// const columns: GridColDef[] = []
+  useEffect(() => {
+    try {
+      (async () => {
+        const response: any = await searchContent.getSearchByContent;
+        if (!response || response.length <= 0) {
+          setSearchList([]);
+        }
+        setSearchList(response);
+      })();
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  }, []);
 
-// const SearchComponent = () => {
-//   const [searchList, setSearchList] = useState<[]>([]);
-//
-//   useEffect(() => {
-//     const getPetList = async () => {
-//       const data: any = await petAPI.getPetList();
-//       console.log(data);
-//       if (data.length > 0) {
-//         setPetList(data);
-//       }
-//     };
-//     const initUseEffect = async () => {
-//       await getPetList();
-//     };
-//     initUseEffect();
-//   }, []);
-//   return (
-//     <Container>
-//       <Box sx={{ width: "100%" }}>
-//         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-//           <Grid item xs={12}>
-//           <DataGrid
-//         rows={petList.map((con, index) => {
-//           return
-//           <Box>
+  const columns: GridColDef[] = [
+    { field: "stt", headerName: "STT", width: 90 },
+    {
+      field: "username",
+      headerName: "Tên tài khoản",
+      flex: 1,
+    },
+    {
+      field: "fullName",
+      headerName: "Họ và tên",
+      flex: 1,
+    },
+    {
+      field: "phone",
+      headerName: "Số điện thoại",
+      flex: 1,
+    },
+    {
+      field: "role",
+      headerName: "Mô tả",
+      flex: 1,
+      renderCell: (param) => {
+        if (param.row.roles[0].name === "Manager") {
+          return <Typography>Quản lý</Typography>;
+        } else if (param.row.roles[0].name === "Admin") {
+          return <Typography>Quản trị viên</Typography>;
+        } else if (param.row.roles[0].name === "Accountant") {
+          return <Typography>Kế toán</Typography>;
+        } else if (param.row.roles[0].name === "Staff") {
+          return <Typography>Nhân viên</Typography>;
+        } else if (param.row.roles[0].name === "Resident") {
+          return <Typography>Cư dân</Typography>;
+        } else return <Typography>{param.row.roles[0].name}</Typography>;
+      },
+    },
+    {
+      field: "action",
+      headerName: "Tác Vụ",
+      sortable: false,
+      flex: 1,
+      renderCell: (param) => {
+        return (
+          <Stack direction="row" spacing={1}>
+            <Tooltip title="Xem Chi Tiết">
+              <IconButton
+                aria-label="view detail"
+                onClick={() => {
+                  navigate(`/admin/manage_account/view_detail/${param.row.id}`);
+                }}
+              >
+                {/* <ViewIcon /> */}
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        );
+      },
+    },
+  ];
 
-//           </Box>
-//         })}
-//         getRowId={(row) => row.id}
-//         columns={columns}
-//         initialState={{
-//           pagination: {
-//             paginationModel: {
-//               pageSize: 5,
-//             },
-//           },
-//         }}
-//         pageSizeOptions={[5]}
-//         checkboxSelection
-//         disableRowSelectionOnClick
-//       />
-//           </Grid>
-//         </Grid>
-//         <Stack spacing={2}>
-//           <Pagination count={10} shape="rounded" />
-//           <Pagination count={10} variant="outlined" shape="rounded" />
-//         </Stack>
-//       </Box>
-//     </Container>
-//   );
-// };
+  if (!SearchList || SearchList.length <= 0) {
+    return (
+      <Box sx={{ width: "100%" }}>
+        <DataGrid sx={{ height: "600px" }} columns={columns} rows={[]} />
+      </Box>
+    );
+  }
+  return (
+    <Box sx={{ width: "100%" }}>
+      <DataGrid
+        rows={SearchList.map((item, index) => {
+          return { stt: index + 1, ...item };
+        })}
+        getRowId={(row) => row.id}
+        style={{ height: "600px" }}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
+            },
+          },
+        }}
+        slots={{ toolbar: GridToolbar }}
+        pageSizeOptions={[5, 10]}
+        disableRowSelectionOnClick
+      />
+    </Box>
+  );
+};
 
-// export default SearchComponent;
+export default SearchComponent;
