@@ -30,17 +30,28 @@ import {
   ImageList,
   ImageListItem,
   InputAdornment,
+  MenuItem,
   TextField,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import { ImageListType } from "react-images-uploading";
 import { IState as IProps } from "pages/docaPage";
+import Menu from "@mui/material/Menu";
+import { NavLink, Route } from "react-router-dom";
+import { Nav } from "reactstrap";
 
 export default function Post({ inforPost }: IProps) {
-  const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState<DialogProps["scroll"]>("paper");
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openMore = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const renderPostList = (): JSX.Element[] => {
     return inforPost.map((post) => {
@@ -64,13 +75,32 @@ export default function Post({ inforPost }: IProps) {
               ></Avatar>
             }
             action={
-              <IconButton aria-label="settings">
+              <IconButton
+                aria-label="settings"
+                id="basic-button"
+                aria-controls={openMore ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={openMore ? "true" : undefined}
+                onClick={handleClick}
+              >
                 <MoreVertIcon />
               </IconButton>
             }
             title="namnguyen2u3"
             subheader="September 14, 2023"
           />
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={openMore}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose}>Update</MenuItem>
+            <MenuItem onClick={handleClose}>Delete</MenuItem>
+          </Menu>
           <CardContent>
             <Card
               sx={{
@@ -108,13 +138,20 @@ export default function Post({ inforPost }: IProps) {
               {post.content}
             </Typography>
           </CardContent>
-          <ImageList sx={{ width: 650, height: 450 }} cols={4} rowHeight={"auto"}>
+          <ImageList
+            sx={{ width: 650, height: 450 }}
+            cols={1}
+            rowHeight={"auto"}
+          >
             {post.imageList.map((image) => (
-              <ImageListItem>
+              <ImageListItem sx={{ border: "10px solid white" }}>
                 <img
                   srcSet={`${image.dataURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  src={`${image.dataURL}?w=164&h=164&fit=crop&auto=format`}
-                  loading="lazy"
+                  src={image["data_url"]}
+                  alt=""
+                  width="800"
+                  height="800"
+                  loading="eager"
                 />
               </ImageListItem>
             ))}
@@ -277,13 +314,32 @@ export default function Post({ inforPost }: IProps) {
             ></Avatar>
           }
           action={
-            <IconButton aria-label="settings">
+            <IconButton
+              aria-label="settings"
+              id="basic-button"
+              aria-controls={openMore ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={openMore ? "true" : undefined}
+              onClick={handleClick}
+            >
               <MoreVertIcon />
             </IconButton>
           }
           title="namnguyen2u3"
           subheader="September 14, 2023"
         />
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={openMore}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={handleClose}>Update</MenuItem>
+          <MenuItem onClick={handleClose}>Delete</MenuItem>
+        </Menu>
         <CardContent>
           <Card
             sx={{
@@ -394,12 +450,11 @@ export default function Post({ inforPost }: IProps) {
               ref={descriptionElementRef}
               tabIndex={-1}
             >
-              {[...new Array(50)].map((index) => "Comments").join("\n")}
+              {[...new Array()].map((index) => {}).join("\n")}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Grid
-              container
               direction="row"
               justifyContent="flex-start"
               alignItems="center"
