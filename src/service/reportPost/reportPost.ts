@@ -1,5 +1,5 @@
 import { AccountRequest } from "interfaces/requestInterface/request";
-import axiosClient from "services/axiosClient";
+import axiosClient from "service/axiosClient";
 
 const reportPost = {
   getUserByUsername: (username: string) => {

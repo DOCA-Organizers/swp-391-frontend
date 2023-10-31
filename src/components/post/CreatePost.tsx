@@ -228,7 +228,6 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
           ></Avatar>
           <TextField
             className="inputContent"
-            label="Content"
             placeholder="Hello, What's on your mind"
             id="content-post"
             onChange={onChangeContent}
