@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Header from "components/header/header";
 import Logo from "components/header/logo";
-import RegistrationForm from "components/registrationForm";
+import RegistrationForm from "components/forms/registrationForm";
 
 const RegistrationPage = () => {
   return (

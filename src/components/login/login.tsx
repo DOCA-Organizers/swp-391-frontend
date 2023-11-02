@@ -15,8 +15,8 @@ import { useState } from "react";
 import * as yup from "yup";
 import { AccountRequest } from "interfaces/requestInterface/request";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { addErrorIntoField } from "../utils/utils";
-import ErrorMessage from "./errors/errorMessage";
+import { addErrorIntoField } from "../../utils/utils";
+import ErrorMessage from "../errors/errorMessage";
 import axios from "axios";
 
 const leftGridStyle = {
@@ -110,24 +110,14 @@ const Login = () => {
       style={{
         backgroundColor: "white",
         height: "100%",
-        paddingTop: "40px",
-        paddingLeft: "100px",
       }}
     >
-      <Grid
-        sx={{
-          position: "relative",
-          bottom: 30,
-          height: 50,
-          width: 300,
-        }}
-      >
+      <Grid>
         <Typography
           sx={{
             fontSize: "30px",
             textDecoration: "bold",
             fontWeight: "bold",
-            position: "relative",
             left: 530,
           }}
         >
@@ -137,7 +127,7 @@ const Login = () => {
 
       <Box
         p={3}
-        sx={{ flexGrow: 1, position: "relative", left: 230, width: 500 }}
+        sx={{ flexGrow: 1, left: 230, width: 500 }}
       >
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           {/* Account */}

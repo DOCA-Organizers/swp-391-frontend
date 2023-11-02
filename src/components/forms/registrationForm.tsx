@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
-import ErrorMessage from "./errors/errorMessage";
+import ErrorMessage from "../errors/errorMessage";
 import { addErrorIntoField } from "utils/utils";
 
 import { yupResolver } from "@hookform/resolvers/yup";
