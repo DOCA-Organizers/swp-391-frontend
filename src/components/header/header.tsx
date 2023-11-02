@@ -1,74 +1,51 @@
-import { Button, Grid } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import Grid from "@mui/material/Unstable_Grid2";
 
-const boxStyle = {
-  width: 200,
-  height: 100,
-  margin: "0 auto",
-  paddingRight: 750,
+const buttonStyles = {
+  borderRadius: "32px",
+  fontWeight: "bolder",
+  width: "100px",
 };
-
 const Header = () => {
+  const navigate = useNavigate();
   return (
-    <Grid>
-      <Grid style={boxStyle}>
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      borderBottom="4px solid"
+      borderColor="#1D5B9D"
+    >
+      <Grid xs={4} alignContent="center" pl={2}>
         <img
           src={require("../../assets/Huy's logo.png")}
           height={110}
           width={140}
         />
-
-        <NavLink
-          to="login"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            width: "100%",
+      </Grid>
+      <Grid xs={4} textAlign="end" pr={2}>
+        <Button
+          variant="contained"
+          sx={{ marginRight: "8px" }}
+          style={buttonStyles}
+          onClick={() => {
+            navigate("/login");
           }}
         >
-          <Button
-            variant="contained"
-            type="submit"
-            sx={{
-              width: 100,
-              position: "relative",
-              left: 550,
-              bottom: 85,
-              borderRadius: 100,
-              backgroundColor: "#1D5B9D",
-              color: "white",
-              // fontWeight: "bold",
-            }}
-          >
-            Login
-          </Button>
-        </NavLink>
+          Login
+        </Button>
 
-        <NavLink
-          to="register"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            width: "100%",
+        <Button
+          variant="outlined"
+          style={buttonStyles}
+          onClick={() => {
+            navigate("/register");
           }}
         >
-          <Button
-            variant="contained"
-            type="submit"
-            sx={{
-              width: 100,
-              position: "relative",
-              left: 650,
-              bottom: 85,
-              borderRadius: 100,
-              backgroundColor: "#1D5B9D",
-              color: "white",
-              // fontWeight: "bold",
-            }}
-          >
-            Register
-          </Button>
-        </NavLink>
+          Register
+        </Button>
       </Grid>
     </Grid>
   );
