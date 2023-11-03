@@ -25,6 +25,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ErrorMessage from "components/errors/errorMessage";
 import { LoginRequest } from "interfaces/login/loginRequest";
 import { useState } from "react";
+import axios from "axios";
 
 // const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 // const passwordRegExp =
@@ -76,7 +77,21 @@ const LoginForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginRequest> = async (data: any) => {};
+  const onSubmit: SubmitHandler<LoginRequest> = async (data: any) => {
+    try {
+      console.log("In");
+      axios
+        .post("http://localhost:8080/api/login", {
+          username: data.username,
+          password: data.password,
+        })
+        .then(function (response) {
+          console.log(response);
+        });
+    } catch (error) {
+      console.log("Error at login Form");
+    }
+  };
 
   const onError = (error: any) => {
     console.log(error);
@@ -196,7 +211,7 @@ const LoginForm = () => {
           <FormGroup sx={{ marginTop: "8px" }}>
             <FormControlLabel
               control={<Checkbox defaultChecked />}
-              sx={{fontWeight: "bolder"}}
+              sx={{ fontWeight: "bolder" }}
               label="Remember me?"
             />
           </FormGroup>
