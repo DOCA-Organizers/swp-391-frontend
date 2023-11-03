@@ -40,12 +40,6 @@ const validationSchema = yup.object({
   //   "Password have al least 8 word, an uppercase, a lowercase, a digit and a special word!"
   // ),
 });
-
-const ColorButton = styled(Button)(({ theme }) => ({
-  color: "#ffff",
-  backgroundColor: "#00689B",
-}));
-
 const leftGridStyle = {
   marginTop: "20px",
 };
@@ -76,7 +70,9 @@ const LoginForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginRequest> = async (data: any) => {};
+  const onSubmit: SubmitHandler<LoginRequest> = async (data: any) => {
+    console.log(data);
+  };
 
   const onError = (error: any) => {
     console.log(error);
@@ -93,9 +89,9 @@ const LoginForm = () => {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      style={{ width: "100%", marginTop: "50px" }}
+      style={{ width: "100%", marginTop: "80px" }}
     >
-      <Box width={320} height={240} margin="0 auto">
+      <Box width={200} height={140} margin="0 auto">
         {" "}
         <img
           width="100%"
@@ -196,7 +192,7 @@ const LoginForm = () => {
           <FormGroup sx={{ marginTop: "8px" }}>
             <FormControlLabel
               control={<Checkbox defaultChecked />}
-              sx={{fontWeight: "bolder"}}
+              sx={{ fontWeight: "bolder" }}
               label="Remember me?"
             />
           </FormGroup>
@@ -206,7 +202,11 @@ const LoginForm = () => {
               variant="contained"
               size="large"
               type="submit"
-              style={{ width: "100%", marginTop: "8px" }}
+              style={{
+                width: "100%",
+                marginTop: "8px",
+                backgroundColor: "#1d5b9d",
+              }}
             >
               Login
             </Button>
