@@ -5,12 +5,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const BackButton = () => {
   const navigate = useNavigate();
   return (
-    <Box sx={{  }}>
+    <Box>
       <Button
         onClick={() => navigate(-1)}
         size="large"
         variant="text"
-        sx={{ fontWeight: "bolder" }}
+        sx={{ fontWeight: "bolder", color: "#1d5b9d" }}
         startIcon={<ArrowBackIcon />}
       />
     </Box>

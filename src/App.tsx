@@ -1,24 +1,17 @@
 import CssBaseline from "@mui/material/CssBaseline";
-import Login from "components/login/login";
 import DocaPage from "pages/docaPage";
 import {
-  BrowserRouter as Router,
   Route,
   BrowserRouter,
   Routes,
 } from "react-router-dom";
 import Report from "components/report";
 import AdminPage from "pages/admin/adminPage";
-import RegistrationPage from "pages/registrationPage";
+import RegistrationPage from "pages/register/registrationPage";
 import CategoryPage from "pages/categoryPage";
-import ReportPage from "pages/reportPage";
-import Category from "components/category";
-import Post from "components/post/Post";
-import Profile from "components/profile";
-import SlideBar from "components/sidebar/Sidebar";
 import ProfilePage from "pages/profilePage";
 import { ErrorBoundary } from "components/errorboundary/errorBoundary";
-import LoginPage from "components/login/loginPage";
+import LoginPage from "pages/login/loginPage";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 

@@ -1,9 +1,6 @@
 import {
   Box,
   Button,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
   InputAdornment,
   Typography,
   Grid,
@@ -16,7 +13,6 @@ import {
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { styled } from "@mui/material/styles";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { addErrorIntoField } from "utils/utils";
 import Visibility from "@mui/icons-material/Visibility";
@@ -105,7 +101,6 @@ const LoginForm = () => {
       style={{ width: "100%", marginTop: "80px" }}
     >
       <Box width={200} height={140} margin="0 auto">
-        {" "}
         <img
           width="100%"
           height="100%"
@@ -216,7 +211,7 @@ const LoginForm = () => {
               size="large"
               type="submit"
               style={{
-                width: "100%",
+                width: "55%",
                 marginTop: "8px",
                 backgroundColor: "#1d5b9d",
               }}

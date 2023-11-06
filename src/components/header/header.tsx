@@ -34,7 +34,7 @@ const Header = () => {
             navigate("/login");
           }}
         >
-          Login
+          Sign In
         </Button>
 
         <Button
@@ -44,7 +44,7 @@ const Header = () => {
             navigate("/register");
           }}
         >
-          Register
+          Sign Up
         </Button>
       </Grid>
     </Grid>
