@@ -1,56 +1,81 @@
 import { Box } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridToolbar, GridValueGetterParams } from "@mui/x-data-grid";
 import { ReportList } from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import reportPost from "service/reportPost/reportPost";
 
+const columns: GridColDef[] = [
+  { field: "number", headerName: "number", width: 90 },
+
+  {
+    field: "name",
+    headerName: "name",
+    width: 150,
+  },
+  {
+    field: "age",
+    headerName: "age",
+    width: 150,
+  },
+  {
+    field: "id",
+    headerName: "id",
+    type: "number",
+    width: 110,
+  },
+  {
+    field: "owner",
+    headerName: "owner",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    width: 160,
+    valueGetter: (params: GridValueGetterParams) =>
+      `${params.row.firstName || ""} ${params.row.lastName || ""}`,
+  },
+];
+
+
 const ReportList = () => {
-  const [ReportList, setReportList] = useState<ReportList[]>();
-  const navigate = useNavigate();
-
+  const [reportList, setReportList] = useState<ReportList[]>([]);
+  // chay lan dau tien
   useEffect(() => {
-    try {
-      (async () => {
-        const response: any = await reportPost.getUserList();
-        if (!response || response.length <= 0) {
-          setReportList([]);
-        }
-        setReportList(response);
-      })();
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  });
+    const getReportList = async () => {
+      const data: any = await reportPost.getReportList();
+      console.log(data);
+      if (data.length > 0) {
+        setReportList(data);
+      }
+    };
+    const initUseEffect = async () => {
+      await getReportList();
+    };
+    initUseEffect();
+  }, []);
 
-
-type Props = {}
-
-const reportList = (props: Props) => {
   return (
-    <Box sx={{ width: "100%" }}>
-      {/* <DataGrid
-        // rows={ReportList.map((item, index) => {
-          return { stt: index + 1, ...item };
+    <Box sx={{ height: 400, width: "100%" }}>
+      <DataGrid
+        rows={reportList.map((pet, index) => {
+          return { stt: index + 1, ...pet };
         })}
         getRowId={(row) => row.id}
-        style={{ height: "600px" }}
         columns={columns}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 10,
+              pageSize: 5,
             },
           },
         }}
-        slots={{ toolbar: GridToolbar }}
-        pageSizeOptions={[5, 10]}
+        pageSizeOptions={[5]}
+        checkboxSelection
         disableRowSelectionOnClick
-      /> */}
-      </Box>
-    );
-  };
+      />
+    </Box>
+  );
+
 };
 
 

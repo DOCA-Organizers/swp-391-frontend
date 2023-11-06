@@ -32,6 +32,8 @@ export interface MyProfileRequest {
 }
 
 export interface ReportList {
+  postID: string;
+  numberOfPost: number;
   username: string;
 }
 
