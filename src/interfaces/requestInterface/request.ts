@@ -37,6 +37,9 @@ export interface ReportList {
   username: string;
 }
 
-export interface BookmarkedPost {
+export interface BookmarkedList {
   userID: string;
+  title: string;
+  createTime: Date;
+  exchange: boolean;
 }
