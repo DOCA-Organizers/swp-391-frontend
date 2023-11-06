@@ -1,9 +1,8 @@
 import { Box } from "@mui/material";
-import { DataGrid, GridColDef, GridToolbar, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { ReportList } from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import reportPost from "service/reportPost/reportPost";
 
 const columns: GridColDef[] = [
@@ -36,7 +35,6 @@ const columns: GridColDef[] = [
   },
 ];
 
-
 const ReportList = () => {
   const [reportList, setReportList] = useState<ReportList[]>([]);
   // chay lan dau tien
@@ -57,8 +55,8 @@ const ReportList = () => {
   return (
     <Box sx={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={reportList.map((pet, index) => {
-          return { stt: index + 1, ...pet };
+        rows={reportList.map((report, index) => {
+          return { stt: index + 1, ...report };
         })}
         getRowId={(row) => row.id}
         columns={columns}
@@ -75,8 +73,6 @@ const ReportList = () => {
       />
     </Box>
   );
-
 };
-
 
 export default ReportList;

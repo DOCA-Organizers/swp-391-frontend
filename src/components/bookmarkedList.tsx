@@ -1,31 +1,31 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { BookmarkedList } from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
 import reportPost from "service/reportPost/reportPost";
 
 const columns: GridColDef[] = [
-  { field: "number", headerName: "number", width: 90 },
+  { field: "number", headerName: "Number", width: 90 },
 
   {
-    field: "name",
-    headerName: "name",
+    field: "userID",
+    headerName: "User ID",
     width: 150,
   },
   {
-    field: "age",
-    headerName: "age",
+    field: "title",
+    headerName: "Title",
     width: 150,
   },
   {
-    field: "id",
-    headerName: "id",
-    type: "number",
+    field: "createTime",
+    headerName: "Created time",
     width: 110,
   },
   {
-    field: "owner",
-    headerName: "owner",
+    field: "exchange",
+    headerName: "Exchange",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
@@ -53,9 +53,10 @@ const BookmarkedList = () => {
 
   return (
     <Box sx={{ height: 400, width: "100%" }}>
+      <Typography>Click in title to see detail</Typography>
       <DataGrid
-        rows={bookmarkedList.map((pet, index) => {
-          return { stt: index + 1, ...pet };
+        rows={bookmarkedList.map((bookmark, index) => {
+          return { stt: index + 1, ...bookmark };
         })}
         getRowId={(row) => row.id}
         columns={columns}
