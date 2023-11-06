@@ -68,17 +68,17 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   const [breedList, setBreedList] = useState<any[]>([
     {
      "type": "dog",
-     "name": "Ngao",
+     "name": "Corgi",
      "id": "1"
     },
     {
      "type": "dog",
-     "name": "Mực",
+     "name": "Husky",
      "id": "2"
     },
     {
      "type": "dog",
-     "name": "Chó cỏ",
+     "name": "Alaska",
      "id": "3"
     },
     {
@@ -88,47 +88,47 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     },
     {
      "type": "dog",
-     "name": "Đốm",
+     "name": "Pug",
      "id": "5"
     },
     {
      "type": "dog",
-     "name": "Khác",
+     "name": "Other",
      "id": "6"
     },
     {
      "type": "cat",
-     "name": "mèo anh lông ngắn",
+     "name": "Tabby",
      "id": "7"
     },
     {
      "type": "cat",
-     "name": "mèo mướp",
+     "name": "Calico",
      "id": "8"
     },
     {
      "type": "cat",
-     "name": "mèo ăn nhiều",
+     "name": "Snowshoe",
      "id": "9"
     },
     {
      "type": "cat",
-     "name": "mèo ba tư",
+     "name": "Xiamese",
      "id": "10"
     },
     {
      "type": "cat",
-     "name": "mèo xiêm",
+     "name": "Balinese",
      "id": "11"
     },
     {
      "type": "cat",
-     "name": "Mèo chân ngắn Munchkin",
+     "name": "Munchkin",
      "id": "12"
     },
     {
      "type": "cat",
-     "name": "Khác",
+     "name": "Other",
      "id": "13"
     }
    ]);

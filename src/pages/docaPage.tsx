@@ -21,8 +21,10 @@ export interface IState{
   }[]
 }
 
+
+
 const DocaPage = () => {
-  const [inforPost, setInforPost] = useState<IState["inforPost"]>([])
+  const [inforPost, setInforPost] = useState<IState["inforPost"]>([]);
   return (
     <Box
       sx={{
