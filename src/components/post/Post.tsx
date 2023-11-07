@@ -117,7 +117,7 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "Siuuuu",
-      avatar: require("../../assets/dog.png")
+      avatar: require("../../assets/dog.png"),
     },
     {
       id: "2",
@@ -126,7 +126,7 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "BoyCute2k3",
-      avatar: require("../../assets/panda.png")
+      avatar: require("../../assets/panda.png"),
     },
     {
       id: "3",
@@ -135,7 +135,7 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "UyLe",
-      avatar: require("../../assets/cool.png")
+      avatar: require("../../assets/cool.png"),
     },
     {
       id: "4",
@@ -144,7 +144,7 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "NhiVo",
-      avatar: require("../../assets/girl.png")
+      avatar: require("../../assets/girl.png"),
     },
   ];
 
@@ -353,7 +353,7 @@ export default function Post({ inforPost }: IProps) {
                         </Card>
 
                         <Box
-                          sx={{ display: "flex", justifyContent: "flex-start"}}
+                          sx={{ display: "flex", justifyContent: "flex-start" }}
                         >
                           <Checkbox
                             aria-label="like"
@@ -368,12 +368,17 @@ export default function Post({ inforPost }: IProps) {
                               width: "100%",
                             }}
                           > */}
-                            <Typography sx={{ marginLeft: "40px", marginTop: "4px" }} fontSize={16}>
-                              Reply
-                            </Typography>
+                          <Typography
+                            sx={{ marginLeft: "40px", marginTop: "4px" }}
+                            fontSize={16}
+                          >
+                            Reply
+                          </Typography>
                           {/* </Button> */}
                         </Box>
-                        <Typography sx={{fontSize: "10px"}} fontWeight={1000}>{comments.createTime}</Typography>
+                        <Typography sx={{ fontSize: "10px" }} fontWeight={1000}>
+                          {comments.createTime}
+                        </Typography>
                       </Grid>
                     </Grid>
                   );
@@ -451,16 +456,24 @@ export default function Post({ inforPost }: IProps) {
                 required={true}
                 multiline
               />
-              <Typography gutterBottom>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur
-                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
-                dolor auctor.
-              </Typography>
-              <Typography gutterBottom>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-                cursus magna, vel scelerisque nisl consectetur et. Donec sed
-                odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-              </Typography>
+              <ImageList
+                sx={{ width: 650, height: 450 }}
+                cols={1}
+                rowHeight={"auto"}
+              >
+                {post.imageList.map((image) => (
+                  <ImageListItem sx={{ border: "10px solid white" }}>
+                    <img
+                      srcSet={`${image.dataURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      src={image["data_url"]}
+                      alt=""
+                      width="800"
+                      height="800"
+                      loading="eager"
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
             </DialogContent>
             <DialogActions>
               <Button autoFocus onClick={handleCloseUpdate}>

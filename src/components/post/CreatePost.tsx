@@ -67,67 +67,67 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   const [breed, setBreed] = useState("");
   const [breedList, setBreedList] = useState<any[]>([
     {
-     "type": "dog",
+     "type": "Dog",
      "name": "Corgi",
      "id": "1"
     },
     {
-     "type": "dog",
+     "type": "Dog",
      "name": "Husky",
      "id": "2"
     },
     {
-     "type": "dog",
+     "type": "Dog",
      "name": "Alaska",
      "id": "3"
     },
     {
-     "type": "dog",
+     "type": "Dog",
      "name": "Poodle",
      "id": "4"
     },
     {
-     "type": "dog",
+     "type": "Dog",
      "name": "Pug",
      "id": "5"
     },
     {
-     "type": "dog",
+     "type": "Dog",
      "name": "Other",
      "id": "6"
     },
     {
-     "type": "cat",
+     "type": "Cat",
      "name": "Tabby",
      "id": "7"
     },
     {
-     "type": "cat",
+     "type": "Cat",
      "name": "Calico",
      "id": "8"
     },
     {
-     "type": "cat",
+     "type": "Cat",
      "name": "Snowshoe",
      "id": "9"
     },
     {
-     "type": "cat",
+     "type": "Cat",
      "name": "Xiamese",
      "id": "10"
     },
     {
-     "type": "cat",
+     "type": "Cat",
      "name": "Balinese",
      "id": "11"
     },
     {
-     "type": "cat",
+     "type": "Cat",
      "name": "Munchkin",
      "id": "12"
     },
     {
-     "type": "cat",
+     "type": "Cat",
      "name": "Other",
      "id": "13"
     }
@@ -326,8 +326,8 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
               onChange={handleType}
             >
               <MenuItem value="">None</MenuItem>
-              <MenuItem value="dog">Dog</MenuItem>
-              <MenuItem value="cat">Cat</MenuItem>
+              <MenuItem value="Dog">Dog</MenuItem>
+              <MenuItem value="Cat">Cat</MenuItem>
             </Select>
           </FormControl>
           {type ? (
