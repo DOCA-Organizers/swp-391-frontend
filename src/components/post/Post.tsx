@@ -117,6 +117,7 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "Siuuuu",
+      avatar: require("../../assets/dog.png")
     },
     {
       id: "2",
@@ -125,6 +126,7 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "BoyCute2k3",
+      avatar: require("../../assets/panda.png")
     },
     {
       id: "3",
@@ -133,6 +135,7 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "UyLe",
+      avatar: require("../../assets/cool.png")
     },
     {
       id: "4",
@@ -141,7 +144,8 @@ export default function Post({ inforPost }: IProps) {
       private: "false",
       active: "true",
       username: "NhiVo",
-    }
+      avatar: require("../../assets/girl.png")
+    },
   ];
 
   const renderPostList = (): JSX.Element[] => {
@@ -326,34 +330,50 @@ export default function Post({ inforPost }: IProps) {
                         <Avatar
                           sx={{ bgcolor: red[500] }}
                           aria-label="recipe"
-                          src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
+                          src={comments.avatar}
                         ></Avatar>
-                        <Typography fontSize={11}>
-                          {comments.username}
-                        </Typography>
                       </Grid>
                       <Grid item>
-                        <Card>
-                          <Typography>{comments.content}</Typography>
-                        </Card>
-                        {/* <Badge
-                          badgeContent={14}
-                          color="primary"
-                          anchorOrigin={{
-                            vertical: "top",
-                            horizontal: "right",
+                        <Card
+                          sx={{
+                            borderRadius: "10px",
+                            backgroundColor: "#F0F0F0",
                           }}
-                        > */}
-                        <Box>
+                        >
+                          <Typography
+                            sx={{ margin: "10px" }}
+                            fontWeight={"bold"}
+                            fontSize={13}
+                          >
+                            {comments.username}
+                          </Typography>
+                          <Typography sx={{ margin: "10px" }}>
+                            {comments.content}
+                          </Typography>
+                        </Card>
+
+                        <Box
+                          sx={{ display: "flex", justifyContent: "flex-start"}}
+                        >
                           <Checkbox
                             aria-label="like"
                             icon={<FavoriteBorder />}
                             checkedIcon={<Favorite />}
                             sx={{ padding: 0.5 }}
                           />
-                          Date Created: {comments.createTime}
+                          {/* <Button
+                            sx={{
+                              textDecoration: "none",
+                              color: "inherit",
+                              width: "100%",
+                            }}
+                          > */}
+                            <Typography sx={{ marginLeft: "40px", marginTop: "4px" }} fontSize={16}>
+                              Reply
+                            </Typography>
+                          {/* </Button> */}
                         </Box>
-                        {/* </Badge> */}
+                        <Typography sx={{fontSize: "10px"}} fontWeight={1000}>{comments.createTime}</Typography>
                       </Grid>
                     </Grid>
                   );
