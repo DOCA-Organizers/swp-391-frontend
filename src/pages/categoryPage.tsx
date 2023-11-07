@@ -1,17 +1,13 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Category from "components/category";
 import Header from "components/header/header";
-import SlideBar from "components/sidebar/Sidebar";
-import React from "react";
 
-type Props = {};
-
-const CategoryPage = (props: Props) => {
+const CategoryPage = () => {
   return (
-    <Box>
+    <Container disableGutters maxWidth={false}>
       <Header />
       <Category />
-    </Box>
+    </Container>
   );
 };
 

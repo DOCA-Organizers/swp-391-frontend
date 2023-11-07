@@ -1,256 +1,123 @@
-import { Box, List, ListItem, ListItemButton, styled } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Box, Container, List, ListItem, ListItemButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const MyComponent = styled("div")({
+const listItemButtonStyles = {
+  backgroundColor: "#F0F0F0",
+  width: 650,
+  position: "relative",
+  height: 45,
+  border: "3px solid",
+  borderColor: "white",
+  borderRadius: "16px",
+  "&:hover": {
+    backgroundColor: "#dbdbdb",
+  },
+};
+
+const boxStyles = {
   color: "gray",
+  borderRadius: "16px",
+  fontWeight: "bold",
   backgroundColor: "#FF8C00",
-  padding: 8,
-  borderRadius: 4,
-});
-
-const divStyle = {
-  backgroundColor: "white",
+  padding: "8px",
 };
 
 const Category = () => {
+  const navigate = useNavigate();
   return (
-    <div style={divStyle}>
-      <Box sx={{ position: "relative", top: 30 }}>
-        <Box
-          sx={{
-            flexGrow: 1,
-            display: "flex",
-            justifyContent: "center",
-            gap: 2,
-            flexWrap: "wrap",
-            "& > *": { minWidth: 0, flexBasis: 700 },
-            borderTop: "4px solid",
-            borderColor: "#1D5B9D",
-            paddingTop: 3,
-          }}
-        >
-          {(["md"] as const).map((size) => (
-            <div key={size}>
-              <MyComponent
-                sx={{
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  color: "black",
-                }}
-              >
-                Dog Forums
-              </MyComponent>
-              <div style={{ width: "100%" }}>
-                <List>
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    <NavLink
-                      to="dog-chat"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                    >
-                      <ListItemButton>Dog Chat</ListItemButton>
-                    </NavLink>
-                  </ListItem>
+    <Container sx={{ backgroundColor: "white", marginTop: "32px" }}>
+      <Box sx={boxStyles}>Dog Forums</Box>
+      <List>
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/dog-chat");
+            }}
+          >
+            Dog Chat
+          </ListItemButton>
+        </ListItem>
 
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "15px",
-                    }}
-                  >
-                    <NavLink
-                      to="dog-health-nutrition"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                      end
-                    >
-                      <ListItemButton>Dog Health and Nutrition</ListItemButton>
-                    </NavLink>
-                  </ListItem>
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/dog-health-nutrition");
+            }}
+          >
+            Dog Health and Nutrition
+          </ListItemButton>
+        </ListItem>
 
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "15px",
-                    }}
-                  >
-                    <NavLink
-                      to="dog-services"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                      end
-                    >
-                      <ListItemButton>Dog Services</ListItemButton>
-                    </NavLink>
-                  </ListItem>
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/dog-services");
+            }}
+          >
+            Dog Services
+          </ListItemButton>
+        </ListItem>
 
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    <NavLink
-                      to="dog-show-events"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                    >
-                      <ListItemButton>Dog Show and Events</ListItemButton>
-                    </NavLink>
-                  </ListItem>
-                </List>
-              </div>
-              <MyComponent
-                sx={{
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  color: "black",
-                }}
-              >
-                Cat Forums
-              </MyComponent>
-              <div style={{ width: "100%" }}>
-                <List>
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    <NavLink
-                      to="cat-chat"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                    >
-                      <ListItemButton>Cat Chat</ListItemButton>
-                    </NavLink>
-                  </ListItem>
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    <NavLink
-                      to="cat-health-nutrition"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                    >
-                      <ListItemButton>Cat Health and Nutrition</ListItemButton>
-                    </NavLink>
-                  </ListItem>
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    <NavLink
-                      to="cat-services"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                    >
-                      <ListItemButton>Cat Services</ListItemButton>
-                    </NavLink>
-                  </ListItem>
-                  <ListItem
-                    sx={{
-                      backgroundColor: "#F0F0F0",
-                      width: 650,
-                      position: "relative",
-                      left: 20,
-                      height: 45,
-                      border: "3px solid",
-                      borderColor: "white",
-                      borderRadius: "20px",
-                    }}
-                  >
-                    <NavLink
-                      to="cat-show-events"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
-                      }}
-                    >
-                      <ListItemButton>Cat Show and Events</ListItemButton>
-                    </NavLink>
-                  </ListItem>
-                </List>
-              </div>
-            </div>
-          ))}
-        </Box>
-      </Box>
-    </div>
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/dog-show-events");
+            }}
+          >
+            Dog Show and Events
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Box sx={boxStyles}>Cat Forums</Box>
+      <List>
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/cat-chat");
+            }}
+          >
+            Cat Chat
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/cat-health-nutrition");
+            }}
+          >
+            Cat Health and Nutrition
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/cat-services");
+            }}
+          >
+            Cat Services
+          </ListItemButton>
+        </ListItem>
+        <ListItem>
+          <ListItemButton
+            sx={listItemButtonStyles}
+            onClick={() => {
+              navigate("/cat-show-events");
+            }}
+          >
+            Cat Show and Events
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Container>
   );
 };
 
