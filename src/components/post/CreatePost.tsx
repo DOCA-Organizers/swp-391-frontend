@@ -67,68 +67,68 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   const [breed, setBreed] = useState("");
   const [breedList, setBreedList] = useState<any[]>([
     {
-     "type": "dog",
-     "name": "Ngao",
+     "type": "Dog",
+     "name": "Corgi",
      "id": "1"
     },
     {
-     "type": "dog",
-     "name": "Mực",
+     "type": "Dog",
+     "name": "Husky",
      "id": "2"
     },
     {
-     "type": "dog",
-     "name": "Chó cỏ",
+     "type": "Dog",
+     "name": "Alaska",
      "id": "3"
     },
     {
-     "type": "dog",
+     "type": "Dog",
      "name": "Poodle",
      "id": "4"
     },
     {
-     "type": "dog",
-     "name": "Đốm",
+     "type": "Dog",
+     "name": "Pug",
      "id": "5"
     },
     {
-     "type": "dog",
-     "name": "Khác",
+     "type": "Dog",
+     "name": "Other",
      "id": "6"
     },
     {
-     "type": "cat",
-     "name": "mèo anh lông ngắn",
+     "type": "Cat",
+     "name": "Tabby",
      "id": "7"
     },
     {
-     "type": "cat",
-     "name": "mèo mướp",
+     "type": "Cat",
+     "name": "Calico",
      "id": "8"
     },
     {
-     "type": "cat",
-     "name": "mèo ăn nhiều",
+     "type": "Cat",
+     "name": "Snowshoe",
      "id": "9"
     },
     {
-     "type": "cat",
-     "name": "mèo ba tư",
+     "type": "Cat",
+     "name": "Xiamese",
      "id": "10"
     },
     {
-     "type": "cat",
-     "name": "mèo xiêm",
+     "type": "Cat",
+     "name": "Balinese",
      "id": "11"
     },
     {
-     "type": "cat",
-     "name": "Mèo chân ngắn Munchkin",
+     "type": "Cat",
+     "name": "Munchkin",
      "id": "12"
     },
     {
-     "type": "cat",
-     "name": "Khác",
+     "type": "Cat",
+     "name": "Other",
      "id": "13"
     }
    ]);
@@ -326,8 +326,8 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
               onChange={handleType}
             >
               <MenuItem value="">None</MenuItem>
-              <MenuItem value="dog">Dog</MenuItem>
-              <MenuItem value="cat">Cat</MenuItem>
+              <MenuItem value="Dog">Dog</MenuItem>
+              <MenuItem value="Cat">Cat</MenuItem>
             </Select>
           </FormControl>
           {type ? (

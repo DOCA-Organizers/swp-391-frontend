@@ -11,46 +11,46 @@ import CreatePost from "components/post/CreatePost";
 import { useState } from "react";
 import { ImageListType } from "react-images-uploading";
 
-export interface IState{
+export interface IState {
   inforPost: {
-    content: string,
-    categoryPost: string,
-    typePet: string,
-    breedPet: string,
-    imageList: ImageListType
-  }[]
+    content: string;
+    categoryPost: string;
+    typePet: string;
+    breedPet: string;
+    imageList: ImageListType;
+  }[];
 }
 
 const DocaPage = () => {
-  const [inforPost, setInforPost] = useState<IState["inforPost"]>([])
+  const [inforPost, setInforPost] = useState<IState["inforPost"]>([]);
   return (
     <Box
       sx={{
         backgroundColor: "#F0F0F0",
-        paddingTop: "140px",
       }}
     >
       <SlideBar />
-      <Box>
+      <Box >
+        <Box
+          sx={{
+            position: "relative",
+            left: "70%",
+            maxWidth: "60%",
+            top: "150px"
+          }}
+        >
+          <Summary/>
+        </Box>
         <Box
           sx={{
             position: "relative",
             left: "20%",
             maxWidth: "50%",
+            bottom: "100px"
           }}
         >
-          <CreatePost inforPost={inforPost} setInforPost={setInforPost}/>
-          <Post inforPost={inforPost}/>
-        </Box>
-        <Box
-          sx={{
-            position: "relative",
-            left: "70%",
-            maxWidth: "30%",
-            bottom: "1050px",
-          }}
-        >
-          <Summary />
+          <CreatePost inforPost={inforPost} setInforPost={setInforPost} />
+          <Post inforPost={inforPost} />
         </Box>
       </Box>
     </Box>
