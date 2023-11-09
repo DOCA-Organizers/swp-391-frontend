@@ -683,6 +683,7 @@ export default function Post({ inforPost }: IProps) {
           </Dialog>
         </Card>
         {renderPostList()}
+        // alo alo 
       </div>
     </>
   );
