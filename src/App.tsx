@@ -1,24 +1,12 @@
 import { CssBaseline } from "@mui/material";
-import Login from "components/login";
-import DocaPage from "pages/docaPage";
-import {
-  BrowserRouter as Router,
-  Route,
-  BrowserRouter,
-  Routes,
-} from "react-router-dom";
+import ReportList from "components/list/reportList";
 import Report from "components/report";
 import AdminPage from "pages/admin/adminPage";
-import RegistrationPage from "pages/registrationPage";
+import DocaPage from "pages/docaPage";
 import LoginPage from "pages/loginPage";
-import CategoryPage from "pages/categoryPage";
-import ReportPage from "pages/reportPage";
-import Category from "components/category";
-import Post from "components/post/Post";
-import Profile from "components/profile";
-import SlideBar from "components/sidebar/Sidebar";
 import ProfilePage from "pages/profilePage";
-
+import RegistrationPage from "pages/registrationPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -40,10 +28,10 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path="/">
-          <Route index element={<CategoryPage />} />
+          <Route index element={<ReportList />} />
           <Route path="dog-chat" element={<DocaPage />} />
           <Route path="dog-chat/my_profile" element={<ProfilePage />} />
-          
+
           <Route path="dog-health-nutrition" element={<DocaPage />} />
           <Route
             path="dog-health-nutrition/my_profile"

@@ -1,16 +1,15 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { ReportList } from "interfaces/requestInterface/request";
-
+import { PetItemsList } from "interfaces/requestInterface/request";
 import { useEffect, useState } from "react";
-import reportPost from "service/reportPost/reportPost";
+import petItemsByPost from "service/petItemsByPost";
 
 const columns: GridColDef[] = [
-  { field: "number", headerName: "number", width: 90 },
+  { field: "number", headerName: "Number", width: 90 },
 
   {
     field: "name",
-    headerName: "name",
+    headerName: "Item name",
     width: 150,
   },
   {
@@ -35,19 +34,19 @@ const columns: GridColDef[] = [
   },
 ];
 
-const ReportList = () => {
-  const [reportList, setReportList] = useState<ReportList[]>([]);
-  // chay lan dau tien
+const PetItemsList = (postID: any) => {
+  const [petItemsList, setPetItemsList] = useState<PetItemsList[]>([]);
+
   useEffect(() => {
-    const getReportList = async () => {
-      const data: any = await reportPost.getReportList();
+    const getPetItemsList = async () => {
+      const data: any = await petItemsByPost.getPetItemsList(postID);
       console.log(data);
       if (data.length > 0) {
-        setReportList(data);
+        setPetItemsList(data);
       }
     };
     const initUseEffect = async () => {
-      await getReportList();
+      await getPetItemsList();
     };
     initUseEffect();
   }, []);
@@ -55,8 +54,8 @@ const ReportList = () => {
   return (
     <Box sx={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={reportList.map((report, index) => {
-          return { stt: index + 1, ...report };
+        rows={petItemsList.map((item, index) => {
+          return { stt: index + 1, ...item };
         })}
         getRowId={(row) => row.id}
         columns={columns}
@@ -75,4 +74,4 @@ const ReportList = () => {
   );
 };
 
-export default ReportList;
+export default PetItemsList;

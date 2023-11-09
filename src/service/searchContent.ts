@@ -1,5 +1,5 @@
 import { SearchContent } from "interfaces/requestInterface/request";
-import axiosClient from "services/axiosClient";
+import axiosClient from "./axiosClient";
 
 const searchContent = {
   getSearchByContent: (content: string) => {
