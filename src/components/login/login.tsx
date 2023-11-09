@@ -81,16 +81,20 @@ const Login = () => {
   const onSubmit: SubmitHandler<AccountRequest> = async (params) => {
     try {
       axios
-        .post("api/login/", {
+        .post("api/login", {
+          headers: {'Access-Control-Allow-Origin': "http://localhost:3000"},
           username: params.username,
           password: params.password,
         })
         .then(function (response) {
+          response;
+          console.log(response);
           if (response.data) {
             console.log(response.data.username);
             switch (response.data.role.id) {
-              case 1:
-                //Navigate("/admin");
+              case 5:
+                console.log("Đăng nhập thành công")
+                // Navigate("/admin");
                 break;
               default:
                 console.log("Default");
@@ -125,10 +129,7 @@ const Login = () => {
         </Typography>
       </Grid>
 
-      <Box
-        p={3}
-        sx={{ flexGrow: 1, left: 230, width: 500 }}
-      >
+      <Box p={3} sx={{ flexGrow: 1, left: 230, width: 500 }}>
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           {/* Account */}
           <Grid container={true} style={gridStyle}>

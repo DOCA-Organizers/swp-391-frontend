@@ -368,12 +368,6 @@ export default function Post({ inforPost }: IProps) {
                               width: "100%",
                             }}
                           > */}
-                          <Typography
-                            sx={{ marginLeft: "40px", marginTop: "4px" }}
-                            fontSize={16}
-                          >
-                            Reply
-                          </Typography>
                           {/* </Button> */}
                         </Box>
                         <Typography sx={{ fontSize: "10px" }} fontWeight={1000}>
