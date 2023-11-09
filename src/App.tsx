@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import CssBaseline from "@mui/material/CssBaseline";
 import DocaPage from "pages/docaPage";
 import {
@@ -12,6 +13,17 @@ import CategoryPage from "pages/categoryPage";
 import ProfilePage from "pages/profilePage";
 import { ErrorBoundary } from "components/errorboundary/errorBoundary";
 import LoginPage from "pages/login/loginPage";
+=======
+import { CssBaseline } from "@mui/material";
+import ReportList from "components/list/reportList";
+import Report from "components/report";
+import AdminPage from "pages/admin/adminPage";
+import DocaPage from "pages/docaPage";
+import LoginPage from "pages/loginPage";
+import ProfilePage from "pages/profilePage";
+import RegistrationPage from "pages/registrationPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+>>>>>>> origin/huyBranch
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -37,11 +49,27 @@ function App() {
             <Route path="dog-chat" element={<DocaPage />} />
             <Route path="dog-chat/my_profile" element={<ProfilePage />} />
 
+<<<<<<< HEAD
             <Route path="dog-health-nutrition" element={<DocaPage />} />
             <Route
               path="dog-health-nutrition/my_profile"
               element={<ProfilePage />}
             />
+=======
+    <BrowserRouter>
+      <CssBaseline />
+      <Routes>
+        <Route path="/">
+          <Route index element={<ReportList />} />
+          <Route path="dog-chat" element={<DocaPage />} />
+          <Route path="dog-chat/my_profile" element={<ProfilePage />} />
+
+          <Route path="dog-health-nutrition" element={<DocaPage />} />
+          <Route
+            path="dog-health-nutrition/my_profile"
+            element={<ProfilePage />}
+          />
+>>>>>>> origin/huyBranch
 
             <Route path="dog-services" element={<DocaPage />} />
             <Route path="dog-services/my_profile" element={<ProfilePage />} />

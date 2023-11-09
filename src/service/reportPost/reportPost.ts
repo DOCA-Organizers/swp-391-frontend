@@ -1,9 +1,9 @@
-import { ReportList } from "interfaces/requestInterface/request";
+import { ReportListInterface } from "interfaces/requestInterface/request";
 import axiosClient from "service/axiosClient";
 
 const reportPost = {
   getReportList: () => {
-    return axiosClient.get<ReportList[]>("");
+    return axiosClient.get<ReportListInterface[]>(`api/report/list`);
   },
 };
 

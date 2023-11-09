@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import searchContent from "service/searchContent";
 
-const SearchComponent = () => {
+const SearchList = () => {
   const [SearchList, setSearchList] = useState<SearchContent[]>();
   const navigate = useNavigate();
 
@@ -113,4 +113,4 @@ const SearchComponent = () => {
   );
 };
 
-export default SearchComponent;
+export default SearchList;

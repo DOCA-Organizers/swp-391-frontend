@@ -31,15 +31,25 @@ export interface MyProfileRequest {
   gender: string;
 }
 
-export interface ReportList {
+export interface ReportListInterface {
   postID: string;
   numberOfPost: number;
-  username: string;
 }
 
 export interface BookmarkedList {
-  userID: string;
+  id: string;
+  content: string;
   title: string;
   createTime: Date;
+  active: boolean;
+  sold: boolean;
   exchange: boolean;
+}
+
+export interface PetList {
+  postID: number;
+}
+
+export interface PetItemsList {
+  postID: number;
 }

@@ -1,31 +1,20 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { BookmarkedList } from "interfaces/requestInterface/request";
+import { ReportListInterface } from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
 import reportPost from "service/reportPost/reportPost";
 
 const columns: GridColDef[] = [
-  { field: "number", headerName: "Number", width: 90 },
+  {
+    field: "numberOfPost",
+    headerName: "numPost",
+    width: 150,
+  },
 
   {
-    field: "userID",
-    headerName: "User ID",
-    width: 150,
-  },
-  {
-    field: "title",
-    headerName: "Title",
-    width: 150,
-  },
-  {
-    field: "createTime",
-    headerName: "Created time",
-    width: 110,
-  },
-  {
-    field: "exchange",
-    headerName: "Exchange",
+    field: "postID",
+    headerName: "postID",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
@@ -34,16 +23,16 @@ const columns: GridColDef[] = [
   },
 ];
 
-const BookmarkedList = () => {
-  const [bookmarkedList, setBookmarkedList] = useState<BookmarkedList[]>([]);
-  // chay lan dau tien
+const ReportList = () => {
+  const [reportList, setReportList] = useState<ReportListInterface[]>([]);
+
   useEffect(() => {
     const getReportList = async () => {
       const data: any = await reportPost.getReportList();
       console.log(data);
-      if (data.length > 0) {
-        setBookmarkedList(data);
-      }
+      // if (data.length > 0) {
+      //   setReportList(data);
+      // }
     };
     const initUseEffect = async () => {
       await getReportList();
@@ -53,10 +42,9 @@ const BookmarkedList = () => {
 
   return (
     <Box sx={{ height: 400, width: "100%" }}>
-      <Typography>Click in title to see detail</Typography>
       <DataGrid
-        rows={bookmarkedList.map((bookmark, index) => {
-          return { stt: index + 1, ...bookmark };
+        rows={reportList.map((report, index) => {
+          return { stt: index + 1, ...report };
         })}
         getRowId={(row) => row.id}
         columns={columns}
@@ -75,4 +63,4 @@ const BookmarkedList = () => {
   );
 };
 
-export default BookmarkedList;
+export default ReportList;
