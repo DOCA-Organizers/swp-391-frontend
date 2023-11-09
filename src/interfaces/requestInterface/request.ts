@@ -32,9 +32,14 @@ export interface MyProfileRequest {
 }
 
 export interface ReportList {
+  postID: string;
+  numberOfPost: number;
   username: string;
 }
 
-export interface BookmarkedPost {
+export interface BookmarkedList {
   userID: string;
+  title: string;
+  createTime: Date;
+  exchange: boolean;
 }
