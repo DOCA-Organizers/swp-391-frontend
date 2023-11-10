@@ -8,7 +8,7 @@ const ProfilePage = () => {
   return (
     <Box>
       <SlideBar />
-      <Box sx={{marginTop: 14}}>
+      <Box sx={{ marginTop: 14 }}>
         <Profile />
       </Box>
     </Box>

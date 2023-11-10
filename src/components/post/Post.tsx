@@ -1,23 +1,14 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import { FavoriteBorder } from "@mui/icons-material";
-import Checkbox from "@mui/material/Checkbox";
-import Favorite from "@mui/icons-material/Favorite";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import CloseIcon from "@mui/icons-material/Close";
+import Favorite from "@mui/icons-material/Favorite";
 import Flag from "@mui/icons-material/Flag";
-import Badge from "@mui/material/Badge";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import SendIcon from "@mui/icons-material/Send";
 import {
   Box,
   Dialog,
@@ -29,20 +20,25 @@ import {
   Grid,
   ImageList,
   ImageListItem,
-  InputAdornment,
   MenuItem,
   TextField,
 } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
-import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-import { ImageListType } from "react-images-uploading";
-import { IState as IProps } from "pages/docaPage";
-import Menu from "@mui/material/Menu";
-import { NavLink, Route } from "react-router-dom";
-import { Nav } from "reactstrap";
+import Avatar from "@mui/material/Avatar";
+import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import Checkbox from "@mui/material/Checkbox";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import Typography from "@mui/material/Typography";
+import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import CloseIcon from "@mui/icons-material/Close";
+import { IState as IProps } from "pages/docaPage";
+import * as React from "react";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -683,7 +679,6 @@ export default function Post({ inforPost }: IProps) {
           </Dialog>
         </Card>
         {renderPostList()}
-        // alo alo 
       </div>
     </>
   );

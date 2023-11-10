@@ -10,14 +10,14 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
-import * as yup from "yup";
-import { AccountRequest } from "interfaces/requestInterface/request";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+import { AccountRequest } from "interfaces/requestInterface/request";
+import { useState } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import * as yup from "yup";
 import { addErrorIntoField } from "../../utils/utils";
 import ErrorMessage from "../errors/errorMessage";
-import axios from "axios";
 
 const leftGridStyle = {
   marginTop: "20px",
@@ -82,7 +82,7 @@ const Login = () => {
     try {
       axios
         .post("api/login", {
-          headers: {'Access-Control-Allow-Origin': "http://localhost:3000"},
+          headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
           username: params.username,
           password: params.password,
         })
@@ -93,8 +93,8 @@ const Login = () => {
             console.log(response.data.username);
             switch (response.data.role.id) {
               case 5:
-                console.log("Đăng nhập thành công")
-                // Navigate("/admin");
+                console.log("Đăng nhập thành công");
+
                 break;
               default:
                 console.log("Default");

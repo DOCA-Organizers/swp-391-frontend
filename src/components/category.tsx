@@ -1,4 +1,11 @@
-import { Box, Container, List, ListItem, ListItemButton } from "@mui/material";
+import {
+  Box,
+  Container,
+  List,
+  ListItem,
+  ListItemButton,
+  Typography,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const listItemButtonStyles = {
@@ -26,7 +33,17 @@ const Category = () => {
   const navigate = useNavigate();
   return (
     <Container sx={{ backgroundColor: "white", marginTop: "32px" }}>
-      <Box sx={boxStyles}>Dog Forums</Box>
+      <Box sx={boxStyles}>
+        {" "}
+        <Typography
+          sx={{
+            fontWeight: "bolder",
+            color: "black",
+          }}
+        >
+          Dog Forum
+        </Typography>
+      </Box>
       <List>
         <ListItem>
           <ListItemButton
@@ -72,7 +89,16 @@ const Category = () => {
           </ListItemButton>
         </ListItem>
       </List>
-      <Box sx={boxStyles}>Cat Forums</Box>
+      <Box sx={boxStyles}>
+        <Typography
+          sx={{
+            fontWeight: "bolder",
+            color: "black",
+          }}
+        >
+          Cat Forum
+        </Typography>
+      </Box>
       <List>
         <ListItem>
           <ListItemButton

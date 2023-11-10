@@ -66,6 +66,8 @@ function App() {
               element={<ProfilePage />}
             />
 
+            <Route path="bookmarked-list" element={<ProfilePage />} />
+
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegistrationPage />} />
           </Route>

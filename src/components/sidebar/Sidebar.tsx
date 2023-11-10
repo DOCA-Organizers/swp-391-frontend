@@ -1,30 +1,28 @@
-import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import MenuIcon from "@mui/icons-material/Menu";
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Toolbar from "@mui/material/Toolbar";
+import { styled, useTheme } from "@mui/material/styles";
+import * as React from "react";
 
-import { Button } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
+import { Button } from "@mui/material";
 
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PrimarySearchAppBar from "components/searchbar/SearchBar";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -88,6 +86,7 @@ export default function SlideBar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -153,7 +152,12 @@ export default function SlideBar() {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText
+                primary="Home"
+                onClick={() => {
+                  navigate(-1);
+                }}
+              />
             </ListItemButton>
           </ListItem>
 
@@ -162,7 +166,12 @@ export default function SlideBar() {
               <ListItemIcon>
                 <BookmarkIcon />
               </ListItemIcon>
-              <ListItemText primary="Bookmarks" />
+              <ListItemText
+                primary="Bookmarks"
+                onClick={() => {
+                  navigate("/bookmarked-list");
+                }}
+              />
             </ListItemButton>
           </ListItem>
 

@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Avatar, Container, Grid, Typography, styled } from "@mui/material";
 import { MyProfileRequest } from "interfaces/requestInterface/request";
 
 import { useState } from "react";
@@ -25,19 +18,26 @@ const Profile = () => {
     dateJoined: "14 October 2023",
     dateOfBirth: "05/08/2003",
     email: "huylqse123456@fpt.edu.vn",
-    fullName: "Le Quang Huy",
+    fullName: "Nguyen Van Nam",
     gender: "Male",
     manage: "Dog",
     role: "Member",
-    userID: "1",
-    username: "huydepgai123",
+    userID: "1211325",
+    username: "namnguyen2u3",
   });
 
   return (
     <Container sx={{ backgroundColor: "F0F0F0" }}>
       <Grid sx={{ width: 50, position: "relative", left: 900, top: 10 }}>
         <Avatar
-          sx={{ bgcolor: "#f44336" }}
+          sx={{
+            width: 70,
+            height: 70,
+            bgcolor: "#f44336",
+            positon: "relative",
+            right: 620,
+            top: 120,
+          }}
           aria-label="recipe"
           src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
         ></Avatar>
