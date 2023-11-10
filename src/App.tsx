@@ -8,6 +8,7 @@ import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -66,7 +67,7 @@ function App() {
               element={<ProfilePage />}
             />
 
-            <Route path="bookmarked-list" element={<ProfilePage />} />
+            {/* <Route path="bookmarked-list" element={<ProfilePage />} /> */}
 
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegistrationPage />} />

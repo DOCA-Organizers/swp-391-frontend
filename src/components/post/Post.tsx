@@ -89,16 +89,7 @@ export default function Post({ inforPost }: IProps) {
     setOpenUpdate(false);
   };
 
-  React.useEffect(() => {
-    const fetchPost = async () => {
-      const data: any = await postAPI.add(inforPost);
-    };
-    const initUseEffect = async () => {
-      await fetchPost();
-    };
-
-    initUseEffect();
-  }, []);
+  
 
   const descriptionElementRef = React.useRef<HTMLElement>(null);
   React.useEffect(() => {
@@ -156,10 +147,23 @@ export default function Post({ inforPost }: IProps) {
     },
   ];
 
+  // React.useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const data: any = await postAPI.add(inforPost);
+  //   };
+  //   const initUseEffect = async () => {
+  //     await fetchPost();
+  //   };
+
+  //   initUseEffect();
+  // }, []);
+  
+
   const renderPostList = (): JSX.Element[] => {
-    return inforPost.map((post) => {
+    return inforPost.map((post, index) => {
+      
       return (
-        <Card
+        <Card key={index}
           sx={{
             maxWidth: 650,
             maxHeight: "auto",
@@ -209,7 +213,7 @@ export default function Post({ inforPost }: IProps) {
               sx={{
                 marginBottom: 1,
                 backgroundColor: "#FF8C00",
-                width: "150px",
+                width: "180px",
                 color: "#1D5B9D",
               }}
             >
@@ -221,7 +225,7 @@ export default function Post({ inforPost }: IProps) {
               sx={{
                 marginBottom: 1,
                 backgroundColor: "#FF8C00",
-                width: "150px",
+                width: "180px",
                 color: "#1D5B9D",
               }}
             >
@@ -231,7 +235,7 @@ export default function Post({ inforPost }: IProps) {
               sx={{
                 marginBottom: 1,
                 backgroundColor: "#FF8C00",
-                width: "150px",
+                width: "180px",
                 color: "#1D5B9D",
               }}
             >
@@ -267,21 +271,21 @@ export default function Post({ inforPost }: IProps) {
               paddingBottom: 1,
             }}
           >
-            <Badge
+            {/* <Badge
               badgeContent={15}
               color="primary"
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
               }}
-            >
+            > */}
               <Checkbox
                 aria-label="like"
                 icon={<FavoriteBorder />}
                 checkedIcon={<Favorite />}
                 sx={{ padding: 0.5 }}
               />
-            </Badge>
+            {/* </Badge> */}
 
             <IconButton
               aria-label="comment"
@@ -589,21 +593,21 @@ export default function Post({ inforPost }: IProps) {
               paddingBottom: 1,
             }}
           >
-            <Badge
+            {/* <Badge
               badgeContent={15}
               color="primary"
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
               }}
-            >
+            > */}
               <Checkbox
                 aria-label="like"
                 icon={<FavoriteBorder />}
                 checkedIcon={<Favorite />}
                 sx={{ padding: 0.5 }}
               />
-            </Badge>
+            {/* </Badge> */}
 
             <IconButton
               aria-label="comment"
