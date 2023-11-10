@@ -36,7 +36,7 @@ const DocaPage = () => {
             position: "relative",
             left: "70%",
             maxWidth: "60%",
-            top: "150px"
+            top: "140px"
           }}
         >
           <Summary/>
@@ -46,7 +46,7 @@ const DocaPage = () => {
             position: "relative",
             left: "20%",
             maxWidth: "50%",
-            bottom: "100px"
+            bottom: "80px"
           }}
         >
           <CreatePost inforPost={inforPost} setInforPost={setInforPost} />
