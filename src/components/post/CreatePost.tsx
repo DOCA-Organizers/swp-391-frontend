@@ -39,6 +39,7 @@ import ImageUploading, { ImageListType } from "react-images-uploading";
 import "./CreatePost.css";
 import { IState as Props } from "pages/docaPage";
 import { Blob } from "buffer";
+import postAPI from "service/post/postAPI";
 
 interface Iprops {
   inforPost: Props["inforPost"];
@@ -150,6 +151,8 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
 
     initUseEffect();
   }, []);
+
+
 
   const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);

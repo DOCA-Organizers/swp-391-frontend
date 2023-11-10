@@ -39,6 +39,7 @@ import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import { IState as IProps } from "pages/docaPage";
 import * as React from "react";
+import postAPI from "service/post/postAPI";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -87,6 +88,17 @@ export default function Post({ inforPost }: IProps) {
   const handleCloseUpdate = () => {
     setOpenUpdate(false);
   };
+
+  React.useEffect(() => {
+    const fetchPost = async () => {
+      const data: any = await postAPI.add(inforPost);
+    };
+    const initUseEffect = async () => {
+      await fetchPost();
+    };
+
+    initUseEffect();
+  }, []);
 
   const descriptionElementRef = React.useRef<HTMLElement>(null);
   React.useEffect(() => {
@@ -421,6 +433,7 @@ export default function Post({ inforPost }: IProps) {
             onClose={handleCloseUpdate}
             aria-labelledby="customized-dialog-title"
             open={openUpdate}
+            maxWidth="md"
           >
             <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
               Post of namnguyen2u3
@@ -445,6 +458,7 @@ export default function Post({ inforPost }: IProps) {
                 value={post.content}
                 required={true}
                 multiline
+                fullWidth={true}
               />
               <ImageList
                 sx={{ width: 650, height: 450 }}
