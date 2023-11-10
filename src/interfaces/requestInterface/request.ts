@@ -36,7 +36,7 @@ export interface ReportListInterface {
   numberOfPost: number;
 }
 
-export interface BookmarkedList {
+export interface BookmarkList {
   id: string;
   content: string;
   title: string;

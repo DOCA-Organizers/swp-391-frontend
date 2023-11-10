@@ -155,7 +155,7 @@ export default function SlideBar() {
               <ListItemText
                 primary="Home"
                 onClick={() => {
-                  navigate(-1);
+                  navigate("/");
                 }}
               />
             </ListItemButton>

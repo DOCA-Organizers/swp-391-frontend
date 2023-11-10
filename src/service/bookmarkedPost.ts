@@ -1,10 +1,9 @@
-import { BookmarkedList } from "interfaces/requestInterface/request";
-
+import { BookmarkList } from "interfaces/requestInterface/request";
 import axiosClient from "service/axiosClient";
 
 const BookmarkedPost = {
   getBookmarkedPost: (userID: number) => {
-    return axiosClient.get<BookmarkedList[]>(`api/bookmark/List/${userID}`);
+    return axiosClient.get<BookmarkList[]>(`api/bookmark/List/${userID}`);
   },
 };
 

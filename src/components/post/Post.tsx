@@ -646,7 +646,7 @@ export default function Post({ inforPost }: IProps) {
                 ref={descriptionElementRef}
                 tabIndex={-1}
               >
-                {[...new Array()].map((index) => {}).join("\n")}
+                {[...new Array()].map(() => {}).join("\n")}
               </DialogContentText>
             </DialogContent>
             <DialogActions>

@@ -7,7 +7,6 @@ import DocaPage from "pages/docaPage";
 import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
-import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";

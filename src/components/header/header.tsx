@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
+import { useNavigate } from "react-router-dom";
 
 const buttonStyles = {
   borderRadius: "32px",
@@ -28,7 +28,7 @@ const Header = () => {
       <Grid xs={4} textAlign="end" pr={2}>
         <Button
           variant="contained"
-          sx={{ marginRight: "8px" }}
+          sx={{ marginRight: "8px", backgroundColor: "#1D5B9D" }}
           style={buttonStyles}
           onClick={() => {
             navigate("/login");

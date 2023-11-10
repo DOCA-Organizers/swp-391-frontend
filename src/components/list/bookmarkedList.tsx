@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { BookmarkedList } from "interfaces/requestInterface/request";
+import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { BookmarkList } from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
 import BookmarkedPost from "service/bookmarkedPost";
@@ -51,15 +51,15 @@ const columns: GridColDef[] = [
 ];
 
 const BookmarkedList = (userID: any) => {
-  const [bookmarkedList, setBookmarkedList] = useState<BookmarkedList[]>([]);
+  const [bookmarkList, setBookmarkList] = useState<BookmarkList[]>();
 
   useEffect(() => {
     const getBookmarkedList = async () => {
       const data: any = await BookmarkedPost.getBookmarkedPost(userID);
       console.log(data);
-      if (data.length > 0) {
-        setBookmarkedList(data);
-      }
+      // if (data.length > 0) {
+      //   setBookmarkList(data);
+      // }
     };
     const initUseEffect = async () => {
       await getBookmarkedList();
@@ -70,8 +70,8 @@ const BookmarkedList = (userID: any) => {
   return (
     <Box sx={{ height: 400, width: "100%" }}>
       <Typography>Click in title to see detail</Typography>
-      <DataGrid
-        rows={bookmarkedList.map((bookmark, index) => {
+      {/* <DataGrid
+        rows={bookmarkList.map((bookmark, index) => {
           return { stt: index + 1, ...bookmark };
         })}
         getRowId={(row) => row.id}
@@ -86,7 +86,7 @@ const BookmarkedList = (userID: any) => {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
-      />
+      /> */}
     </Box>
   );
 };

@@ -63,6 +63,8 @@ const validationSchema = yup.object({
 const Login = () => {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const {
     register,
@@ -80,30 +82,38 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<AccountRequest> = async (params) => {
     try {
-      axios
-        .post("api/login", {
-          headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
-          username: params.username,
-          password: params.password,
-        })
-        .then(function (response) {
-          response;
-          console.log(response);
-          if (response.data) {
-            console.log(response.data.username);
-            switch (response.data.role.id) {
-              case 5:
-                console.log("Đăng nhập thành công");
-
-                break;
-              default:
-                console.log("Default");
-            }
-          }
-        })
-        .catch(function (e) {
-          console.log(e);
-        });
+      axios.post("api/login", {
+        headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
+        username: params.username,
+        password: params.password,
+      });
+      // .then(function (response) {
+      //   console.log(response);
+      //   let dispatchLogin = dispatch(login(data));
+      //   dispatchLogin.unwrap().then((resp) => {
+      //     if (resp.username) {
+      //       localStorage.setItem(USER_KEY, JSON.stringify(resp));
+      //       localStorage.setItem(
+      //         USER_TYPE_KEY,
+      //         JSON.stringify(resp.roles[0].id)
+      //       );
+      //       localStorage.setItem(USER_ID_KEY, JSON.stringify(resp.id));
+      //       switch (resp.roles[0].id) {
+      //         case "1":
+      //           navigate("/admin");
+      //           break;
+      //         case "2":
+      //           navigate("/staff");
+      //           break;
+      //         case "7":
+      //           navigate("/member");
+      //           break;
+      //         default:
+      //           console.log("default");
+      //       }
+      //     }
+      //   });
+      // });
     } catch (error) {
       console.log("Error submitting", error);
     }
