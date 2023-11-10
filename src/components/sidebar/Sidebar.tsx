@@ -161,7 +161,7 @@ export default function SlideBar() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem>
+          {/* <ListItem>
             <ListItemButton>
               <ListItemIcon>
                 <BookmarkIcon />
@@ -173,7 +173,7 @@ export default function SlideBar() {
                 }}
               />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
           <ListItem>
             <NavLink

@@ -10,12 +10,12 @@ const postAPI = {
     },
 
     add(data: any){
-        const url = '/CreatePost';
+        const url = '/api/CreatePost';
         return axiosClient.post(url, data);
     },
 
     update(data: any){
-
+        
     },
 
     remove(id: any){

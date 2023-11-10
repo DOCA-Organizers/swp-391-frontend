@@ -20,8 +20,10 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import PersonIcon from "@mui/icons-material/Person";
 import ErrorMessage from "components/errors/errorMessage";
 import { LoginRequest } from "interfaces/login/loginRequest";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 // const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 // const passwordRegExp =
@@ -57,6 +59,8 @@ const gridStyle = {
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  let timeoutRef = useRef<any>();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -69,14 +73,35 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<LoginRequest> = async (data: any) => {
     try {
-      console.log("In");
       axios
         .post("http://localhost:8080/api/login", {
           username: data.username,
           password: data.password,
         })
         .then(function (response) {
-          console.log(response);
+          if (response.data.role.id) {
+            console.log(response.data);
+            switch (response.data.role.id) {
+              case 5:
+                toast.success("Login Success!", {
+                  position: toast.POSITION.TOP_CENTER,
+                });
+                timeoutRef.current = setTimeout(() => {
+                  navigate("/dog-chat");
+                }, 1700);
+                return;
+              default:
+                console.log("Default");
+            }
+          }
+        })
+        .catch((e: any) => {
+          if (e.response.status !== 200) {
+            toast.error("Login Failed!", {
+              position: toast.POSITION.TOP_CENTER,
+            });
+            console.log("Error: ", e);
+          }
         });
     } catch (error) {
       console.log("Error at login Form");
@@ -221,6 +246,10 @@ const LoginForm = () => {
           </Grid>
         </form>
       </Box>
+      <ToastContainer
+        autoClose={2000}
+        style={{ marginTop: "50px", width: "350px" }}
+      />
     </Grid2>
   );
 };

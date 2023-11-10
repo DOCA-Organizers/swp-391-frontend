@@ -40,6 +40,9 @@ import "./CreatePost.css";
 import { IState as Props } from "pages/docaPage";
 import { Blob } from "buffer";
 import postAPI from "service/post/postAPI";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { PostRequest } from "interfaces/post/postRequest";
+import axios from "axios";
 
 interface Iprops {
   inforPost: Props["inforPost"];
@@ -63,76 +66,76 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("Post");
+  const [category, setCategory] = useState();
   const [type, setType] = useState("");
   const [breed, setBreed] = useState("");
   const [breedList, setBreedList] = useState<any[]>([
     {
-     "type": "Dog",
-     "name": "Corgi",
-     "id": "1"
+      type: "Dog",
+      name: "Corgi",
+      id: "1",
     },
     {
-     "type": "Dog",
-     "name": "Husky",
-     "id": "2"
+      type: "Dog",
+      name: "Husky",
+      id: "2",
     },
     {
-     "type": "Dog",
-     "name": "Alaska",
-     "id": "3"
+      type: "Dog",
+      name: "Alaska",
+      id: "3",
     },
     {
-     "type": "Dog",
-     "name": "Poodle",
-     "id": "4"
+      type: "Dog",
+      name: "Poodle",
+      id: "4",
     },
     {
-     "type": "Dog",
-     "name": "Pug",
-     "id": "5"
+      type: "Dog",
+      name: "Pug",
+      id: "5",
     },
     {
-     "type": "Dog",
-     "name": "Other",
-     "id": "6"
+      type: "Dog",
+      name: "Other",
+      id: "6",
     },
     {
-     "type": "Cat",
-     "name": "Tabby",
-     "id": "7"
+      type: "Cat",
+      name: "Tabby",
+      id: "7",
     },
     {
-     "type": "Cat",
-     "name": "Calico",
-     "id": "8"
+      type: "Cat",
+      name: "Calico",
+      id: "8",
     },
     {
-     "type": "Cat",
-     "name": "Snowshoe",
-     "id": "9"
+      type: "Cat",
+      name: "Snowshoe",
+      id: "9",
     },
     {
-     "type": "Cat",
-     "name": "Xiamese",
-     "id": "10"
+      type: "Cat",
+      name: "Xiamese",
+      id: "10",
     },
     {
-     "type": "Cat",
-     "name": "Balinese",
-     "id": "11"
+      type: "Cat",
+      name: "Balinese",
+      id: "11",
     },
     {
-     "type": "Cat",
-     "name": "Munchkin",
-     "id": "12"
+      type: "Cat",
+      name: "Munchkin",
+      id: "12",
     },
     {
-     "type": "Cat",
-     "name": "Other",
-     "id": "13"
-    }
-   ]);
+      type: "Cat",
+      name: "Other",
+      id: "13",
+    },
+  ]);
   const [dataBreed, setDataBreed] = useState<any[]>([]);
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
@@ -152,8 +155,6 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     initUseEffect();
   }, []);
 
-
-
   const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
@@ -168,7 +169,7 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   };
 
   const handleRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory((event.target as HTMLInputElement).value);
+    // setCategory((event.target as HTMLInputElement).value);
   };
 
   const handleType = (event: SelectChangeEvent) => {
@@ -193,25 +194,65 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     setExpanded(!expanded);
   };
 
-  const handlePost = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    setInforPost([
-      ...inforPost,
-      {
-        content: content,
-        imageList: images,
-        categoryPost: category,
-        typePet: type,
-        breedPet: breed,
-      },
-    ]);
-    alert("Post successfully");
-    setContent("");
-    setImages([]);
-    setCategory("");
-    setType("");
-    setBreed("");
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    control,
+  } = useForm<PostRequest>({
+    mode: "onTouched",
+  });
+
+  const onError = (error: any) => {
+    console.log(error);
   };
+
+  const onSubmit: SubmitHandler<PostRequest> = async (data: any) => {
+    try {
+      axios
+        .post("http://localhost:8080/api/CreatePost", {
+          userid: "8a8bb262-23c1-461c-83be-d829549c4673",
+          categoryid: "1",
+          pet_breed: breed,
+          pet_type: type,
+          isCreateHag: true,
+          content: data.content,
+          title: "",
+          exchange: category,
+          listpostimge: images,
+          listpet: null,
+          listitem: null
+        })
+        .then((response) => {
+          console.log("Response: ", response);
+        })
+        .catch((e) => {
+          console.log("Error: ", e);
+        });
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
+  // const handlePost = (e: React.FormEvent<HTMLFormElement>): void => {
+  //   e.preventDefault();
+  //   setInforPost([
+  //     ...inforPost,
+  //     {
+  //       content: content,
+  //       imageList: images,
+  //       categoryPost: category,
+  //       typePet: type,
+  //       breedPet: breed,
+  //     },
+  //   ]);
+  //   alert("Post successfully");
+  //   setContent("");
+  //   setImages([]);
+  //   setCategory("");
+  //   setType("");
+  //   setBreed("");
+  // };
 
   return (
     <Card
@@ -222,7 +263,7 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
         marginBottom: 2,
       }}
     >
-      <form onSubmit={handlePost}>
+      <form onSubmit={handleSubmit(onSubmit, onError)}>
         <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
           <Avatar
             sx={{ bgcolor: red[500], marginLeft: 2, marginRight: 2 }}
@@ -233,10 +274,9 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
             className="inputContent"
             placeholder="Hello, What's on your mind"
             id="content-post"
-            onChange={onChangeContent}
-            value={content}
             required={true}
             multiline
+            {...register("content")}
           />
           <Box>
             <ImageUploading
@@ -310,9 +350,9 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
               value={category}
               onChange={handleRadio}
             >
-              <FormControlLabel value="Post" control={<Radio />} label="Post" />
+              <FormControlLabel value= {0} control={<Radio />} label="Post" />
               <FormControlLabel
-                value="Exchange"
+                value= {1}
                 control={<Radio />}
                 label="Exchange"
               />

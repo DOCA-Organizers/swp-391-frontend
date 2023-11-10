@@ -87,9 +87,8 @@ const Login = () => {
           password: params.password,
         })
         .then(function (response) {
-          response;
-          console.log(response);
-          if (response.data) {
+          console.log(response.data);
+          if (response.data.role.id) {
             console.log(response.data.username);
             switch (response.data.role.id) {
               case 5:
