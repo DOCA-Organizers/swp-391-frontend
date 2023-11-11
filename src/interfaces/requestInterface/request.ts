@@ -3,13 +3,13 @@ export interface AccountRequest {
   password: string;
 }
 
-export interface RegisRequest {
-  username: string;
-  password: string;
-  fullName: string;
-  dateOfBirth: string;
-  email: string;
-}
+// export interface RegisRequest {
+//   username: string;
+//   password: string;
+//   fullName: string;
+//   dateOfBirth: string;
+//   email: string;
+// }
 
 export interface SearchContent {
   content: string;

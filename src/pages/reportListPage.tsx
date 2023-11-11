@@ -20,6 +20,7 @@ const ReportListPage = () => {
     <Box
       sx={{
         backgroundColor: "#F0F0F0",
+        height: 720,
       }}
     >
       <SlideBar />

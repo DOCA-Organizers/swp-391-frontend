@@ -1,8 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { USER_ID_KEY } from "constant";
 import { BookmarkList } from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import BookmarkedPost from "service/bookmarkedPost";
 
 const columns: GridColDef[] = [
@@ -50,18 +52,19 @@ const columns: GridColDef[] = [
   },
 ];
 
-const BookmarkedList = (userID: any) => {
+const BookmarkedList = () => {
   const [bookmarkList, setBookmarkList] = useState<BookmarkList[]>();
-
+  
   useEffect(() => {
     const getBookmarkedList = async () => {
-      const data: any = await BookmarkedPost.getBookmarkedPost(userID);
+      const data: any = await BookmarkedPost.getBookmarkedPost(USER_ID_KEY);
       console.log(data);
       // if (data.length > 0) {
       //   setBookmarkList(data);
       // }
     };
     const initUseEffect = async () => {
+      let { USER_ID_KEY } = useParams();
       await getBookmarkedList();
     };
     initUseEffect();

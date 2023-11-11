@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Box,
   Button,
@@ -10,72 +9,83 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { Controller, useForm, SubmitHandler } from "react-hook-form";
-import ErrorMessage from "../errors/errorMessage";
-import { addErrorIntoField } from "utils/utils";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import axios from "axios";
+import { useState } from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { addErrorIntoField } from "utils/utils";
+import ErrorMessage from "../errors/errorMessage";
 
-import { useNavigate } from "react-router-dom";
-import { RegisRequest } from "interfaces/requestInterface/request";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { useNavigate } from "react-router-dom";
 
 //ICON
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
+import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
+import PersonIcon from "@mui/icons-material/PersonOutlineOutlined";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import PersonIcon from "@mui/icons-material/PersonOutlineOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import PasswordOutlinedIcon from "@mui/icons-material/PasswordOutlined";
-import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import { RegisterForm } from "interfaces/register/registerForm";
 
-const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
-const passwordRegExp =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/g;
-const fullNameReqExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
-const dateOfBirthReqExp =
-  /^(3[01]|[12][0-9]|0?[1-9])(\/|-)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$/g;
-const emailReqExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
+// const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
+// const passwordRegExp =
+//   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/g;
+// const fullNameReqExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
+// const dateOfBirthReqExp =
+//   /^(3[01]|[12][0-9]|0?[1-9])(\/|-)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$/g;
+// const emailReqExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 
-const validationSchema = yup.object({
-  fullname: yup
-    .string()
-    .required("Full name can't be empty!")
-    .matches(/^[a-zA-Z]*$/, "Full name can't not contain special characters!"),
-  username: yup.string().required("Cannot empty in the Account blank!"),
-  // .matches(usernameRegExp, "Cannot start or end with the special word"),
+// const validationSchema = yup.object({
+//   fullname: yup
+//     .string()
+//     .required("Full name can't be empty!")
+//     .matches(/^[a-zA-Z]*$/, "Full name can't not contain special characters!"),
+//   username: yup.string().required("Cannot empty in the Account blank!"),
+//   // .matches(usernameRegExp, "Cannot start or end with the special word"),
 
-  password: yup.string().required("Please, input your password!"),
-  // .matches(
-  //   passwordRegExp,
-  //   "Password have at least 8 word, an uppercase, a lowercase, a digit and a special word!"
-  // ),
+//   password: yup.string().required("Please, input your password!"),
+//   // .matches(
+//   //   passwordRegExp,
+//   //   "Password have at least 8 word, an uppercase, a lowercase, a digit and a special word!"
+//   // ),
 
-  confirmPassword: yup
-    .string()
-    .required("Please confirm your password!")
-    .oneOf([yup.ref("password")], "Passwords must match!"),
+//   confirmPassword: yup
+//     .string()
+//     .required("Please confirm your password!")
+//     .oneOf([yup.ref("password")], "Passwords must match!"),
 
-  fullName: yup.string().required("Please input your name"),
-  // .matches(fullNameReqExp, "Please enter your full name"),
+//   fullName: yup.string().required("Please input your name"),
+//   // .matches(fullNameReqExp, "Please enter your full name"),
 
-  dateOfBirth: yup
-    .string()
-    .required("Please input your date of birth")
-    .matches(dateOfBirthReqExp, "Date of birth fit with the concept, please"),
+//   dateOfBirth: yup
+//     .string()
+//     .required("Please input your date of birth")
+//     .matches(dateOfBirthReqExp, "Date of birth fit with the concept, please"),
 
-  email: yup
-    .string()
-    .required("Please input your email")
-    .matches(emailReqExp, "Please input your email here"),
-});
+//   email: yup
+//     .string()
+//     .required("Please input your email")
+//     .matches(emailReqExp, "Please input your email here"),
+// });
 
-const onSubmit: SubmitHandler<RegisRequest> = async (params) => {
+const validatePassword = (
+  password: string,
+  confirmPassword: string
+): boolean => {
+  return password === confirmPassword;
+};
+
+const register = async (formData: RegisterForm) => {
+  if (!validatePassword(formData.password, formData.confirmPassword)) {
+    console.error("Passwords do not match");
+    return;
+  }
+};
+const onSubmit: SubmitHandler<RegisterForm> = async (params) => {
   console.log("Params: ", params);
 };
 const onError = (error: any) => {
@@ -88,15 +98,15 @@ const RegistrationForm = () => {
   const [gender, setGender] = useState("");
 
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<RegisRequest> = async (params) => {
+  const onSubmit: SubmitHandler<RegisterForm> = async (params) => {
     try {
       axios
         .post("api/register/", {
           username: params.username,
           password: params.password,
           fullName: params.fullName,
-          dateOfBirth: params.dateOfBirth,
           email: params.email,
+          gender: params.gender,
         })
         .then(function (response) {
           console.log(response);
@@ -113,6 +123,7 @@ const RegistrationForm = () => {
   const handleMouseDownPassword = () => (event: any) => {
     event.preventDefault();
   };
+
   const handleClickShowConfirmPassword = () =>
     setShowConfirmPassword((show: any) => !show);
   const handleMouseDownConfirmPassword = () => (event: any) => {
@@ -130,7 +141,7 @@ const RegistrationForm = () => {
     control,
   } = useForm<any>({
     mode: "onTouched",
-    resolver: yupResolver(validationSchema),
+    // resolver: yupResolver(validationSchema),
   });
 
   return (
@@ -384,6 +395,7 @@ const RegistrationForm = () => {
               backgroundColor: "#1d5b9d",
               marginRight: "8px",
             }}
+            
           >
             Sign Up
           </Button>

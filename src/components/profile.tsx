@@ -1,8 +1,10 @@
 import { Avatar, Container, Grid, Typography, styled } from "@mui/material";
+import { USER_ID_KEY } from "constant";
 import { MyProfileRequest } from "interfaces/requestInterface/request";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MyProfileAPI from "service/myProfile/myProfileAPI";
 
 const Item = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -24,6 +26,17 @@ const Profile = () => {
     role: "Member",
     userID: "1211325",
     username: "namnguyen2u3",
+  });
+
+  useEffect(() => {
+    const getMyProfile = async () => {
+      const data: any = await MyProfileAPI.getMyProfileAPI(USER_ID_KEY);
+      console.log(data);
+    };
+    const initUseEffect = async () => {
+      await getMyProfile();
+    };
+    initUseEffect();
   });
 
   return (

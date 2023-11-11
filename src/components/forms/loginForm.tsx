@@ -17,7 +17,7 @@ import {
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import axios from "axios";
 import ErrorMessage from "components/errors/errorMessage";
-import { USER_ID_KEY, USER_KEY, USER_TYPE_KEY } from "constant";
+import { ROLE_ID_KEY, USERNAME, USER_ID_KEY } from "constant";
 import { LoginRequest } from "interfaces/login/loginRequest";
 import { useRef, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -80,14 +80,18 @@ const LoginForm = () => {
           password: data.password,
         })
         .then(function (response) {
+          console.log(response);
+          console.log(response.data.role.id);
           if (response.data.role.id) {
-            localStorage.setItem(USER_KEY, JSON.stringify(response));
             localStorage.setItem(
-              USER_TYPE_KEY,
+              USER_ID_KEY,
+              JSON.stringify(response.data.user.id)
+            );
+            localStorage.setItem(
+              ROLE_ID_KEY,
               JSON.stringify(response.data.role.id)
             );
-            localStorage.setItem(USER_ID_KEY, JSON.stringify(response.data.id));
-            console.log(response.data);
+            localStorage.setItem(USERNAME, JSON.stringify(response.data));
             switch (response.data.role.id) {
               case "1":
                 navigate("/admin");
@@ -95,24 +99,21 @@ const LoginForm = () => {
               case "2":
                 navigate("/staff");
                 break;
+
               case "7":
                 navigate("/member");
                 break;
+              case 5:
+                toast.success("Login Success!", {
+                  position: toast.POSITION.TOP_CENTER,
+                });
+                timeoutRef.current = setTimeout(() => {
+                  navigate("/dog-chat");
+                }, 1700);
+                return;
               default:
-                console.log("default");
+                console.log("Default");
             }
-            // switch (response.data.role.id) {
-            //   case 5:
-            //     toast.success("Login Success!", {
-            //       position: toast.POSITION.TOP_CENTER,
-            //     });
-            //     timeoutRef.current = setTimeout(() => {
-            //       navigate("/dog-chat");
-            //     }, 1700);
-            //     return;
-            //   default:
-            //     console.log("Default");
-            // }
           }
         })
         .catch((e: any) => {

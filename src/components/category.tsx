@@ -6,7 +6,9 @@ import {
   ListItemButton,
   Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { CategoryInterface } from "interfaces/categoryInterface";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const listItemButtonStyles = {
   backgroundColor: "#F0F0F0",
@@ -21,6 +23,8 @@ const listItemButtonStyles = {
   },
 };
 
+const notUnderline = { textDecoration: "none", color: "black" };
+
 const boxStyles = {
   color: "gray",
   borderRadius: "16px",
@@ -31,10 +35,18 @@ const boxStyles = {
 
 const Category = () => {
   const navigate = useNavigate();
+  const [category, setcategory] = useState<CategoryInterface>();
+  const dog1 = 1;
+  const dog2 = 2;
+  const dog3 = 3;
+  const dog4 = 4;
+  const cat5 = 5;
+  const cat6 = 6;
+  const cat7 = 7;
+  const cat8 = 8;
   return (
     <Container sx={{ backgroundColor: "white", marginTop: "32px" }}>
       <Box sx={boxStyles}>
-        {" "}
         <Typography
           sx={{
             fontWeight: "bolder",
@@ -44,50 +56,52 @@ const Category = () => {
           Dog Forum
         </Typography>
       </Box>
+
       <List>
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/dog-chat");
-            }}
-          >
-            Dog Chat
-          </ListItemButton>
-        </ListItem>
+        <Link
+          to={`/dog-chat/${dog1}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>Dog Chat</ListItemButton>
+          </ListItem>
+        </Link>
 
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/dog-health-nutrition");
-            }}
-          >
-            Dog Health and Nutrition
-          </ListItemButton>
-        </ListItem>
+        <Link
+          to={`/dog-chat/${dog2}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>
+              Dog Health and Nutrition
+            </ListItemButton>
+          </ListItem>
+        </Link>
 
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/dog-services");
-            }}
-          >
-            Dog Services
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/dog-show-events");
-            }}
-          >
-            Dog Show and Events
-          </ListItemButton>
-        </ListItem>
+        <Link
+          to={`/dog-chat/${dog3}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>
+              Dog Services
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link
+          to={`/dog-chat/${dog4}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>
+              Dog Show and Events
+            </ListItemButton>
+          </ListItem>
+        </Link>
       </List>
       <Box sx={boxStyles}>
         <Typography
@@ -100,48 +114,48 @@ const Category = () => {
         </Typography>
       </Box>
       <List>
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/cat-chat");
-            }}
-          >
-            Cat Chat
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/cat-health-nutrition");
-            }}
-          >
-            Cat Health and Nutrition
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/cat-services");
-            }}
-          >
-            Cat Services
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton
-            sx={listItemButtonStyles}
-            onClick={() => {
-              navigate("/cat-show-events");
-            }}
-          >
-            Cat Show and Events
-          </ListItemButton>
-        </ListItem>
+        <Link
+          to={`/dog-chat/${cat5}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>Cat Chat</ListItemButton>
+          </ListItem>
+        </Link>
+        <Link
+          to={`/dog-chat/${cat6}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>
+              Cat Health and Nutrition
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link
+          to={`/dog-chat/${cat7}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>
+              Cat Services
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link
+          to={`/dog-chat/${cat8}`}
+          state={{ category }}
+          style={notUnderline}
+        >
+          <ListItem>
+            <ListItemButton sx={listItemButtonStyles}>
+              Cat Show and Events
+            </ListItemButton>
+          </ListItem>
+        </Link>
       </List>
     </Container>
   );
