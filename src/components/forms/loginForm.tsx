@@ -24,6 +24,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import loginAPI from "service/login/loginAPI";
 
 // const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 // const passwordRegExp =
@@ -73,36 +74,66 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<LoginRequest> = async (data: any) => {
     try {
-      axios
-        .post("http://localhost:8080/api/login", {
-          username: data.username,
-          password: data.password,
-        })
-        .then(function (response) {
-          if (response.data.role.id) {
-            console.log(response.data);
-            switch (response.data.role.id) {
-              case 5:
-                toast.success("Login Success!", {
-                  position: toast.POSITION.TOP_CENTER,
-                });
-                timeoutRef.current = setTimeout(() => {
-                  navigate("/dog-chat");
-                }, 1700);
-                return;
-              default:
-                console.log("Default");
-            }
-          }
-        })
-        .catch((e: any) => {
-          if (e.response.status !== 200) {
-            toast.error("Login Failed!", {
-              position: toast.POSITION.TOP_CENTER,
-            });
-            console.log("Error: ", e);
-          }
-        });
+      const response: any = await loginAPI.login({
+        username: data.username,
+        password: data.password,
+      });
+      if (response.user.id) {
+        switch (response.role.id) {
+          case 1:
+            navigate("/admin");
+            console.log("Go to Admin Page");
+            break;
+
+          case 2:
+            console.log("Go to Cat's Staff Page");
+            break;
+
+          case 3:
+            console.log("Go to Dog's Staff Page");
+            break;
+
+          case 4:
+            console.log("Go to Staff All Page");
+            break;
+          case 5:
+            console.log("Go to User Page");
+            navigate("/dog-chat");
+            break;
+          default:
+            console.log("default!");
+        }
+      }
+      // axios
+      //   .post("http://localhost:8080/api/login", {
+      //     username: data.username,
+      //     password: data.password,
+      //   })
+      //   .then(function (response) {
+      //     if (response.data.role.id) {
+      //       console.log(response.data);
+      //       switch (response.data.role.id) {
+      //         case 5:
+      //           toast.success("Login Success!", {
+      //             position: toast.POSITION.TOP_CENTER,
+      //           });
+      //           timeoutRef.current = setTimeout(() => {
+      //             navigate("/dog-chat");
+      //           }, 1700);
+      //           return;
+      //         default:
+      //           console.log("Default");
+      //       }
+      //     }
+      //   })
+      //   .catch((e: any) => {
+      //     if (e.response.status !== 200) {
+      //       toast.error("Login Failed!", {
+      //         position: toast.POSITION.TOP_CENTER,
+      //       });
+      //       console.log("Error: ", e);
+      //     }
+      //   });
     } catch (error) {
       console.log("Error at login Form");
     }

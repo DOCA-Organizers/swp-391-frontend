@@ -32,7 +32,6 @@ import {
 import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
 import Button from "@mui/material/Button";
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import breedAPI from "service/breedAPI";
 import React from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import ImageUploading, { ImageListType } from "react-images-uploading";
@@ -137,23 +136,8 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     },
   ]);
   const [dataBreed, setDataBreed] = useState<any[]>([]);
-  const [images, setImages] = React.useState([]);
+  const [images, setImages] = useState<ImageListType>([]);
   const maxNumber = 69;
-  useEffect(() => {
-    const getBreedList = async () => {
-      const data: any = await breedAPI.getBreedList();
-      // Nếu trả về object thì chỉ cần check có không
-      if (data) {
-        setBreedList(data);
-      }
-    };
-
-    const initUseEffect = async () => {
-      await getBreedList();
-    };
-
-    initUseEffect();
-  }, []);
 
   const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -211,7 +195,7 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     try {
       axios
         .post("http://localhost:8080/api/CreatePost", {
-          userid: "8a8bb262-23c1-461c-83be-d829549c4673",
+          userid: "bd35171b-2654-4c95-a8ca-0c7225e5d684",
           categoryid: "1",
           pet_breed: breed,
           pet_type: type,
@@ -219,9 +203,9 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
           content: data.content,
           title: "",
           exchange: category,
-          listpostimge: images,
+          listpostimg: null,
           listpet: null,
-          listitem: null
+          listitem: null,
         })
         .then((response) => {
           console.log("Response: ", response);
@@ -254,13 +238,14 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   //   setBreed("");
   // };
 
+
   return (
     <Card
       sx={{
-        height: "auto",
         width: 650,
         borderRadius: "20px",
-        marginBottom: 2,
+        margin: "0 auto",
+        marginBottom: "8px",
       }}
     >
       <form onSubmit={handleSubmit(onSubmit, onError)}>
@@ -350,9 +335,9 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
               value={category}
               onChange={handleRadio}
             >
-              <FormControlLabel value= {0} control={<Radio />} label="Post" />
+              <FormControlLabel value={0} control={<Radio />} label="Post" />
               <FormControlLabel
-                value= {1}
+                value={1}
                 control={<Radio />}
                 label="Exchange"
               />
