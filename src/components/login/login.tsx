@@ -82,7 +82,6 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<AccountRequest> = async (params) => {
     try {
-<<<<<<< HEAD
       axios.post("api/login", {
         headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
         username: params.username,
@@ -115,31 +114,6 @@ const Login = () => {
       //     }
       //   });
       // });
-=======
-      axios
-        .post("api/login", {
-          headers: { "Access-Control-Allow-Origin": "http://localhost:3000" },
-          username: params.username,
-          password: params.password,
-        })
-        .then(function (response) {
-          console.log(response.data);
-          if (response.data.role.id) {
-            console.log(response.data.username);
-            switch (response.data.role.id) {
-              case 5:
-                console.log("Đăng nhập thành công");
-
-                break;
-              default:
-                console.log("Default");
-            }
-          }
-        })
-        .catch(function (e) {
-          console.log(e);
-        });
->>>>>>> 86babf8c84d83c9d85aa7a74b85ccb30b090ba44
     } catch (error) {
       console.log("Error submitting", error);
     }

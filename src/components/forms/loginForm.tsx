@@ -1,29 +1,30 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import PersonIcon from "@mui/icons-material/Person";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
   Box,
   Button,
-  InputAdornment,
-  Typography,
-  Grid,
-  TextField,
-  IconButton,
-  FormGroup,
-  FormControlLabel,
   Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { addErrorIntoField } from "utils/utils";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import PersonIcon from "@mui/icons-material/Person";
+import axios from "axios";
 import ErrorMessage from "components/errors/errorMessage";
+import { USER_ID_KEY, USER_KEY, USER_TYPE_KEY } from "constant";
 import { LoginRequest } from "interfaces/login/loginRequest";
 import { useRef, useState } from "react";
-import axios from "axios";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { addErrorIntoField } from "utils/utils";
+import * as yup from "yup";
 
 // const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 // const passwordRegExp =
@@ -80,19 +81,38 @@ const LoginForm = () => {
         })
         .then(function (response) {
           if (response.data.role.id) {
+            localStorage.setItem(USER_KEY, JSON.stringify(response));
+            localStorage.setItem(
+              USER_TYPE_KEY,
+              JSON.stringify(response.data.role.id)
+            );
+            localStorage.setItem(USER_ID_KEY, JSON.stringify(response.data.id));
             console.log(response.data);
             switch (response.data.role.id) {
-              case 5:
-                toast.success("Login Success!", {
-                  position: toast.POSITION.TOP_CENTER,
-                });
-                timeoutRef.current = setTimeout(() => {
-                  navigate("/dog-chat");
-                }, 1700);
-                return;
+              case "1":
+                navigate("/admin");
+                break;
+              case "2":
+                navigate("/staff");
+                break;
+              case "7":
+                navigate("/member");
+                break;
               default:
-                console.log("Default");
+                console.log("default");
             }
+            // switch (response.data.role.id) {
+            //   case 5:
+            //     toast.success("Login Success!", {
+            //       position: toast.POSITION.TOP_CENTER,
+            //     });
+            //     timeoutRef.current = setTimeout(() => {
+            //       navigate("/dog-chat");
+            //     }, 1700);
+            //     return;
+            //   default:
+            //     console.log("Default");
+            // }
           }
         })
         .catch((e: any) => {
