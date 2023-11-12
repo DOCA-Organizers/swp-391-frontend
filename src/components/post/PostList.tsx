@@ -149,9 +149,9 @@ const PostList = () => {
   useEffect(() => {
     const getPostByCategoryID = async (categoryID: number) => {
       const response: any = await postAPI.getPostByCategoryID(categoryID);
-      if(response.length > 0) {
+      // if(response.length > 0) {
 
-      }
+      // }
     };
 
     const initUseEffect = async () => {

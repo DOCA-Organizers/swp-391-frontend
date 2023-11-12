@@ -4,10 +4,11 @@ import ProtectedRoute from "./protectedRoute";
 import DocaPage from "pages/docaPage";
 import PageNotFound from "pages/PageNotFound";
 import AdminPage from "pages/admin/adminPage";
+import { UserResponse } from "interfaces/user/userResponse";
 
 type Props = {
   isAllowed: boolean;
-  user: { id: string; username: string; role: { id: string; name: string } };
+  user: UserResponse;
 };
 
 function AdminRoutes(props: Props) {

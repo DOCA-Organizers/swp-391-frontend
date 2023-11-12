@@ -20,8 +20,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import PersonIcon from "@mui/icons-material/Person";
 import ErrorMessage from "components/errors/errorMessage";
 import { LoginRequest } from "interfaces/login/loginRequest";
-import { useRef, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import loginAPI from "service/login/loginAPI";
@@ -60,7 +59,6 @@ const gridStyle = {
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  let timeoutRef = useRef<any>();
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -104,7 +102,6 @@ const LoginForm = () => {
             console.log("default!");
         }
       }
-      // axios
       //   .post("http://localhost:8080/api/login", {
       //     username: data.username,
       //     password: data.password,
@@ -165,16 +162,6 @@ const LoginForm = () => {
         />
       </Box>
       <Box width={450} height={240} margin="0 auto">
-        {/* <Typography
-          style={{
-            fontSize: 32,
-            fontWeight: "bold",
-            textAlign: "center",
-            color: "#18345E",
-          }}
-        >
-          Login
-        </Typography> */}
 
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <Grid container={true} style={gridStyle}>

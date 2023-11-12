@@ -1,31 +1,21 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ErrorBoundary } from "components/errorboundary/errorBoundary";
 import Report from "components/report";
+import { ROUTE_PATH } from "configs";
 import AdminPage from "pages/admin/adminPage";
 import CategoryPage from "pages/categoryPage";
 import DocaPage from "pages/docaPage";
 import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
-import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AdminRoutes from "routes/AdminRoutes";
+import { useSelector } from "react-redux";
 
 function App() {
+  // const user = JSON.parse(localStorage.getItem(USER_KEY)!);
   return (
-    // <BrowserRouter>
-    //   <CssBaseline />
-    //   <Routes>
-    //     <Route path="/" element={<RegistrationPage />} />
-    //     {/* <Route
-    //       path={ROUTE_PATH.ADMIN}
-    //       element={<AdminRoutes user={} isAllowed={true}/>}
-    //     /> */}
-    //     <Route path="/registration" element={<Report />} />
-    //   </Routes>
-    // </BrowserRouter>
     <ErrorBoundary>
       <BrowserRouter>
         <CssBaseline />
@@ -73,7 +63,16 @@ function App() {
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegistrationPage />} />
           </Route>
-
+          {/* <Route
+              path={ROUTE_PATH.ADMIN}
+              element={
+                <AdminRoutes
+                  user={user}
+                  isAllowed={user.roles.id === "1" ? true : false}
+                />
+              }
+            /> */}
+        
           {/* <Route
       path={ROUTE_PATH.ADMIN}
       element={<AdminRoutes user={} isAllowed={true}/>}
@@ -84,25 +83,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
-
-    // <BrowserRouter>
-    //   <CssBaseline />
-    //   <Router>
-    //     <div className="App">
-    //       <Switch>
-    //         <Route path="/" Component={CategoryPage} />
-    //         {/* <Route path="/dogChat/" component={dogChat} />
-    //         <Route path="/topics/:id" component={Topic} />
-    //         <Route path="/topics/:id" component={Topic} />
-    //         <Route path="/topics/:id" component={Topic} />
-    //         <Route path="/topics/:id" component={Topic} />
-    //         <Route path="/topics/:id" component={Topic} />
-    //         <Route path="/topics/:id" component={Topic} />
-    //         <Route path="/catShowandEvents/:id" component={Topic} /> */}
-    //       </Switch>
-    //     </div>
-    //   </Router>
-    // </BrowserRouter>
   );
 }
 
