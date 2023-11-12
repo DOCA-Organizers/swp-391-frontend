@@ -1,30 +1,25 @@
+import { UserResponse } from "interfaces/user/userResponse";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./protectedRoute";
+import UserPage from "pages/user/userPage";
 import PageNotFound from "pages/PageNotFound";
-import AdminPage from "pages/admin/adminPage";
-import { UserResponse } from "interfaces/user/userResponse";
 
-type Props = {
-  isAllowed: boolean;
-  user: UserResponse;
-};
+type Props = { isAllowed: boolean; user: UserResponse };
 
-function AdminRoutes(props: Props) {
+const UserRoutes = (props: Props) => {
   return (
     <Routes>
       <Route
         element={
           <ProtectedRoute isAllowed={props.isAllowed} user={props.user}>
-            <AdminPage />
+            <UserPage />
           </ProtectedRoute>
         }
       >
-        <Route index element={<AdminPage />} />
-
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
   );
-}
+};
 
-export default AdminRoutes;
+export default UserRoutes;
