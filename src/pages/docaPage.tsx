@@ -21,9 +21,8 @@ export interface IState {
 }
 
 const DocaPage = () => {
-  const [inforPost, setInforPost] = useState<IState["inforPost"]>([]);
   const user = JSON.parse(localStorage.getItem(USER_KEY)!);
-  console.log("user", user.role);
+  // console.log("user", user.role);
   return (
     <Box
       sx={{
@@ -35,7 +34,7 @@ const DocaPage = () => {
       <SlideBar />
       <Grid container>
         <Grid xs={8} sx={{ margin: "0 auto", padding: "10px 0" }}>
-          <CreatePost inforPost={inforPost} setInforPost={setInforPost} />
+          <CreatePost />
           <PostList />
         </Grid>
         <Grid xs={4}>
