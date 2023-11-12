@@ -7,7 +7,6 @@ import CreatePost from "components/post/CreatePost";
 import { USER_KEY } from "constant";
 import { useState } from "react";
 import { ImageListType } from "react-images-uploading";
-import Post from "../components/post/Post";
 import SlideBar from "../components/sidebar/Sidebar";
 import PostList from "components/post/PostList";
 

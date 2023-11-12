@@ -3,8 +3,8 @@ import BookmarkedList from "components/list/bookmarkedList";
 import CreatePost from "components/post/CreatePost";
 import { useState } from "react";
 import { ImageListType } from "react-images-uploading";
-import Post from "../components/post/Post";
 import SlideBar from "../components/sidebar/Sidebar";
+import PostList from "components/post/PostList";
 
 export interface IState {
   inforPost: {
@@ -45,7 +45,7 @@ const BookmarkedListPage = () => {
           }}
         >
           <CreatePost inforPost={inforPost} setInforPost={setInforPost} />
-          <Post inforPost={inforPost} />
+          <PostList />
         </Box>
       </Box>
     </Box>
