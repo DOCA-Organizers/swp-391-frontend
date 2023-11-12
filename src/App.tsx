@@ -9,16 +9,18 @@ import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import AdminRoutes from "routes/AdminRoutes";
+import { USER_KEY } from "constant";
 
 function App() {
-  // const user = JSON.parse(localStorage.getItem(USER_KEY)!);
+  const user = JSON.parse(localStorage.getItem(USER_KEY)!);
   return (
-    <ErrorBoundary>
+    <ErrorBoundary>W
       <BrowserRouter>
         <CssBaseline />
         <Routes>
           <Route path="/">
-            <Route index element={<CategoryPage />} />
+            <Route index element={<AdminPage />} />
             <Route path="dog-chat/1" element={<DocaPage />} />
             <Route path="dog-chat/my_profile/" element={<ProfilePage />} />
 
@@ -61,20 +63,14 @@ function App() {
             <Route path="register" element={<RegistrationPage />} />
           </Route>
           {/* <Route
-              path={ROUTE_PATH.ADMIN}
-              element={
-                <AdminRoutes
-                  user={user}
-                  isAllowed={user.roles.id === "1" ? true : false}
-                />
-              }
-            /> */}
-
-          {/* <Route
-      path={ROUTE_PATH.ADMIN}
-      element={<AdminRoutes user={} isAllowed={true}/>}
-    /> */}
-          <Route path="/admin" element={<AdminPage />} />
+            path={ROUTE_PATH.ADMIN}
+            element={
+              <AdminRoutes
+                user={user}
+                isAllowed={user.role.id === 1 ? true : false}
+              />
+            }
+          /> */}
           <Route path="/user" element={<DocaPage />} />
           <Route path="/registration" element={<Report />} />
         </Routes>

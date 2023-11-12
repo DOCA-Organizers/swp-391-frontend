@@ -11,6 +11,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import { styled, useTheme } from "@mui/material/styles";
@@ -23,6 +24,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PrimarySearchAppBar from "components/searchbar/SearchBar";
 import { NavLink, useNavigate } from "react-router-dom";
+import { USER_ID_KEY } from "constant";
 
 const drawerWidth = 240;
 
@@ -78,6 +80,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function SlideBar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  // const roleID = JSON.parse(localStorage.getItem(USER_ID_KEY)!);
+  const roleID = 5;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -147,59 +151,82 @@ export default function SlideBar() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem>
-            <ListItemButton>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Home"
-                onClick={() => {
-                  navigate("/");
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-
-          {/* <ListItem>
-            <ListItemButton>
-              <ListItemIcon>
-                <BookmarkIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Bookmarks"
-                onClick={() => {
-                  navigate("/bookmarked-list");
-                }}
-              />
-            </ListItemButton>
-          </ListItem> */}
-
-          <ListItem>
-            <NavLink
-              to="my_profile"
-              style={{
-                textDecoration: "none",
-                color: "inherit",
-                width: "100%",
-              }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <AccountBoxIcon />
-                </ListItemIcon>
-                <ListItemText primary="My Profile" />
-              </ListItemButton>
-            </NavLink>
-          </ListItem>
+          {roleID === 5 ? (
+            <>
+              <ListItem>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Home"
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+              <ListItem>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <BookmarkIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Bookmarks"
+                    onClick={() => {
+                      navigate("/bookmarked-list");
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+              <ListItem>
+                <NavLink
+                  to="my_profile"
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                    width: "100%",
+                  }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <AccountBoxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="My Profile" />
+                  </ListItemButton>
+                </NavLink>
+              </ListItem>
+            </>
+          ) : roleID === 1 ? (
+            <>
+              <ListItem>
+                <NavLink
+                  to="my_profile"
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                    width: "100%",
+                  }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard  " />
+                  </ListItemButton>
+                </NavLink>
+              </ListItem>
+            </>
+          ) : null}
         </List>
-        <Divider />
         <Button
           variant="contained"
           disableElevation
           sx={{
             borderRadius: 80,
-            backgroundColor: "#FF8C00",
+            width: "200px",
+            margin: "0 auto",
+            backgroundColor: "#1d5b9d",
           }}
         >
           Log out
