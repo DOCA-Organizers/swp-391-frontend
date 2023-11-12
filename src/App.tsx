@@ -8,7 +8,7 @@ import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -31,37 +31,37 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<CategoryPage />} />
-            <Route path="dog-chat" element={<DocaPage />} />
-            <Route path="dog-chat/my_profile" element={<ProfilePage />} />
+            <Route path="dog-chat/1" element={<DocaPage />} />
+            <Route path="dog-chat/my_profile/" element={<ProfilePage />} />
 
-            <Route path="dog-health-nutrition" element={<DocaPage />} />
+            <Route path="dog-health-nutrition/2" element={<DocaPage />} />
             <Route
-              path="dog-health-nutrition/my_profile"
+              path="dog-health-nutrition/my_profile/"
               element={<ProfilePage />}
             />
 
-            <Route path="dog-services" element={<DocaPage />} />
-            <Route path="dog-services/my_profile" element={<ProfilePage />} />
+            <Route path="dog-services/3" element={<DocaPage />} />
+            <Route path="dog-services/my_profile/" element={<ProfilePage />} />
 
-            <Route path="dog-show-events" element={<DocaPage />} />
+            <Route path="dog-show-events/4" element={<DocaPage />} />
             <Route
               path="dog-show-events/my_profile"
               element={<ProfilePage />}
             />
 
-            <Route path="cat-chat" element={<DocaPage />} />
+            <Route path="cat-chat/5" element={<DocaPage />} />
             <Route path="cat-chat/my_profile" element={<ProfilePage />} />
 
-            <Route path="cat-health-nutrition" element={<DocaPage />} />
+            <Route path="cat-health-nutrition/6" element={<DocaPage />} />
             <Route
               path="cat-health-nutrition/my_profile"
               element={<ProfilePage />}
             />
 
-            <Route path="cat-services" element={<DocaPage />} />
+            <Route path="cat-services/7" element={<DocaPage />} />
             <Route path="cat-services/my_profile" element={<ProfilePage />} />
 
-            <Route path="cat-show-events" element={<DocaPage />} />
+            <Route path="cat-show-events/8" element={<DocaPage />} />
             <Route
               path="cat-show-events/my_profile"
               element={<ProfilePage />}

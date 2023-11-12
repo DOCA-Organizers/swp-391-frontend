@@ -7,6 +7,18 @@ import reportPost from "service/reportPost/reportPost";
 
 const columns: GridColDef[] = [
   {
+    field: "userId",
+    headerName: "numPost",
+    width: 150,
+  },
+
+  {
+    field: "Post ID",
+    headerName: "postId",
+    width: 150,
+  },
+
+  {
     field: "numberOfPost",
     headerName: "numPost",
     width: 150,

@@ -1,15 +1,11 @@
-import { Box, Container, Typography, colors } from "@mui/material";
-import { red } from "@mui/material/colors";
-import styled from "@emotion/styled";
-import Slidebar from "../components/sidebar/Sidebar";
-import PrimarySearchAppBar from "../components/searchbar/SearchBar";
-import SlideBar from "../components/sidebar/Sidebar";
-import Post from "../components/post/Post";
+import { Box } from "@mui/material";
 import Summary from "components/Summary";
-import { relative } from "path";
 import CreatePost from "components/post/CreatePost";
+import { USER_KEY } from "constant";
 import { useState } from "react";
 import { ImageListType } from "react-images-uploading";
+import Post from "../components/post/Post";
+import SlideBar from "../components/sidebar/Sidebar";
 
 export interface IState {
   inforPost: {
@@ -23,6 +19,8 @@ export interface IState {
 
 const DocaPage = () => {
   const [inforPost, setInforPost] = useState<IState["inforPost"]>([]);
+  const user = JSON.parse(localStorage.getItem(USER_KEY)!);
+  console.log("user", user.role);
   return (
     <Box
       sx={{
@@ -30,23 +28,23 @@ const DocaPage = () => {
       }}
     >
       <SlideBar />
-      <Box >
+      <Box>
         <Box
           sx={{
             position: "relative",
             left: "70%",
             maxWidth: "60%",
-            top: "140px"
+            top: "140px",
           }}
         >
-          <Summary/>
+          <Summary />
         </Box>
         <Box
           sx={{
             position: "relative",
             left: "20%",
             maxWidth: "50%",
-            bottom: "80px"
+            bottom: "80px",
           }}
         >
           <CreatePost inforPost={inforPost} setInforPost={setInforPost} />

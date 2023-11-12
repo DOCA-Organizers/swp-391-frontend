@@ -1,48 +1,30 @@
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import {
   Box,
-  Checkbox,
   FormControlLabel,
-  FormHelperText,
   FormLabel,
-  Input,
   Radio,
   RadioGroup,
   TextField,
-  inputClasses,
 } from "@mui/material";
-import BackspaceOutlinedIcon from "@mui/icons-material/BackspaceOutlined";
+import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { SetStateAction, useEffect, useRef, useState } from "react";
-import breedAPI from "service/breedAPI";
-import React from "react";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import ImageUploading, { ImageListType } from "react-images-uploading";
-import "./CreatePost.css";
-import { IState as Props } from "pages/docaPage";
-import { Blob } from "buffer";
-import postAPI from "service/post/postAPI";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { PostRequest } from "interfaces/post/postRequest";
+import Card from "@mui/material/Card";
+import FormControl from "@mui/material/FormControl";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { red } from "@mui/material/colors";
+import { styled } from "@mui/material/styles";
 import axios from "axios";
+import { POST_ID_KEY } from "constant";
+import { PostRequest } from "interfaces/post/postRequest";
+import { IState as Props } from "pages/docaPage";
+import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import ImageUploading, { ImageListType } from "react-images-uploading";
+import breedAPI from "service/breedAPI";
+import "./CreatePost.css";
 
 interface Iprops {
   inforPost: Props["inforPost"];
@@ -211,7 +193,8 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     try {
       axios
         .post("http://localhost:8080/api/CreatePost", {
-          userid: "8a8bb262-23c1-461c-83be-d829549c4673",
+          userid: "cc812e02-6590-49f5-bfb3-524c8eddc241",
+
           categoryid: "1",
           pet_breed: breed,
           pet_type: type,
@@ -221,10 +204,11 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
           exchange: category,
           listpostimge: images,
           listpet: null,
-          listitem: null
+          listitem: null,
         })
         .then((response) => {
           console.log("Response: ", response);
+          localStorage.setItem(POST_ID_KEY, JSON.stringify(response.data));
         })
         .catch((e) => {
           console.log("Error: ", e);
@@ -350,9 +334,9 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
               value={category}
               onChange={handleRadio}
             >
-              <FormControlLabel value= {0} control={<Radio />} label="Post" />
+              <FormControlLabel value={0} control={<Radio />} label="Post" />
               <FormControlLabel
-                value= {1}
+                value={1}
                 control={<Radio />}
                 label="Exchange"
               />
