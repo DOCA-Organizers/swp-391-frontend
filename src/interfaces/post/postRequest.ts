@@ -9,7 +9,7 @@ export interface PostRequest {
   content: string;
   title: string | null;
   exchange: boolean;
-  listpostimg: ImageListType[] | null;
+  listpostimg: Listpostimg[];
   listpet: Listpet[] | null;
   listitem: Listitem[] | null;
 }

@@ -9,7 +9,7 @@ const AdminPage = () => {
     <Container maxWidth={false} disableGutters={true}>
       <SlideBar />
       <Box sx={{ marginTop: "500px" }}>
-        <Typography>Trang ADmin</Typography>
+        <Typography>Trang Admin</Typography>
         <Outlet />
       </Box>
     </Container>

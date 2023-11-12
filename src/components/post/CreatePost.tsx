@@ -16,14 +16,18 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
+import { SetStateAction, useEffect, useRef, useState } from "react";
+import React from "react";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import "./CreatePost.css";
+import { Blob } from "buffer";
+import postAPI from "service/post/postAPI";
 import axios from "axios";
 import { POST_ID_KEY } from "constant";
 import { PostRequest } from "interfaces/post/postRequest";
 import { IState as Props } from "pages/docaPage";
-import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ImageUploading, { ImageListType } from "react-images-uploading";
-import breedAPI from "service/breedAPI";
 import "./CreatePost.css";
 
 interface Iprops {
@@ -119,23 +123,8 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     },
   ]);
   const [dataBreed, setDataBreed] = useState<any[]>([]);
-  const [images, setImages] = React.useState([]);
+  const [images, setImages] = useState<ImageListType>([]);
   const maxNumber = 69;
-  useEffect(() => {
-    const getBreedList = async () => {
-      const data: any = await breedAPI.getBreedList();
-      // Nếu trả về object thì chỉ cần check có không
-      if (data) {
-        setBreedList(data);
-      }
-    };
-
-    const initUseEffect = async () => {
-      await getBreedList();
-    };
-
-    initUseEffect();
-  }, []);
 
   const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -193,8 +182,7 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     try {
       axios
         .post("http://localhost:8080/api/CreatePost", {
-          userid: "cc812e02-6590-49f5-bfb3-524c8eddc241",
-
+          userid: "bd35171b-2654-4c95-a8ca-0c7225e5d684",
           categoryid: "1",
           pet_breed: breed,
           pet_type: type,
@@ -202,7 +190,7 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
           content: data.content,
           title: "",
           exchange: category,
-          listpostimge: images,
+          listpostimg: null,
           listpet: null,
           listitem: null,
         })
@@ -238,13 +226,14 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   //   setBreed("");
   // };
 
+
   return (
     <Card
       sx={{
-        height: "auto",
         width: 650,
         borderRadius: "20px",
-        marginBottom: 2,
+        margin: "0 auto",
+        marginBottom: "8px",
       }}
     >
       <form onSubmit={handleSubmit(onSubmit, onError)}>

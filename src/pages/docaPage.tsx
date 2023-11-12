@@ -1,4 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, Container, Grid, Typography, colors } from "@mui/material";
+import { red } from "@mui/material/colors";
+import styled from "@emotion/styled";
+import PrimarySearchAppBar from "../components/searchbar/SearchBar";
 import Summary from "components/Summary";
 import CreatePost from "components/post/CreatePost";
 import { USER_KEY } from "constant";
@@ -6,6 +9,7 @@ import { useState } from "react";
 import { ImageListType } from "react-images-uploading";
 import Post from "../components/post/Post";
 import SlideBar from "../components/sidebar/Sidebar";
+import PostList from "components/post/PostList";
 
 export interface IState {
   inforPost: {
@@ -25,32 +29,20 @@ const DocaPage = () => {
     <Box
       sx={{
         backgroundColor: "#F0F0F0",
+        paddingTop: "109px",
+        paddingLeft: "240px",
       }}
     >
       <SlideBar />
-      <Box>
-        <Box
-          sx={{
-            position: "relative",
-            left: "70%",
-            maxWidth: "60%",
-            top: "140px",
-          }}
-        >
-          <Summary />
-        </Box>
-        <Box
-          sx={{
-            position: "relative",
-            left: "20%",
-            maxWidth: "50%",
-            bottom: "80px",
-          }}
-        >
+      <Grid container>
+        <Grid xs={8} sx={{ margin: "0 auto", padding: "10px 0" }}>
           <CreatePost inforPost={inforPost} setInforPost={setInforPost} />
-          <Post inforPost={inforPost} />
-        </Box>
-      </Box>
+          <PostList />
+        </Grid>
+        <Grid xs={4}>
+          <Summary />
+        </Grid>
+      </Grid>
     </Box>
   );
 };

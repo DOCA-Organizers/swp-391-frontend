@@ -1,8 +1,9 @@
+import { UserResponse } from 'interfaces/user/userResponse';
 import { Navigate } from 'react-router-dom';
  interface Props {
     children: JSX.Element;
     isAllowed: boolean;
-    user: {id: string; username: string; role: {id: string; name: string } };
+    user: UserResponse;
 }
 
 const ProtectedRoute = ({children, isAllowed, user}: Props) => {
