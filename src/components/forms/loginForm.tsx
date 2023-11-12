@@ -15,17 +15,16 @@ import {
   Typography,
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import axios from "axios";
 import ErrorMessage from "components/errors/errorMessage";
 import { ROLE_ID_KEY, USERNAME, USER_ID_KEY, USER_KEY } from "constant";
 import { LoginRequest } from "interfaces/login/loginRequest";
+import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import loginAPI from "service/login/loginAPI";
 import { addErrorIntoField } from "utils/utils";
 import * as yup from "yup";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import loginAPI from "service/login/loginAPI";
 
 // const usernameRegExp = /^(?!.*[_.]{2})[^_.].*[^_.]$/g;
 // const passwordRegExp =
@@ -79,14 +78,8 @@ const LoginForm = () => {
         password: data.password,
       });
       if (response.user.id) {
-        localStorage.setItem(
-          USER_ID_KEY,
-          JSON.stringify(response.user.id)
-        );
-        localStorage.setItem(
-          ROLE_ID_KEY,
-          JSON.stringify(response.role.id)
-        );
+        localStorage.setItem(USER_ID_KEY, JSON.stringify(response.user.id));
+        localStorage.setItem(ROLE_ID_KEY, JSON.stringify(response.role.id));
         localStorage.setItem(USERNAME, JSON.stringify(response));
         localStorage.setItem(USER_KEY, JSON.stringify(response));
         switch (response.role.id) {
@@ -108,7 +101,7 @@ const LoginForm = () => {
             break;
           case 5:
             console.log("Go to User Page");
-            navigate("/dog-chat");
+            navigate("/");
             break;
           default:
             console.log("default!");
@@ -174,7 +167,6 @@ const LoginForm = () => {
         />
       </Box>
       <Box width={450} height={240} margin="0 auto">
-
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <Grid container={true} style={gridStyle}>
             <Grid style={leftGridStyle} item xs={3}>

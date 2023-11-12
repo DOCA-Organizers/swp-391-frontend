@@ -1,7 +1,6 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ErrorBoundary } from "components/errorboundary/errorBoundary";
 import Report from "components/report";
-import { ROUTE_PATH } from "configs";
 import AdminPage from "pages/admin/adminPage";
 import CategoryPage from "pages/categoryPage";
 import DocaPage from "pages/docaPage";
@@ -9,9 +8,7 @@ import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
-import AdminRoutes from "routes/AdminRoutes";
-import { useSelector } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // const user = JSON.parse(localStorage.getItem(USER_KEY)!);
@@ -72,7 +69,7 @@ function App() {
                 />
               }
             /> */}
-        
+
           {/* <Route
       path={ROUTE_PATH.ADMIN}
       element={<AdminRoutes user={} isAllowed={true}/>}

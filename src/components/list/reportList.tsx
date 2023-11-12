@@ -7,26 +7,32 @@ import reportPost from "service/reportPost/reportPost";
 
 const columns: GridColDef[] = [
   {
+    field: "number",
+    headerName: "NO",
+    width: 150,
+  },
+
+  {
     field: "userId",
     headerName: "numPost",
     width: 150,
   },
 
   {
-    field: "Post ID",
-    headerName: "postId",
+    field: "postId",
+    headerName: "Post ID",
     width: 150,
   },
 
   {
     field: "numberOfPost",
-    headerName: "numPost",
+    headerName: "Number of Posts",
     width: 150,
   },
 
   {
-    field: "postID",
-    headerName: "postID",
+    field: "detailPost",
+    headerName: "Detail of Post",
     description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,

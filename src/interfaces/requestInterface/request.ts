@@ -5,6 +5,10 @@ export interface AccountRequest {
 
 export interface SearchContent {
   content: string;
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 }
 
 export interface CategoryRequest {
@@ -19,7 +23,7 @@ export interface MyProfileRequest {
   dateJoined: string;
   fullName: string;
   email: string;
-  dateOfBirth: string;
+  dateOfBirth: string | null;
   gender: string;
 }
 
