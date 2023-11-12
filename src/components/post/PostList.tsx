@@ -3,13 +3,9 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-import CloseIcon from "@mui/icons-material/Close";
 import Favorite from "@mui/icons-material/Favorite";
-import Flag from "@mui/icons-material/Flag";
-import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SendIcon from "@mui/icons-material/Send";
-import { useEffect, useRef, useState } from "react";
 import {
   Box,
   Dialog,
@@ -19,14 +15,10 @@ import {
   DialogProps,
   DialogTitle,
   Grid,
-  ImageList,
-  ImageListItem,
   MenuItem,
   TextField,
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import Badge from "@mui/material/Badge";
-import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -38,8 +30,8 @@ import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import { IState as IProps } from "pages/docaPage";
 import * as React from "react";
+import { useEffect, useRef, useState } from "react";
 import postAPI from "service/post/postAPI";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -74,6 +66,11 @@ const PostList = () => {
     setAnchorEl(null);
   };
 
+  const handleReport = {
+    onClick: () => alert("You clicked Report"),
+  };
+
+  const handleDelete = {};
   const handleClickOpenCommentDialog =
     (scrollType: DialogProps["scroll"]) => () => {
       setOpen(true);
@@ -286,11 +283,11 @@ const PostList = () => {
           icon={<BookmarkBorderIcon />}
           checkedIcon={<BookmarkIcon />}
         />
-        <Checkbox
+        {/* <Checkbox
           aria-label="report"
           icon={<FlagOutlinedIcon />}
           checkedIcon={<Flag />}
-        />
+        /> */}
       </CardActions>
       <Dialog
         open={open}
