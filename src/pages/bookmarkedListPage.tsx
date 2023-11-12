@@ -44,8 +44,8 @@ const BookmarkedListPage = () => {
             bottom: "80px",
           }}
         >
-          <CreatePost inforPost={inforPost} setInforPost={setInforPost} />
-          <PostList />
+          {/* <CreatePost inforPost={inforPost} setInforPost={setInforPost} /> */}
+          
         </Box>
       </Box>
     </Box>

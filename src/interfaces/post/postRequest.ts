@@ -1,38 +1,34 @@
-import { ImageListType } from "react-images-uploading";
-
 export interface PostRequest {
-  userid: string;
-  categoryid: number;
-  pet_breed: string;
-  pet_type: string;
-  isCreateHag: boolean;
-  content: string;
-  title: string | null;
-  exchange: boolean;
-  listpostimg: Listpostimg[];
-  listpet: Listpet[] | null;
-  listitem: Listitem[] | null;
+  userid:      string;
+  categoryid:  number;
+  pet_breed:   string;
+  pet_type:    string;
+  content:     string;
+  exchange:    boolean;
+  listpostimg: Listpostimg[] | null;
+  listpet:     Listpet[] | null;
+  listitem:    Listitem[] | null;
 }
 
 export interface Listitem {
-  pet_item: string;
-  pet_type: string;
-  img: string | null;
+  pet_item:    string;
+  pet_type:    string;
+  img:         string;
   description: string;
-  price: string;
+  price:       string;
 }
 
 export interface Listpet {
-  type: string;
-  name: string;
-  gender: string;
-  age: string;
-  img: string | null;
-  price: string;
+  type:        string;
+  name:        string;
+  gender:      string;
+  age:         string;
+  img:         string;
+  price:       string;
   description: string;
 }
 
 export interface Listpostimg {
-  img: string;
+  img:         string;
   description: string;
 }

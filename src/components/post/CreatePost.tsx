@@ -23,17 +23,15 @@ import "./CreatePost.css";
 import { Blob } from "buffer";
 import postAPI from "service/post/postAPI";
 import axios from "axios";
-import { POST_ID_KEY } from "constant";
-import { PostRequest } from "interfaces/post/postRequest";
-import { IState as Props } from "pages/docaPage";
+import { POST_ID_KEY, USER_KEY } from "constant";
+import { Listpostimg, PostRequest } from "interfaces/post/postRequest";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import "./CreatePost.css";
+import { useNavigate, useParams } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 
-interface Iprops {
-  inforPost: Props["inforPost"];
-  setInforPost: React.Dispatch<React.SetStateAction<Props["inforPost"]>>;
-}
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -50,11 +48,14 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function CreatePost({ inforPost, setInforPost }: Iprops) {
-  const [content, setContent] = useState("");
-  const [category, setCategory] = useState();
+export default function CreatePost() {
+  const userObj = JSON.parse(localStorage.getItem(USER_KEY)!);
+  const { categoryID } = useParams();
+  const [category, setCategory] = useState(0);
   const [type, setType] = useState("");
   const [breed, setBreed] = useState("");
+  let timeoutRef = useRef<any>();
+  const navigate = useNavigate();
   const [breedList, setBreedList] = useState<any[]>([
     {
       type: "Dog",
@@ -126,21 +127,19 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
   const [images, setImages] = useState<ImageListType>([]);
   const maxNumber = 69;
 
-  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-
   const onChangeImage = (
     imageList: ImageListType,
     addUpdateIndex: number[] | undefined
   ) => {
     // data for submit
-    console.log(imageList, addUpdateIndex);
+    // console.log(imageList, addUpdateIndex);
     setImages(imageList as never[]);
   };
 
-  const handleRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // setCategory((event.target as HTMLInputElement).value);
+  const handleRadio = (event: any) => {
+    const parsePostCategoryToInt = parseInt(event.target.value);
+    setCategory(parsePostCategoryToInt);
+    console.log(category);
   };
 
   const handleType = (event: SelectChangeEvent) => {
@@ -180,52 +179,42 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
 
   const onSubmit: SubmitHandler<PostRequest> = async (data: any) => {
     try {
-      axios
-        .post("http://localhost:8080/api/CreatePost", {
-          userid: "bd35171b-2654-4c95-a8ca-0c7225e5d684",
-          categoryid: "1",
-          pet_breed: breed,
-          pet_type: type,
-          isCreateHag: true,
-          content: data.content,
-          title: "",
-          exchange: category,
-          listpostimg: null,
-          listpet: null,
-          listitem: null,
-        })
-        .then((response) => {
-          console.log("Response: ", response);
-          localStorage.setItem(POST_ID_KEY, JSON.stringify(response.data));
-        })
-        .catch((e) => {
-          console.log("Error: ", e);
+      let parseCategoryIdToInt: number = parseInt(categoryID!);
+      let objList: Listpostimg[] = [];
+      images.map((item) => {
+        let imageObj: Listpostimg = {
+          img: item.data_url,
+          description: "",
+        };
+        objList.push(imageObj);
+      });
+      const response: any = await postAPI.createPost({
+        userid: userObj.user.id,
+        categoryid: parseCategoryIdToInt,
+        pet_breed: breed,
+        pet_type: type,
+        content: data.content,
+        exchange: category ? true : false,
+        listpostimg: objList,
+        listpet: null,
+        listitem: null,
+      });
+      if (response === true) {
+        toast.success("Create New Post Success!", {
+          position: toast.POSITION.TOP_CENTER,
         });
+        timeoutRef.current = setTimeout(() => {
+          navigate(0);
+        }, 1700);
+        return;
+      }
+      toast.error("Create New Post Success!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (error) {
       console.log("Error", error);
     }
   };
-
-  // const handlePost = (e: React.FormEvent<HTMLFormElement>): void => {
-  //   e.preventDefault();
-  //   setInforPost([
-  //     ...inforPost,
-  //     {
-  //       content: content,
-  //       imageList: images,
-  //       categoryPost: category,
-  //       typePet: type,
-  //       breedPet: breed,
-  //     },
-  //   ]);
-  //   alert("Post successfully");
-  //   setContent("");
-  //   setImages([]);
-  //   setCategory("");
-  //   setType("");
-  //   setBreed("");
-  // };
-
 
   return (
     <Card
@@ -270,18 +259,20 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
               }) => (
                 // write your building UI
                 <div className="upload__image-wrapper">
-                  <button
-                    className="btn btn4"
+                  <Button
+                    startIcon={<CloudUploadOutlinedIcon />}
+                    variant="contained"
                     style={isDragging ? { color: "red" } : undefined}
+                    sx={{fontSize: "10px", fontWeight: "bolder"}}
                     onClick={onImageUpload}
                     {...dragProps}
                   >
-                    Click or Drop here
-                  </button>
+                    Add Image
+                  </Button>
                   &nbsp;
-                  <button className="btn btn4" onClick={onImageRemoveAll}>
+                  <Button variant="outlined" sx={{fontSize: "10px", fontWeight: "bolder"}} onClick={onImageRemoveAll}>
                     Remove all images
-                  </button>
+                  </Button>
                   {imageList.map((image, index) => (
                     <div key={index} className="image-item">
                       <img src={image["data_url"]} alt="" width="100" />
@@ -393,123 +384,10 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
           </Button>
         </Box>
       </form>
+      <ToastContainer
+        autoClose={2000}
+        style={{ marginTop: "50px", width: "350px" }}
+      />
     </Card>
-
-    // <Card
-    //   sx={{
-    //     maxWidth: 650,
-    //     maxHeight: 800,
-    //     backgroundColor: "white",
-    //     borderRadius: "20px",
-    //   }}
-    // >
-    //   <CardHeader
-    //     sx={{ color: "#F9AC33" }}
-    //     avatar={
-    //       <Avatar
-    //         sx={{ bgcolor: red[500] }}
-    //         aria-label="recipe"
-    //         src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
-    //       ></Avatar>
-    //     }
-    //     action={
-    //       <IconButton aria-label="back">
-    //         <BackspaceOutlinedIcon />
-    //       </IconButton>
-    //     }
-    //     title="Shrimp and Chorizo Paella"
-    //   />
-    //   <Box sx={{ width: "100%" }}>
-    //     <FormControl>
-    //       <FormLabel id="category_post">Category Post</FormLabel>
-    //       <RadioGroup
-    //         aria-labelledby="category_post"
-    //         name="controlled-radio-buttons-group"
-    //         value={value}
-    //         onChange={handleRadio}
-    //       >
-    //         <FormControlLabel value="Post" control={<Radio />} label="Post" />
-    //         <FormControlLabel
-    //           value="Exchange"
-    //           control={<Radio />}
-    //           label="Exchange"
-    //         />
-    //       </RadioGroup>
-    //     </FormControl>
-
-    //     <FormControl sx={{ width: "20%" }}>
-    //       <InputLabel id="select_type_pet">Type</InputLabel>
-    //       <Select
-    //         labelId="select_type_pet"
-    //         id="select_type_pet"
-    //         value={type}
-    //         label="Type"
-    //         autoWidth
-    //         onChange={handleType}
-    //       >
-    //         <MenuItem value="">None</MenuItem>
-    //         <MenuItem value="dog">Dog</MenuItem>
-    //         <MenuItem value="cat">Cat</MenuItem>
-    //       </Select>
-    //     </FormControl>
-
-    //     {type ? (
-    //       <FormControl sx={{ width: "20%", marginLeft: "8px" }}>
-    //         <InputLabel id="select_breed">Breed</InputLabel>
-    //         <Select
-    //           labelId="select_breed"
-    //           id="select_breed"
-    //           value={breed}
-    //           label="Breed"
-    //           autoWidth
-    //           onChange={handleBreed}
-    //         >
-    //           <MenuItem value="">None</MenuItem>
-    //           {dataBreed.map((item: any) => {
-    //             return (
-    //               <MenuItem key={item.id} value={item.id}>
-    //                 {item.name}
-    //               </MenuItem>
-    //             );
-    //           })}
-    //         </Select>
-    //         <FormHelperText>Select type pet first</FormHelperText>
-    //       </FormControl>
-    //     ) : (
-    //       <FormControl sx={{ width: "20%", marginLeft: "8px" }} disabled>
-    //         <InputLabel id="select_breed">Breed</InputLabel>
-    //         <Select
-    //           labelId="select_breed"
-    //           id="select_breed"
-    //           value={breed}
-    //           label="Breed"
-    //           autoWidth
-    //           onChange={handleBreed}
-    //         >
-    //           <MenuItem value={"dog"}>Dog</MenuItem>
-    //           <MenuItem value={"cat"}>Cat</MenuItem>
-    //         </Select>
-    //         <FormHelperText>Select type pet first</FormHelperText>
-    //       </FormControl>
-    //     )}
-    //   </Box>
-    //   <CardMedia
-    //     component="img"
-    //     height="50px"
-    //     image="https://icons8.com/icon/116727/photo-gallery"
-    //     alt="Add your pictures"
-    //   />
-    //   <CardContent sx={{ height: "200px" }}>
-    //     <TextField fullWidth multiline={true}  id="caption"
-    //       placeholder="Hello, What do you think today"
-    //       sx={{height: "100%"}}
-    //     />
-    //   </CardContent>
-    //   <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-    //     <Button variant="contained" disabled={false}>
-    //       Post
-    //     </Button>
-    //   </CardActions>
-    // </Card>
   );
 }

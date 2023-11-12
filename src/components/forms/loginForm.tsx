@@ -78,9 +78,14 @@ const LoginForm = () => {
         password: data.password,
       });
       if (response.user.id) {
-        localStorage.setItem(USER_ID_KEY, JSON.stringify(response.user.id));
-        localStorage.setItem(ROLE_ID_KEY, JSON.stringify(response.role.id));
-        localStorage.setItem(USERNAME, JSON.stringify(response));
+        localStorage.setItem(
+          USER_ID_KEY,
+          JSON.stringify(response.user.id)
+        );
+        localStorage.setItem(
+          ROLE_ID_KEY,
+          JSON.stringify(response.role.id)
+        );
         localStorage.setItem(USER_KEY, JSON.stringify(response));
         switch (response.role.id) {
           case 1:
