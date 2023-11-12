@@ -1,16 +1,17 @@
-import { Box, Container, Typography } from "@mui/material";
-import Header from "components/header/header";
+import { Box, Container } from "@mui/material";
+import FigureShowing from "components/figureShowing";
+import ReportList from "components/list/reportList";
 import SlideBar from "components/sidebar/Sidebar";
-import React from "react";
-import { Outlet } from "react-router-dom";
 
 const AdminPage = () => {
   return (
     <Container maxWidth={false} disableGutters={true}>
-      <SlideBar />
-      <Box sx={{ marginTop: "500px" }}>
-        <Typography>Trang Admin</Typography>
-        <Outlet />
+      <Box>
+        <SlideBar />
+      </Box>
+      <Box sx={{ marginTop: 20, marginLeft: 40 }}>
+        <FigureShowing />
+        <ReportList />
       </Box>
     </Container>
   );

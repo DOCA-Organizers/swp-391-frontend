@@ -29,7 +29,7 @@ const boxStyles = {
   color: "gray",
   borderRadius: "16px",
   fontWeight: "bold",
-  backgroundColor: "#FF8C00",
+  backgroundColor: "#3876BF",
   padding: "8px",
 };
 
