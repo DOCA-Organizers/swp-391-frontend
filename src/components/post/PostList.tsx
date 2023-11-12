@@ -400,6 +400,7 @@ const PostList = () => {
                   src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
                 ></Avatar>
               </Grid>
+              <form>
               <Grid item>
                 <Box
                   sx={{
@@ -425,6 +426,7 @@ const PostList = () => {
                   />
                 </Box>
               </Grid>
+              </form>
             </Grid>
           </DialogActions>
         </Dialog>
