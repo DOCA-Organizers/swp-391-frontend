@@ -38,9 +38,10 @@ import Menu from "@mui/material/Menu";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import { IState as IProps } from "pages/docaPage";
 import * as React from "react";
 import postAPI from "service/post/postAPI";
+import { useParams } from "react-router";
+import { PostResponse } from "interfaces/post/postResponse";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -63,10 +64,11 @@ const PostList = () => {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState<DialogProps["scroll"]>("paper");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [postList, setPostList] = useState();
+  const { categoryID } = useParams();
   const [openUpdate, setOpenUpdate] = useState(false);
   const openMore = Boolean(anchorEl);
   const [comment, setComment] = useState<Comment[]>([]);
+  const [postList, setPostList] = useState<PostResponse[]>([]);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -149,277 +151,286 @@ const PostList = () => {
   useEffect(() => {
     const getPostByCategoryID = async (categoryID: number) => {
       const response: any = await postAPI.getPostByCategoryID(categoryID);
-      // if(response.length > 0) {
-
-      // }
+      console.log("Response: ", response);
+      if (response.length > 0) {
+        setPostList(response);
+      }
     };
 
     const initUseEffect = async () => {
-      await getPostByCategoryID(1);
+      if (categoryID) {
+        const parseCategoryToNumber = parseInt(categoryID);
+        await getPostByCategoryID(parseCategoryToNumber);
+      }
     };
     initUseEffect();
   }, []);
 
-  return (
-    <Card
-      variant="elevation"
-      sx={{
-        maxWidth: 650,
-        maxHeight: "auto",
-        backgroundColor: "white",
-        borderRadius: "20px",
-        margin: "0 auto",
-      }}
-    >
-      <CardHeader
-        sx={{ color: "#FF8C00" }}
-        avatar={
-          <Avatar
-            sx={{ bgcolor: red[500] }}
-            aria-label="recipe"
-            src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
-          ></Avatar>
-        }
-        action={
-          <IconButton
-            aria-label="settings"
-            id="basic-button"
-            aria-controls={openMore ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={openMore ? "true" : undefined}
-            onClick={handleClick}
-          >
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="namnguyen2u3"
-        subheader="September 14, 2023"
-      />
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={openMore}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <MenuItem onClick={handleClickOpenUpdate}>Update</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
-      </Menu>
-      <CardContent>
-        <Card
-          sx={{
-            marginBottom: 1,
-            backgroundColor: "yellow",
-            width: "150px",
-            color: "black",
-          }}
-        >
-          <Typography marginLeft={1}>Category: Post</Typography>
-        </Card>
-        <Card
-          sx={{
-            marginBottom: 1,
-            backgroundColor: "red",
-            width: "150px",
-            color: "white",
-          }}
-        >
-          <Typography marginLeft={1}>Type: Dog</Typography>
-        </Card>
-        <Card
-          sx={{
-            marginBottom: 1,
-            backgroundColor: "blue",
-            width: "150px",
-            color: "white",
-          }}
-        >
-          <Typography marginLeft={1}>Breed: Poodle</Typography>
-        </Card>
-        <Typography variant="h6" color="#000000">
-          Sunny day . . . Hypotizing photoshoot with my favours. Have a gud day
-          !!!
-        </Typography>
-      </CardContent>
-      <CardMedia
-        component="img"
-        height="500"
-        image="https://img.freepik.com/free-photo/isolated-happy-smiling-dog-white-background-portrait-4_1562-693.jpg"
-        alt="My Pet"
-      />
-
-      <CardActions
+  return postList.map((post) => {
+    return (
+      <Card
+        key={post.id}
+        variant="elevation"
         sx={{
-          justifyContent: "space-between",
-          borderTop: "2px solid #1D5B9D",
-          borderRadius: "15px",
-          paddingBottom: 1,
+          maxWidth: 650,
+          maxHeight: "auto",
+          backgroundColor: "white",
+          borderRadius: "20px",
+          margin: "0 auto",
         }}
       >
-        {/* <Badge
-            badgeContent={15}
-            color="primary"
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
+        <CardHeader
+          sx={{ color: "#FF8C00" }}
+          avatar={
+            <Avatar
+              sx={{ bgcolor: red[500] }}
+              aria-label="recipe"
+              src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
+            ></Avatar>
+          }
+          action={
+            <IconButton
+              aria-label="settings"
+              id="basic-button"
+              aria-controls={openMore ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={openMore ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title="namnguyen2u3"
+          subheader="September 14, 2023"
+        />
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={openMore}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={handleClickOpenUpdate}>Update</MenuItem>
+          <MenuItem onClick={handleClose}>Delete</MenuItem>
+        </Menu>
+        <CardContent>
+          <Card
+            sx={{
+              marginBottom: 1,
+              backgroundColor: "yellow",
+              width: "150px",
+              color: "black",
             }}
-          > */}
-        <Checkbox
-          aria-label="like"
-          icon={<FavoriteBorder />}
-          checkedIcon={<Favorite />}
-          sx={{ padding: 0.5 }}
+          >
+            <Typography marginLeft={1}>Category: Post</Typography>
+          </Card>
+          <Card
+            sx={{
+              marginBottom: 1,
+              backgroundColor: "red",
+              width: "150px",
+              color: "white",
+            }}
+          >
+            <Typography marginLeft={1}>Type: Dog</Typography>
+          </Card>
+          <Card
+            sx={{
+              marginBottom: 1,
+              backgroundColor: "blue",
+              width: "150px",
+              color: "white",
+            }}
+          >
+            <Typography marginLeft={1}>Breed: Poodle</Typography>
+          </Card>
+          <Typography variant="h6" color="#000000">
+            Sunny day . . . Hypotizing photoshoot with my favours. Have a gud
+            day !!!
+          </Typography>
+        </CardContent>
+        <CardMedia
+          component="img"
+          height="500"
+          image="https://img.freepik.com/free-photo/isolated-happy-smiling-dog-white-background-portrait-4_1562-693.jpg"
+          alt="My Pet"
         />
-        {/* </Badge> */}
 
-        <IconButton
-          aria-label="comment"
-          onClick={handleClickOpenCommentDialog("paper")}
+        <CardActions
+          sx={{
+            justifyContent: "space-between",
+            borderTop: "2px solid #1D5B9D",
+            borderRadius: "15px",
+            paddingBottom: 1,
+          }}
         >
-          <ChatBubbleOutlineOutlinedIcon />
-        </IconButton>
+          {/* <Badge
+              badgeContent={15}
+              color="primary"
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+            > */}
+          <Checkbox
+            aria-label="like"
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite />}
+            sx={{ padding: 0.5 }}
+          />
+          {/* </Badge> */}
 
-        <Checkbox
-          aria-label="bookmark"
-          icon={<BookmarkBorderIcon />}
-          checkedIcon={<BookmarkIcon />}
-        />
-        <Checkbox
-          aria-label="report"
-          icon={<FlagOutlinedIcon />}
-          checkedIcon={<Flag />}
-        />
-      </CardActions>
-      <Dialog
-        open={open}
-        scroll={scroll}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-      >
-        <DialogTitle
-          id="scroll-dialog-title"
-          justifyContent="space-between"
-          display="flex"
-          fontWeight="bold"
-        >
-          namnguyen2u3's post
-          <IconButton onClick={handleCloseCommentDialog}>
-            <ClearOutlinedIcon />
+          <IconButton
+            aria-label="comment"
+            onClick={handleClickOpenCommentDialog("paper")}
+          >
+            <ChatBubbleOutlineOutlinedIcon />
           </IconButton>
-        </DialogTitle>
-        <DialogContent dividers={scroll === "paper"}>
-          <DialogContentText
-            id="scroll-dialog-description"
-            ref={descriptionElementRef}
-            tabIndex={-1}
-          >
-            {commentList.map((comments) => {
-              return (
-                <Grid
-                  id={comments.id}
-                  container
-                  direction="row"
-                  justifyContent="flex-start"
-                  alignItems="flex-start"
-                  marginBottom={1}
-                >
-                  <Grid item marginRight={2}>
-                    <Avatar
-                      sx={{ bgcolor: red[500] }}
-                      aria-label="recipe"
-                      src={comments.avatar}
-                    ></Avatar>
-                  </Grid>
-                  <Grid item>
-                    <Card
-                      sx={{
-                        borderRadius: "10px",
-                        backgroundColor: "#F0F0F0",
-                      }}
-                    >
-                      <Typography
-                        sx={{ margin: "10px" }}
-                        fontWeight={"bold"}
-                        fontSize={13}
-                      >
-                        {comments.username}
-                      </Typography>
-                      <Typography sx={{ margin: "10px" }}>
-                        {comments.content}
-                      </Typography>
-                    </Card>
 
-                    <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
-                      <Checkbox
-                        aria-label="like"
-                        icon={<FavoriteBorder />}
-                        checkedIcon={<Favorite />}
-                        sx={{ padding: 0.5 }}
-                      />
-                      {/* <Button
-                          sx={{
-                            textDecoration: "none",
-                            color: "inherit",
-                            width: "100%",
-                          }}
-                        > */}
-                      {/* </Button> */}
-                    </Box>
-                    <Typography sx={{ fontSize: "10px" }} fontWeight={1000}>
-                      {comments.createTime}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              );
-            })}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Grid
-            container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
+          <Checkbox
+            aria-label="bookmark"
+            icon={<BookmarkBorderIcon />}
+            checkedIcon={<BookmarkIcon />}
+          />
+          <Checkbox
+            aria-label="report"
+            icon={<FlagOutlinedIcon />}
+            checkedIcon={<Flag />}
+          />
+        </CardActions>
+        <Dialog
+          open={open}
+          scroll={scroll}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+        >
+          <DialogTitle
+            id="scroll-dialog-title"
+            justifyContent="space-between"
+            display="flex"
+            fontWeight="bold"
           >
-            <Grid item>
-              <Avatar
-                sx={{ bgcolor: red[500] }}
-                aria-label="recipe"
-                src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
-              ></Avatar>
-            </Grid>
-            <Grid item>
-              <Box
-                sx={{
-                  width: 500,
-                  maxWidth: "100%",
-                  marginLeft: 2,
-                }}
-              >
-                <TextField
-                  fullWidth
-                  label="Comment"
-                  id="comment"
-                  rows={2}
-                  maxRows={Infinity}
-                  multiline
-                  InputProps={{
-                    endAdornment: (
-                      <IconButton>
-                        <SendIcon color="primary" />
-                      </IconButton>
-                    ),
+            namnguyen2u3's post
+            <IconButton onClick={handleCloseCommentDialog}>
+              <ClearOutlinedIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent dividers={scroll === "paper"}>
+            <DialogContentText
+              id="scroll-dialog-description"
+              ref={descriptionElementRef}
+              tabIndex={-1}
+            >
+              {commentList.map((comments) => {
+                return (
+                  <Grid
+                    id={comments.id}
+                    container
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    marginBottom={1}
+                  >
+                    <Grid item marginRight={2}>
+                      <Avatar
+                        sx={{ bgcolor: red[500] }}
+                        aria-label="recipe"
+                        src={comments.avatar}
+                      ></Avatar>
+                    </Grid>
+                    <Grid item>
+                      <Card
+                        sx={{
+                          borderRadius: "10px",
+                          backgroundColor: "#F0F0F0",
+                        }}
+                      >
+                        <Typography
+                          sx={{ margin: "10px" }}
+                          fontWeight={"bold"}
+                          fontSize={13}
+                        >
+                          {comments.username}
+                        </Typography>
+                        <Typography sx={{ margin: "10px" }}>
+                          {comments.content}
+                        </Typography>
+                      </Card>
+
+                      <Box
+                        sx={{ display: "flex", justifyContent: "flex-start" }}
+                      >
+                        <Checkbox
+                          aria-label="like"
+                          icon={<FavoriteBorder />}
+                          checkedIcon={<Favorite />}
+                          sx={{ padding: 0.5 }}
+                        />
+                        {/* <Button
+                            sx={{
+                              textDecoration: "none",
+                              color: "inherit",
+                              width: "100%",
+                            }}
+                          > */}
+                        {/* </Button> */}
+                      </Box>
+                      <Typography sx={{ fontSize: "10px" }} fontWeight={1000}>
+                        {comments.createTime}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                );
+              })}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Grid
+              container
+              direction="row"
+              justifyContent="flex-start"
+              alignItems="center"
+            >
+              <Grid item>
+                <Avatar
+                  sx={{ bgcolor: red[500] }}
+                  aria-label="recipe"
+                  src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
+                ></Avatar>
+              </Grid>
+              <Grid item>
+                <Box
+                  sx={{
+                    width: 500,
+                    maxWidth: "100%",
+                    marginLeft: 2,
                   }}
-                />
-              </Box>
+                >
+                  <TextField
+                    fullWidth
+                    label="Comment"
+                    id="comment"
+                    rows={2}
+                    maxRows={Infinity}
+                    multiline
+                    InputProps={{
+                      endAdornment: (
+                        <IconButton>
+                          <SendIcon color="primary" />
+                        </IconButton>
+                      ),
+                    }}
+                  />
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
-        </DialogActions>
-      </Dialog>
-    </Card>
-  );
+          </DialogActions>
+        </Dialog>
+      </Card>
+    );
+  });
 };
 
 export default PostList;

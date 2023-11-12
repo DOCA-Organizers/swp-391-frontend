@@ -25,7 +25,6 @@ import postAPI from "service/post/postAPI";
 import axios from "axios";
 import { POST_ID_KEY, USER_KEY } from "constant";
 import { Listpostimg, PostRequest } from "interfaces/post/postRequest";
-import { IState as Props } from "pages/docaPage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import "./CreatePost.css";
@@ -33,10 +32,6 @@ import { useNavigate, useParams } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 
-interface Iprops {
-  inforPost: Props["inforPost"];
-  setInforPost: React.Dispatch<React.SetStateAction<Props["inforPost"]>>;
-}
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -56,7 +51,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 export default function CreatePost() {
   const userObj = JSON.parse(localStorage.getItem(USER_KEY)!);
   const { categoryID } = useParams();
-  const [content, setContent] = useState("");
   const [category, setCategory] = useState(0);
   const [type, setType] = useState("");
   const [breed, setBreed] = useState("");
@@ -133,10 +127,6 @@ export default function CreatePost() {
   const [images, setImages] = useState<ImageListType>([]);
   const maxNumber = 69;
 
-  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-
   const onChangeImage = (
     imageList: ImageListType,
     addUpdateIndex: number[] | undefined
@@ -203,7 +193,6 @@ export default function CreatePost() {
         categoryid: parseCategoryIdToInt,
         pet_breed: breed,
         pet_type: type,
-        isCreateHag: true,
         content: data.content,
         exchange: category ? true : false,
         listpostimg: objList,

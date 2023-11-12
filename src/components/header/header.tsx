@@ -70,7 +70,7 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <Avatar src={require("../../assets/girl.png")}></Avatar>
+                <Avatar src={require("../../assets/man.png")}></Avatar>
               </IconButton>
             </Tooltip>
             <Menu
