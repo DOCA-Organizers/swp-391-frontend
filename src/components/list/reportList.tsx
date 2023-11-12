@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { PostRequest } from "interfaces/post/postRequest";
 import { ReportListInterface } from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
@@ -38,7 +37,7 @@ const columns: GridColDef[] = [
 
 const ReportList = () => {
   const [reportList, setReportList] = useState<ReportListInterface[]>([]);
-  const [createPost, setCreatePost] = useState<PostRequest>();
+
   useEffect(() => {
     const getReportList = async () => {
       const data: any = await reportPost.getReportList();

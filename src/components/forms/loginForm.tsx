@@ -17,7 +17,7 @@ import {
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import axios from "axios";
 import ErrorMessage from "components/errors/errorMessage";
-import { ROLE_ID_KEY, USERNAME, USER_ID_KEY } from "constant";
+import { ROLE_ID_KEY, USERNAME, USER_ID_KEY, USER_KEY } from "constant";
 import { LoginRequest } from "interfaces/login/loginRequest";
 import { useRef, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -92,6 +92,7 @@ const LoginForm = () => {
               JSON.stringify(response.data.role.id)
             );
             localStorage.setItem(USERNAME, JSON.stringify(response.data));
+            localStorage.setItem(USER_KEY, JSON.stringify(response.data));
             switch (response.data.role.id) {
               case "1":
                 navigate("/admin");
@@ -108,7 +109,7 @@ const LoginForm = () => {
                   position: toast.POSITION.TOP_CENTER,
                 });
                 timeoutRef.current = setTimeout(() => {
-                  navigate("/dog-chat");
+                  navigate("/dog-chat/1");
                 }, 1700);
                 return;
               default:
