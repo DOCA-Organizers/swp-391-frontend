@@ -87,7 +87,6 @@ const LoginForm = () => {
           ROLE_ID_KEY,
           JSON.stringify(response.role.id)
         );
-        localStorage.setItem(USERNAME, JSON.stringify(response));
         localStorage.setItem(USER_KEY, JSON.stringify(response));
         switch (response.role.id) {
           case 1:
@@ -108,7 +107,7 @@ const LoginForm = () => {
             break;
           case 5:
             console.log("Go to User Page");
-            navigate("/dog-chat");
+            navigate("/");
             break;
           default:
             console.log("default!");

@@ -23,12 +23,13 @@ import "./CreatePost.css";
 import { Blob } from "buffer";
 import postAPI from "service/post/postAPI";
 import axios from "axios";
-import { POST_ID_KEY } from "constant";
+import { POST_ID_KEY, USER_KEY } from "constant";
 import { PostRequest } from "interfaces/post/postRequest";
 import { IState as Props } from "pages/docaPage";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import "./CreatePost.css";
+import { useParams } from "react-router";
 
 interface Iprops {
   inforPost: Props["inforPost"];
@@ -51,8 +52,11 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 export default function CreatePost({ inforPost, setInforPost }: Iprops) {
+  const userObj = JSON.parse(localStorage.getItem(USER_KEY)!);
+  const { categoryID } = useParams();
+  console.log("Category ID: ", categoryID);
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState(0);
   const [type, setType] = useState("");
   const [breed, setBreed] = useState("");
   const [breedList, setBreedList] = useState<any[]>([
@@ -139,8 +143,10 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
     setImages(imageList as never[]);
   };
 
-  const handleRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // setCategory((event.target as HTMLInputElement).value);
+  const handleRadio = (event: any) => {
+    const parsePostCategoryToInt = parseInt(event.target.value);
+    setCategory(parsePostCategoryToInt);
+    console.log(category);
   };
 
   const handleType = (event: SelectChangeEvent) => {
@@ -180,52 +186,24 @@ export default function CreatePost({ inforPost, setInforPost }: Iprops) {
 
   const onSubmit: SubmitHandler<PostRequest> = async (data: any) => {
     try {
-      axios
-        .post("http://localhost:8080/api/CreatePost", {
-          userid: "bd35171b-2654-4c95-a8ca-0c7225e5d684",
-          categoryid: "1",
-          pet_breed: breed,
-          pet_type: type,
-          isCreateHag: true,
-          content: data.content,
-          title: "",
-          exchange: category,
-          listpostimg: null,
-          listpet: null,
-          listitem: null,
-        })
-        .then((response) => {
-          console.log("Response: ", response);
-          localStorage.setItem(POST_ID_KEY, JSON.stringify(response.data));
-        })
-        .catch((e) => {
-          console.log("Error: ", e);
-        });
+      let parseCategoryIdToInt: number = parseInt(categoryID!);
+      const response: any = await postAPI.createPost({
+        userid: userObj.user.id,
+        categoryid: parseCategoryIdToInt,
+        pet_breed: breed,
+        pet_type: type,
+        isCreateHag: true,
+        content: data.content,
+        exchange: category ? true : false,
+        listpostimg: null,
+        listpet: null,
+        listitem: null,
+      });
+      console.log("Response: ", response);
     } catch (error) {
       console.log("Error", error);
     }
   };
-
-  // const handlePost = (e: React.FormEvent<HTMLFormElement>): void => {
-  //   e.preventDefault();
-  //   setInforPost([
-  //     ...inforPost,
-  //     {
-  //       content: content,
-  //       imageList: images,
-  //       categoryPost: category,
-  //       typePet: type,
-  //       breedPet: breed,
-  //     },
-  //   ]);
-  //   alert("Post successfully");
-  //   setContent("");
-  //   setImages([]);
-  //   setCategory("");
-  //   setType("");
-  //   setBreed("");
-  // };
-
 
   return (
     <Card

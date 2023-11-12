@@ -7,9 +7,8 @@ export interface PostRequest {
   pet_type: string;
   isCreateHag: boolean;
   content: string;
-  title: string | null;
   exchange: boolean;
-  listpostimg: Listpostimg[];
+  listpostimg: Listpostimg[] | null;
   listpet: Listpet[] | null;
   listitem: Listitem[] | null;
 }
