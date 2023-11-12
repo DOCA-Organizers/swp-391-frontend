@@ -1,21 +1,19 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ErrorBoundary } from "components/errorboundary/errorBoundary";
 import Report from "components/report";
+import { USER_KEY } from "constant";
 import AdminPage from "pages/admin/adminPage";
-import CategoryPage from "pages/categoryPage";
 import DocaPage from "pages/docaPage";
 import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import AdminRoutes from "routes/AdminRoutes";
-import { USER_KEY } from "constant";
 
 function App() {
   const user = JSON.parse(localStorage.getItem(USER_KEY)!);
   return (
-    <ErrorBoundary>W
+    <ErrorBoundary>
       <BrowserRouter>
         <CssBaseline />
         <Routes>
