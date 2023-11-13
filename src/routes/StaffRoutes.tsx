@@ -1,10 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./protectedRoute";
-import AdminPage from "pages/admin/adminPage";
-import NotFoundPage from "pages/error/NotFoundPage";
+import StaffPage from "pages/staff/staffPage";
 import { ROLE_ID_KEY, USER_TOKEN_KEY } from "constant";
 
-function AdminRoutes() {
+const StaffRoutes = () => {
   const token = localStorage.getItem(USER_TOKEN_KEY);
   const userRoleID = JSON.parse(localStorage.getItem(ROLE_ID_KEY)!);
   return (
@@ -13,16 +12,18 @@ function AdminRoutes() {
         element={
           <ProtectedRoute
             token={token ?? ""}
-            isAllowed={userRoleID === 1 ? true : false}
+            isAllowed={
+              userRoleID === 2 || userRoleID === 3 || userRoleID === 4
+                ? true
+                : false
+            }
           >
-            <AdminPage />
+            <StaffPage />
           </ProtectedRoute>
         }
-      >
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
+      ></Route>
     </Routes>
   );
-}
+};
 
-export default AdminRoutes;
+export default StaffRoutes;

@@ -16,12 +16,17 @@ import {
 } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import ErrorMessage from "components/errors/errorMessage";
-import { ROLE_ID_KEY, USERNAME, USER_ID_KEY, USER_KEY } from "constant";
+import {
+  ROLE_ID_KEY,
+  USER_FULLNAME_KEY,
+  USER_ID_KEY,
+  USER_TOKEN_KEY,
+} from "constant";
 import { LoginRequest } from "interfaces/login/loginRequest";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import loginAPI from "service/login/loginAPI";
 import { addErrorIntoField } from "utils/utils";
 import * as yup from "yup";
@@ -71,22 +76,17 @@ const LoginForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginRequest> = async (data: any) => {
+  const onSubmit: SubmitHandler<LoginRequest> = async (data: LoginRequest) => {
     try {
       const response: any = await loginAPI.login({
         username: data.username,
         password: data.password,
       });
-      if (response.user.id) {
-        localStorage.setItem(
-          USER_ID_KEY,
-          JSON.stringify(response.user.id)
-        );
-        localStorage.setItem(
-          ROLE_ID_KEY,
-          JSON.stringify(response.role.id)
-        );
-        localStorage.setItem(USER_KEY, JSON.stringify(response));
+      if (response.user) {
+        localStorage.setItem(USER_ID_KEY, response.user.id);
+        localStorage.setItem(ROLE_ID_KEY, response.role.id);
+        localStorage.setItem(USER_FULLNAME_KEY, response.user.fullName);
+        localStorage.setItem(USER_TOKEN_KEY, response.token);
         switch (response.role.id) {
           case 1:
             navigate("/admin");
@@ -112,37 +112,20 @@ const LoginForm = () => {
             console.log("default!");
         }
       }
-      //   .post("http://localhost:8080/api/login", {
-      //     username: data.username,
-      //     password: data.password,
-      //   })
-      //   .then(function (response) {
-      //     if (response.data.role.id) {
-      //       console.log(response.data);
-      //       switch (response.data.role.id) {
-      //         case 5:
-      //           toast.success("Login Success!", {
-      //             position: toast.POSITION.TOP_CENTER,
-      //           });
-      //           timeoutRef.current = setTimeout(() => {
-      //             navigate("/dog-chat");
-      //           }, 1700);
-      //           return;
-      //         default:
-      //           console.log("Default");
-      //       }
-      //     }
-      //   })
-      //   .catch((e: any) => {
-      //     if (e.response.status !== 200) {
-      //       toast.error("Login Failed!", {
-      //         position: toast.POSITION.TOP_CENTER,
-      //       });
-      //       console.log("Error: ", e);
-      //     }
-      //   });
+      if (response === "Cannot find user") {
+        toast.error("Login Failed! Wrong username or password!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.error("Login Failed!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
     } catch (error) {
-      console.log("Error at login Form");
+      console.log("Error at login Form", error);
+      toast.error("Login Failed!", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 

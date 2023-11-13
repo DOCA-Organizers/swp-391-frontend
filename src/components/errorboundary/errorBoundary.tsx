@@ -1,4 +1,5 @@
-import PageNotFound from "pages/PageNotFound";
+
+import NotFoundPage from "pages/error/NotFoundPage";
 import { Component } from "react";
 
 interface State {
@@ -27,7 +28,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return <PageNotFound />;
+      return <NotFoundPage />;
     }
     return this.props.children;
   }

@@ -1,20 +1,21 @@
-import { UserResponse } from 'interfaces/user/userResponse';
-import { Navigate } from 'react-router-dom';
- interface Props {
-    children: JSX.Element;
-    isAllowed: boolean;
-    user: UserResponse;
+import { UserResponse } from "interfaces/user/userResponse";
+import { isEmpty } from "lodash";
+import { Navigate } from "react-router-dom";
+interface Props {
+  children: JSX.Element;
+  isAllowed: boolean;
+  token: string;
 }
 
-const ProtectedRoute = ({children, isAllowed, user}: Props) => {
-  if(!user) {
-    return <Navigate to="/"/>;
+const ProtectedRoute = ({ children, isAllowed, token }: Props) => {
+  if (!token || isEmpty(token)) {
+    return <Navigate to="/" />;
   }
-  if(isAllowed) {
+  if (isAllowed) {
     return children;
   }
 
-  return <Navigate to="/404"/>
-}
+  return <Navigate to="/404" />;
+};
 
-export default ProtectedRoute
+export default ProtectedRoute;
