@@ -6,6 +6,8 @@ import { ROLE_ID_KEY, USER_FULLNAME_KEY, USER_TOKEN_KEY } from "constant";
 import CategoryPage from "pages/categoryPage";
 import DocaPage from "pages/docaPage";
 import NotFoundPage from "pages/error/NotFoundPage";
+import CatExchangePage from "pages/exchange/catExchangePage";
+import DogExchangePage from "pages/exchange/dogExchangePage";
 import LoginPage from "pages/login/loginPage";
 import RegistrationPage from "pages/register/registrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -31,7 +33,23 @@ function App() {
           <Route path="dog-services/:categoryID" element={<DocaPage />} />
           <Route path="dog-show-events/:categoryID" element={<DocaPage />} />
           <Route path="cat-chat/:categoryID" element={<DocaPage />} />
-
+          <Route
+            path="cat-health-nutrition/:categoryID"
+            element={<DocaPage />}
+          />
+          <Route
+            path="cat-training-and-behavior/:categoryID"
+            element={<DocaPage />}
+          />
+          <Route path="cat-show-events/:categoryID" element={<DocaPage />} />
+          <Route
+            path="exchange-dog/:categoryID"
+            element={<DogExchangePage />}
+          />
+          <Route
+            path="exchange-cat/:categoryID"
+            element={<CatExchangePage />}
+          />
           {/* <Route path="/1">
             <Route index element={<CategoryPage />} />
             <Route path="dog-chat/:categoryID" element={<DocaPage />} />

@@ -85,7 +85,7 @@ const Category = () => {
 
       case 7:
         num = 7;
-        navigate(`cat-services/${num}`);
+        navigate(`cat-training-and-behavior//${num}`);
         break;
 
       case 8:
@@ -95,12 +95,12 @@ const Category = () => {
 
       case 9:
         num = 9;
-        console.log("Exchange Dog");
+        navigate(`exchange-dog/${num}`);
         break;
 
       case 10:
         num = 10;
-        console.log("Exchange Cat");
+        navigate(`exchange-cat/${num}`);
         break;
 
       default:
