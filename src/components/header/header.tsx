@@ -37,6 +37,7 @@ const Header = () => {
     localStorage.removeItem(USER_ID_KEY);
     localStorage.removeItem(ROLE_ID_KEY);
     localStorage.removeItem(USER_KEY);
+    setAnchorEl(null);
     navigate(0);
   };
   return (
@@ -112,7 +113,7 @@ const Header = () => {
                 <Avatar /> Profile
               </MenuItem>
               <Divider />
-              <MenuItem onClick={handleClose}>
+              <MenuItem onClick={handleLogout}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>

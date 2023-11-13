@@ -275,7 +275,7 @@ const DocaPage = () => {
                       Breed: {post.pet_Breed.breedname}
                     </Typography>
                   </Card>
-                  <Typography variant="h6" color="#000000">
+                  <Typography variant="body1" color="#000000" >
                     {post.content}
                   </Typography>
                 </CardContent>

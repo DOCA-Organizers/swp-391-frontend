@@ -21,7 +21,7 @@ function App() {
           <Route path="/">
             <Route index element={<CategoryPage />} />
             <Route path="dog-chat/:categoryID" element={<DocaPage />} />
-            <Route path="dog-chat/my_profile/" element={<ProfilePage />} />
+            <Route path="dog-chat/:categoryID/my_profile/" element={<ProfilePage />} />
 
             <Route path="dog-health-nutrition/:categoryID" element={<DocaPage />} />
             <Route
@@ -70,6 +70,7 @@ function App() {
               />
             }
           /> */}
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/user" element={<DocaPage />} />
           <Route path="/registration" element={<Report />} />
         </Routes>
