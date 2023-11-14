@@ -6,8 +6,6 @@ import {
   Link,
   Typography,
   Button,
-  Stack,
-  Pagination,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -42,7 +40,6 @@ import React, { useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import { USER_TOKEN_KEY } from "constant";
 import { ToastContainer, toast } from "react-toastify";
-import { isEmpty } from "lodash";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
@@ -179,11 +176,7 @@ const DogExchangePage = () => {
     setSex(event.target.value as any);
   };
 
-  // const handleSelectInformation = (information: string) => {
-  //   if (information === "pet") {
 
-  //   }
-  // }
 
   const handleClickOpenFormCreatePost = () => {
     setOpenOpenFormCreatePost(true);
@@ -1318,7 +1311,7 @@ const DogExchangePage = () => {
               xs={3}
               style={{ display: "flex", paddingTop: "10px" }}
             >
-              <Typography style={titleStyle}>Post Type: </Typography>
+              <Typography style={titleStyle}>Post type: </Typography>
               <Typography ml={1} style={textBodyStyle}>
                 Exchange
               </Typography>
@@ -1331,7 +1324,7 @@ const DogExchangePage = () => {
               xs={3}
               style={{ display: "flex", paddingTop: "10px" }}
             >
-              <Typography style={titleStyle}>Pet Type: </Typography>
+              <Typography style={titleStyle}>Pet type: </Typography>
               <Typography ml={1} style={textBodyStyle}>
                 Dog
               </Typography>
