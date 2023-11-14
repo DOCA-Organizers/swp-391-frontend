@@ -8,6 +8,10 @@ const postAPI = {
   createPost: (postRequest: PostRequest) => {
     return axiosClient.post("CreatePost", postRequest);
   },
+
+  getNumberPostAndCommentAllCategory: () => {
+    return axiosClient.get("CategoryInfo");
+  }
 };
 
 export default postAPI;

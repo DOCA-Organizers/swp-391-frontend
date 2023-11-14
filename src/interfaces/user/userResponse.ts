@@ -20,7 +20,7 @@ export interface User {
     avt:                   null;
     enabled:               boolean;
     username:              string;
-    authorities:           Authority[];
+    authorities:           Authority[] | null;
     isActive:              boolean;
     ban:                   boolean;
     credentialsNonExpired: boolean;
