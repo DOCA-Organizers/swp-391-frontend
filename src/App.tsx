@@ -3,7 +3,6 @@ import { ErrorBoundary } from "components/errorboundary/errorBoundary";
 import Report from "components/report";
 import { USER_KEY } from "constant";
 import AdminPage from "pages/admin/adminPage";
-import CategoryPage from "pages/categoryPage";
 import DocaPage from "pages/docaPage";
 import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
@@ -19,11 +18,17 @@ function App() {
         <CssBaseline />
         <Routes>
           <Route path="/">
-            <Route index element={<CategoryPage />} />
+            <Route index element={<ProfilePage />} />
             <Route path="dog-chat/:categoryID" element={<DocaPage />} />
-            <Route path="dog-chat/:categoryID/my_profile/" element={<ProfilePage />} />
+            <Route
+              path="dog-chat/:categoryID/my_profile/"
+              element={<ProfilePage />}
+            />
 
-            <Route path="dog-health-nutrition/:categoryID" element={<DocaPage />} />
+            <Route
+              path="dog-health-nutrition/:categoryID"
+              element={<DocaPage />}
+            />
             <Route
               path="dog-health-nutrition/my_profile/"
               element={<ProfilePage />}
@@ -41,7 +46,10 @@ function App() {
             <Route path="cat-chat/:categoryID" element={<DocaPage />} />
             <Route path="cat-chat/my_profile" element={<ProfilePage />} />
 
-            <Route path="cat-health-nutrition/:categoryID" element={<DocaPage />} />
+            <Route
+              path="cat-health-nutrition/:categoryID"
+              element={<DocaPage />}
+            />
             <Route
               path="cat-health-nutrition/my_profile"
               element={<ProfilePage />}

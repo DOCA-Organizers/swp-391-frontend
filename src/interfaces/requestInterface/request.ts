@@ -15,18 +15,6 @@ export interface CategoryRequest {
   categoryId: number;
 }
 
-export interface MyProfileRequest {
-  userID: string;
-  username: string;
-  role: string;
-  manage: string;
-  dateJoined: string;
-  fullName: string;
-  email: string;
-  dateOfBirth: string | null;
-  gender: string;
-}
-
 export interface ReportListInterface {
   postID: string;
   numberOfPost: number;
@@ -48,4 +36,42 @@ export interface PetList {
 
 export interface PetItemsList {
   postID: number;
+}
+
+//getAPIMyProfile
+export interface CountResponse {
+  user: UserProfile;
+  role: Role;
+  datestart: Date;
+  numofpost: number;
+  numofcomment: number;
+  numofreact: number;
+}
+
+export interface Role {
+  id: number;
+  name: string;
+  type: string;
+}
+
+export interface UserProfile {
+  id: string;
+  password: string;
+  fullName: string;
+  email: string;
+  dob: null;
+  gender: boolean;
+  avt: null;
+  enabled: boolean;
+  accountNonExpired: boolean;
+  credentialsNonExpired: boolean;
+  username: string;
+  authorities: Authority[];
+  ban: boolean;
+  isActive: boolean;
+  accountNonLocked: boolean;
+}
+
+export interface Authority {
+  authority: string;
 }

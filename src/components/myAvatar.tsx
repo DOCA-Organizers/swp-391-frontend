@@ -1,10 +1,10 @@
-import { Avatar, Grid, Typography } from "@mui/material";
-import { MyProfileRequest } from "interfaces/requestInterface/request";
+import { Avatar, Grid } from "@mui/material";
+import { UserProfile } from "interfaces/requestInterface/request";
 
 import { useState } from "react";
 
 const MyAvatar = () => {
-  const [profile, setProfile] = useState<MyProfileRequest>();
+  const [profile, setProfile] = useState<UserProfile>();
   return (
     <Grid>
       <Avatar>
@@ -14,8 +14,8 @@ const MyAvatar = () => {
           width={140}
         ></img>
       </Avatar>
-      <Typography sx={{ fontWeight: "bold" }}>{profile?.username}</Typography>
-      <Typography sx={{ fontWeight: "bold" }}>{profile?.role}</Typography>
+      {/* <Typography sx={{ fontWeight: "bold" }}>{profile?.username}</Typography>
+      <Typography sx={{ fontWeight: "bold" }}>{profile?.role}</Typography> */}
     </Grid>
   );
 };
