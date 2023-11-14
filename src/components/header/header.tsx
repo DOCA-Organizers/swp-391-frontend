@@ -1,4 +1,4 @@
-import { Logout, PersonAdd, Settings } from "@mui/icons-material";
+import { Logout } from "@mui/icons-material";
 import {
   Avatar,
   Button,
@@ -12,8 +12,12 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import MyAvatar from "components/myAvatar";
-import { ROLE_ID_KEY, USER_ID_KEY, USER_KEY } from "constant";
+import {
+  ROLE_ID_KEY,
+  USER_FULLNAME_KEY,
+  USER_ID_KEY,
+  USER_TOKEN_KEY,
+} from "constant";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,12 +35,13 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const userFullName = localStorage.getItem(USER_FULLNAME_KEY);
   const navigate = useNavigate();
-  const userObj = JSON.parse(localStorage.getItem(USER_KEY)!);
   const handleLogout = () => {
+    localStorage.removeItem(USER_FULLNAME_KEY);
     localStorage.removeItem(USER_ID_KEY);
     localStorage.removeItem(ROLE_ID_KEY);
-    localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(USER_TOKEN_KEY);
     setAnchorEl(null);
     navigate(0);
   };
@@ -51,16 +56,17 @@ const Header = () => {
     >
       <Grid xs={4} alignContent="center" pl={2}>
         <img
+          alt="Logo"
           src={require("../../assets/Huy's logo.png")}
           height={110}
           width={140}
         />
       </Grid>
-      {userObj ? (
+      {userFullName ? (
         <Grid xs={2} container justifyContent="end">
           <Stack direction="row" spacing={2}>
             <Typography noWrap lineHeight="50px">
-              {userObj.user.fullName}
+              {userFullName}
             </Typography>
             <Tooltip title="Account settings">
               <IconButton
@@ -71,7 +77,7 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <Avatar src={require("../../assets/man.png")}></Avatar>
+                <Avatar src={require("../../assets/man.png")} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -138,7 +144,7 @@ const Header = () => {
             variant="outlined"
             style={buttonStyles}
             onClick={() => {
-              navigate("/register");
+              navigate("/registration");
             }}
           >
             Sign Up

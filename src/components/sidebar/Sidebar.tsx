@@ -93,7 +93,6 @@ export default function SlideBar() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <AppBar
         position="fixed"
         open={open}
@@ -102,7 +101,7 @@ export default function SlideBar() {
         }}
       >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="default"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -110,7 +109,7 @@ export default function SlideBar() {
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Box
             sx={{
               height: "100%",

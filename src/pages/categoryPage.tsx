@@ -1,5 +1,6 @@
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Category from "components/category";
+import Footer from "components/footer/footer";
 import Header from "components/header/header";
 
 const CategoryPage = () => {
@@ -7,6 +8,7 @@ const CategoryPage = () => {
     <Container disableGutters maxWidth={false}>
       <Header />
       <Category />
+      <Footer />
     </Container>
   );
 };

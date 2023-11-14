@@ -4,3 +4,6 @@ export const USER_ID_KEY = "id";
 export const ROLE_ID_KEY = "roleId";
 export const USERNAME = "username";
 export const POST_ID_KEY = "postId";
+export const USER_TOKEN_KEY = "token";
+export const USER_FULLNAME_KEY = "fullName";
+

@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./protectedRoute";
-import AdminPage from "pages/admin/adminPage";
 import NotFoundPage from "pages/error/NotFoundPage";
+import MemberPage from "pages/member/memberPage";
 import { ROLE_ID_KEY, USER_TOKEN_KEY } from "constant";
 
-function AdminRoutes() {
+const MemberRoutes = () => {
   const token = localStorage.getItem(USER_TOKEN_KEY);
   const userRoleID = JSON.parse(localStorage.getItem(ROLE_ID_KEY)!);
   return (
@@ -13,9 +13,9 @@ function AdminRoutes() {
         element={
           <ProtectedRoute
             token={token ?? ""}
-            isAllowed={userRoleID === 1 ? true : false}
+            isAllowed={userRoleID === 5 ? true : false}
           >
-            <AdminPage />
+            <MemberPage />
           </ProtectedRoute>
         }
       >
@@ -23,6 +23,6 @@ function AdminRoutes() {
       </Route>
     </Routes>
   );
-}
+};
 
-export default AdminRoutes;
+export default MemberRoutes;
