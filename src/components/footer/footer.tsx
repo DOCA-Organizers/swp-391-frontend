@@ -5,7 +5,7 @@ const Footer = () => {
       component="footer"
       sx={{
         backgroundColor: "#1d5b9d",
-        p: 6,
+        p: "32px",
       }}
     >
       <Grid container direction="row" justifyContent="space-between">

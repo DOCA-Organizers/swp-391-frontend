@@ -181,10 +181,101 @@ const DocaPage = () => {
                 }}
               >
                 <EmojiEventsIcon sx={{ mr: 1 }} fontSize="medium" />
-                Dog Services
+                Cat Show and Events
               </Typography>
             ) : null}
+            <Typography></Typography>
           </Breadcrumbs>
+
+          {categoryID === "1" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Dog Chat
+              </Typography>
+            </>
+          ) : categoryID === "2" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Dog Health and Nutrition
+              </Typography>
+            </>
+          ) : categoryID === "3" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Dog Services
+              </Typography>
+            </>
+          ) : categoryID === "4" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Dog Show and Events
+              </Typography>
+            </>
+          ) : categoryID === "5" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Cat Chat
+              </Typography>
+            </>
+          ) : categoryID === "6" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Cat Health and Nutrition
+              </Typography>
+            </>
+          ) : categoryID === "7" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Cat Training and Behaviour
+              </Typography>
+            </>
+          ) : categoryID === "8" ? (
+            <>
+              <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
+              >
+                Cat Show and Events
+              </Typography>
+            </>
+          ) : null}
         </Box>
       </Box>
       <Footer />

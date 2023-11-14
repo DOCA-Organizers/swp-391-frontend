@@ -37,21 +37,27 @@ const CatExchangePage = () => {
               <HomeIcon sx={{ mr: 1 }} fontSize="medium" />
               Home
             </Link>
-            {categoryID === "10" ? (
-              <Typography
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "19px",
-                  fontWeight: "bolder",
-                  color: "#1d5b9d",
-                }}
+            <Typography
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "19px",
+                fontWeight: "bolder",
+                color: "#1d5b9d",
+              }}
+            >
+              <CurrencyExchangeIcon sx={{ mr: 1 }} fontSize="medium" />
+              Cat Exchange
+            </Typography>
+          </Breadcrumbs>
+          <Typography
+                mt={2}
+                variant="h4"
+                color="#1d5b9d"
+                fontWeight="bolder"
               >
-                <CurrencyExchangeIcon sx={{ mr: 1 }} fontSize="medium" />
                 Cat Exchange
               </Typography>
-            ) : null}
-          </Breadcrumbs>
         </Box>
       </Box>
       <Footer />

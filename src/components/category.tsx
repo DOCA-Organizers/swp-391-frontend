@@ -85,7 +85,7 @@ const Category = () => {
 
       case 7:
         num = 7;
-        navigate(`cat-training-and-behavior//${num}`);
+        navigate(`cat-training-and-behavior/${num}`);
         break;
 
       case 8:
@@ -143,7 +143,7 @@ const Category = () => {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Dog chat"
+                  primary="Dog Chat"
                   primaryTypographyProps={{
                     fontWeight: "bolder",
                     color: "#1d5b9d",
