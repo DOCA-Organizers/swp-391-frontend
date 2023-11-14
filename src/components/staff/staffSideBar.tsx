@@ -20,6 +20,7 @@ import * as React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Button } from "@mui/material";
 
+import { Flag } from "@mui/icons-material";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PrimarySearchAppBar from "components/searchbar/SearchBar";
@@ -76,7 +77,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function SlideBar() {
+export default function StaffSideBar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   // const roleID = JSON.parse(localStorage.getItem(USER_ID_KEY)!);
@@ -168,12 +169,12 @@ export default function SlideBar() {
               <ListItem>
                 <ListItemButton>
                   <ListItemIcon>
-                    <BookmarkIcon />
+                    <Flag />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Bookmarks"
+                    primary="Report"
                     onClick={() => {
-                      navigate("/bookmarked-list");
+                      navigate("/");
                     }}
                   />
                 </ListItemButton>
@@ -181,12 +182,12 @@ export default function SlideBar() {
               <ListItem>
                 <ListItemButton>
                   <ListItemIcon>
-                    <HomeIcon />
+                    <BookmarkIcon />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Report"
+                    primary="Bookmarks"
                     onClick={() => {
-                      navigate("/");
+                      navigate("/bookmarked-list");
                     }}
                   />
                 </ListItemButton>

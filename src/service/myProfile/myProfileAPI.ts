@@ -1,9 +1,15 @@
-import { MyProfileRequest } from "interfaces/requestInterface/request";
+import {
+  CountResponse,
+  UserProfile,
+} from "interfaces/requestInterface/request";
 import axiosClient from "../axiosClient";
 
 const MyProfileAPI = {
   getMyProfileAPI: (userID: string) => {
-    return axiosClient.get<MyProfileRequest>(`/api/profile/userid=${userID}`);
+    return axiosClient.get<UserProfile>(`/profile/userid=${userID}`);
+  },
+  getCountAPI: (userID: string) => {
+    return axiosClient.get<CountResponse>(`/profile/userid=${userID}`);
   },
 };
 

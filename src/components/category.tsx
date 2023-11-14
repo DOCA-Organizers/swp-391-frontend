@@ -6,9 +6,7 @@ import {
   ListItemButton,
   Typography,
 } from "@mui/material";
-import { CategoryInterface } from "interfaces/categoryInterface";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const listItemButtonStyles = {
   backgroundColor: "#F0F0F0",
@@ -98,25 +96,34 @@ const Category = () => {
         </ListItem>
 
         <ListItem>
-          <ListItemButton onClick={() => {
+          <ListItemButton
+            onClick={() => {
               handleNavigate(2);
-            }}sx={listItemButtonStyles}>
+            }}
+            sx={listItemButtonStyles}
+          >
             Dog Health and Nutrition
           </ListItemButton>
         </ListItem>
 
         <ListItem>
-          <ListItemButton onClick={() => {
+          <ListItemButton
+            onClick={() => {
               handleNavigate(3);
-            }} sx={listItemButtonStyles}>
+            }}
+            sx={listItemButtonStyles}
+          >
             Dog Services
           </ListItemButton>
         </ListItem>
 
         <ListItem>
-          <ListItemButton onClick={() => {
+          <ListItemButton
+            onClick={() => {
               handleNavigate(4);
-            }} sx={listItemButtonStyles}>
+            }}
+            sx={listItemButtonStyles}
+          >
             Dog Show and Events
           </ListItemButton>
         </ListItem>
@@ -133,31 +140,45 @@ const Category = () => {
       </Box>
       <List>
         <ListItem>
-          <ListItemButton onClick={() => {
+          <ListItemButton
+            onClick={() => {
               handleNavigate(5);
-            }} sx={listItemButtonStyles}>Cat Chat</ListItemButton>
+            }}
+            sx={listItemButtonStyles}
+          >
+            Cat Chat
+          </ListItemButton>
         </ListItem>
 
         <ListItem>
-          <ListItemButton onClick={() => {
+          <ListItemButton
+            onClick={() => {
               handleNavigate(6);
-            }} sx={listItemButtonStyles}>
+            }}
+            sx={listItemButtonStyles}
+          >
             Cat Health and Nutrition
           </ListItemButton>
         </ListItem>
 
         <ListItem>
-          <ListItemButton onClick={() => {
+          <ListItemButton
+            onClick={() => {
               handleNavigate(7);
-            }} sx={listItemButtonStyles}>
+            }}
+            sx={listItemButtonStyles}
+          >
             Cat Services
           </ListItemButton>
         </ListItem>
 
         <ListItem>
-          <ListItemButton onClick={() => {
+          <ListItemButton
+            onClick={() => {
               handleNavigate(8);
-            }} sx={listItemButtonStyles}>
+            }}
+            sx={listItemButtonStyles}
+          >
             Cat Show and Events
           </ListItemButton>
         </ListItem>

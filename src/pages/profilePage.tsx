@@ -1,13 +1,15 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import Profile from "components/profile";
+import Posts from "components/posts";
+import Navigation from "components/profile/navigation";
+import Profile from "components/profile/profile";
+
 import SlideBar from "components/sidebar/Sidebar";
 
-type Props = {};
 const paperStyle = {
-  width: 800,
-  height: 800,
-  margin: "0 auto",
+  width: 1400,
+  height: 300,
+  marginTop: 180,
 };
 
 const styleTyPo = {
@@ -16,6 +18,7 @@ const styleTyPo = {
   top: 70,
   fontWeight: "bold",
   fontSize: 30,
+  width: 100,
 };
 const ProfilePage = () => {
   return (
@@ -25,20 +28,31 @@ const ProfilePage = () => {
       alignItems="center"
       direction="column"
       style={{
-        minHeight: "100vh",
+        minHeight: "30vh",
         backgroundColor: "rgba(25, 118, 210, 0.04)",
       }}
     >
       <Paper elevation={20} style={paperStyle}>
         <Box display="flex" flexDirection="column">
           <SlideBar />
-
-          <Box sx={{ marginTop: 14, position: "relative", right: 230 }}>
-            <Typography sx={styleTyPo}>My Profile</Typography>
+          <Box
+            sx={{
+              position: "relative",
+              bottom: 130,
+              right: 50,
+              marginRight: 30,
+            }}
+          >
             <Profile />
           </Box>
         </Box>
       </Paper>
+      <Box>
+        <Navigation />
+      </Box>
+      <Box sx={{ marginTop: 7 }}>
+        <Posts />
+      </Box>
     </Grid2>
   );
 };

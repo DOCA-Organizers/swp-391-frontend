@@ -1,9 +1,12 @@
 import { Avatar, Container, Grid, Typography, styled } from "@mui/material";
 import { USER_ID_KEY } from "constant";
-import { MyProfileRequest } from "interfaces/requestInterface/request";
+import {
+  CountResponse,
+  Role,
+  UserProfile,
+} from "interfaces/requestInterface/request";
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import MyProfileAPI from "service/myProfile/myProfileAPI";
 
 const Item = styled("div")(({ theme }) => ({
@@ -14,57 +17,96 @@ const Item = styled("div")(({ theme }) => ({
   borderRadius: "4px",
 }));
 
+const style = {};
 const Profile = () => {
-  let { userID } = useParams();
-  const [profile, setProfile] = useState<MyProfileRequest>({
-    dateJoined: "14 October 2023",
-    dateOfBirth: "05/08/2003",
-    email: "huylqse123456@fpt.edu.vn",
-    fullName: "Nguyen Van Nam",
-    gender: "Male",
-    manage: "Dog",
-    role: "Member",
-    userID: "1211325",
-    username: "namnguyen2u3",
-  });
+  // let { userID } = useParams();
+  const [profile, setProfile] = useState<UserProfile>();
+  const [role, setRole] = useState<Role>();
+  const [dateStart, setDateStart] = useState();
+  const [count, setCount] = useState<CountResponse>();
 
   useEffect(() => {
     const getMyProfile = async () => {
-      const data: any = await MyProfileAPI.getMyProfileAPI(USER_ID_KEY);
-      console.log(data);
+      const data: any = await MyProfileAPI.getMyProfileAPI(
+        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
+      );
+      console.log("tU", USER_ID_KEY);
+      console.log("data:", data);
+      if (data) {
+        setProfile(data);
+      }
+    };
+    const getPostFigure = async () => {
+      const data: any = await MyProfileAPI.getCountAPI(
+        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
+      );
+
+      console.log("count:", data);
+
+      if (data) {
+        setProfile(data.user);
+        setRole(data.role);
+        setDateStart(data.datestart);
+      }
     };
     const initUseEffect = async () => {
       await getMyProfile();
+      await getPostFigure();
     };
     initUseEffect();
-  });
+  }, []);
+  console.log("profile:", profile);
+  console.log("role:", role);
+  console.log("daSta", dateStart);
 
   return (
     <Container sx={{ backgroundColor: "F0F0F0" }}>
       <Grid sx={{ width: 50, position: "relative", left: 900, top: 10 }}>
         <Avatar
           sx={{
-            width: 70,
-            height: 70,
+            width: 85,
+            height: 85,
             bgcolor: "#f44336",
             positon: "relative",
-            right: 620,
-            top: 120,
+            right: 800,
+            top: 100,
           }}
           aria-label="recipe"
           src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
-        ></Avatar>
+        />
+        <Typography
+          sx={{
+            position: "relative",
+            top: 105,
+            right: 790,
+            width: 30,
+            fontWeight: "bold",
+          }}
+        >
+          {profile?.username}
+        </Typography>
+        <Typography
+          sx={{
+            position: "relative",
+            top: 105,
+            right: 790,
+            width: 30,
+            fontWeight: "bold",
+          }}
+        >
+          {role?.name}
+        </Typography>
       </Grid>
 
       <Grid
         container
         spacing={4}
         sx={{
-          paddingTop: 10,
+          paddingTop: 4,
           width: 900,
           position: "relative",
-          left: 400,
-          top: 10,
+          left: 250,
+          bottom: 20,
         }}
       >
         <Grid xs={3}>
@@ -84,7 +126,7 @@ const Profile = () => {
               top: 4,
             }}
           >
-            <Typography>{profile?.dateJoined}</Typography>
+            <Typography>{dateStart}</Typography>
           </Item>
         </Grid>
         <Grid xs={3}>
@@ -124,7 +166,7 @@ const Profile = () => {
               top: 4,
             }}
           >
-            <Typography>{profile?.manage}</Typography>
+            <Typography>{role?.type}</Typography>
           </Item>
         </Grid>
 
@@ -166,7 +208,7 @@ const Profile = () => {
               top: 4,
             }}
           >
-            <Typography>{profile?.dateOfBirth}</Typography>
+            <Typography>{profile?.dob}</Typography>
           </Item>
         </Grid>
 
@@ -188,6 +230,69 @@ const Profile = () => {
             }}
           >
             <Typography>{profile?.gender}</Typography>
+          </Item>
+        </Grid>
+      </Grid>
+      <Grid sx={{ position: "relative", bottom: 200, left: 900, width: 350 }}>
+        <Grid xs={9}>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+
+              position: "relative",
+              top: 4,
+            }}
+          >
+            <Typography
+              sx={{
+                position: "relative",
+                left: 110,
+                fontWeight: "bold",
+                fontSize: 17,
+              }}
+            >
+              ACTIVE FIGURE
+            </Typography>
+          </Item>
+        </Grid>
+        <Grid xs={9} sx={{ width: 350 }}>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
+            <Typography sx={style}>Number of posts: </Typography>
+          </Item>
+        </Grid>
+        <Grid xs={9} sx={{ width: 350 }}>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
+            <Typography sx={style}>Number of reactions: </Typography>
+          </Item>
+        </Grid>
+        <Grid xs={9} sx={{ width: 350 }}>
+          <Item
+            sx={{
+              height: 35,
+              width: 350,
+              backgroundColor: "#F0F0F0",
+              position: "relative",
+              top: 4,
+            }}
+          >
+            <Typography sx={style}>Number of comments: </Typography>
           </Item>
         </Grid>
       </Grid>

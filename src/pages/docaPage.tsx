@@ -1,3 +1,13 @@
+import { FavoriteBorder } from "@mui/icons-material";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import Favorite from "@mui/icons-material/Favorite";
+import Flag from "@mui/icons-material/Flag";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import SendIcon from "@mui/icons-material/Send";
 import {
   Avatar,
   Box,
@@ -5,9 +15,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  CardMedia,
   Checkbox,
-  Container,
   Dialog,
   DialogActions,
   DialogContent,
@@ -22,37 +30,18 @@ import {
   MenuItem,
   TextField,
   Typography,
-  colors,
 } from "@mui/material";
 import { red } from "@mui/material/colors";
-import styled from "@emotion/styled";
-import PrimarySearchAppBar from "../components/searchbar/SearchBar";
 import Summary from "components/Summary";
 import CreatePost from "components/post/CreatePost";
 import { USER_KEY } from "constant";
-import { useEffect, useRef, useState } from "react";
-import { ImageListType } from "react-images-uploading";
-import SlideBar from "../components/sidebar/Sidebar";
-import PostList from "components/post/PostList";
-import postAPI from "service/post/postAPI";
-import { PostResponse } from "interfaces/post/postResponse";
-import { useParams } from "react-router";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-import Favorite from "@mui/icons-material/Favorite";
-import Flag from "@mui/icons-material/Flag";
-import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
-import SendIcon from "@mui/icons-material/Send";
-import { FavoriteBorder } from "@mui/icons-material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { SubmitHandler, useForm } from "react-hook-form";
 import dayjs from "dayjs";
 import "dayjs/locale/vi";
-import CommentRequest from "interfaces/comment/commentRequest";
-import commentAPI from "service/comment/commentAPI";
-import { isEmpty } from "lodash";
+import { PostResponse } from "interfaces/post/postResponse";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router";
+import postAPI from "service/post/postAPI";
+import SlideBar from "../components/sidebar/Sidebar";
 
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
@@ -145,10 +134,10 @@ const DocaPage = () => {
   useEffect(() => {
     const getPostByCategoryID = async (categoryID: number) => {
       const response: any = await postAPI.getPostByCategoryID(categoryID);
-      console.log("Response: ", response)
+      console.log("Response: ", response);
       if (response.length > 0) {
         setPostList(response);
-      } 
+      }
     };
 
     const initUseEffect = async () => {
@@ -275,7 +264,7 @@ const DocaPage = () => {
                       Breed: {post.pet_Breed.breedname}
                     </Typography>
                   </Card>
-                  <Typography variant="body1" color="#000000" >
+                  <Typography variant="body1" color="#000000">
                     {post.content}
                   </Typography>
                 </CardContent>
