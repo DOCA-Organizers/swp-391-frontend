@@ -1,15 +1,20 @@
 import { Box, Breadcrumbs, Container, Link, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SlideBar from "../components/sidebar/Sidebar";
-import postAPI from "service/post/postAPI";
 import { PostResponse } from "interfaces/post/postResponse";
 import { useParams } from "react-router";
+import SlideBar from "../components/sidebar/Sidebar";
+import postAPI from "service/post/postAPI";
 import dayjs from "dayjs";
 import "dayjs/locale/vi";
 import Footer from "components/footer/footer";
 import HomeIcon from "@mui/icons-material/Home";
-import GrainIcon from "@mui/icons-material/Grain";
 import PetsIcon from "@mui/icons-material/Pets";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
+import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
@@ -19,6 +24,7 @@ dayjs.locale("vi");
 const DocaPage = () => {
   const [postList, setPostList] = useState<PostResponse[]>([]);
   const { categoryID } = useParams();
+  const navigate = useNavigate();
 
   function handleClickChangeBreadcrumbs(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -31,7 +37,7 @@ const DocaPage = () => {
     const getPostByCategoryID = async (categoryID: number) => {
       const response: any = await postAPI.getPostByCategoryID(categoryID);
       console.log("Response: ", response);
-      if (response.length > 0) {
+      if (response && response.length > 0) {
         setPostList(response);
       }
     };
@@ -56,36 +62,129 @@ const DocaPage = () => {
         <Box
           sx={{ height: "150px", backgroundColor: "white", padding: "36px" }}
         >
-          <div role="presentation" onClick={handleClickChangeBreadcrumbs}>
-            <Breadcrumbs aria-label="breadcrumb">
-              <Link
-                underline="hover"
+          <Breadcrumbs aria-label="breadcrumb" separator={<NavigateNextIcon />}>
+            <Link
+              underline="hover"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "19px",
+                cursor: "pointer",
+              }}
+              color="inherit"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              <HomeIcon sx={{ mr: 1 }} fontSize="medium" />
+              Home
+            </Link>
+            {categoryID === "1" ? (
+              <Typography
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
                 }}
-                color="inherit"
-                href="/a"
               >
-                <HomeIcon sx={{ mr: 1}} fontSize="medium" />
-                Home
-              </Link>
-              {categoryID === "1" ? (
-                <Typography
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "19px",
-                    fontWeight: "bolder",
-                  }}
-                >
-                  <PetsIcon sx={{ mr: 1 }} fontSize="medium" />
-                  Dog chat
-                </Typography>
-              ) : null}
-            </Breadcrumbs>
-          </div>
+                <PetsIcon sx={{ mr: 1 }} fontSize="medium" />
+                Dog Chat
+              </Typography>
+            ) : categoryID === "2" ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
+                }}
+              >
+                <HealthAndSafetyIcon sx={{ mr: 1 }} fontSize="medium" />
+                Dog Health and Nutrition
+              </Typography>
+            ) : categoryID === "3" ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
+                }}
+              >
+                <MiscellaneousServicesIcon sx={{ mr: 1 }} fontSize="medium" />
+                Dog Services
+              </Typography>
+            ) : categoryID === "4" ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
+                }}
+              >
+                <EmojiEventsIcon sx={{ mr: 1 }} fontSize="medium" />
+                Dog Show and Events
+              </Typography>
+            ) : categoryID === "5" ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
+                }}
+              >
+                <PetsIcon sx={{ mr: 1 }} fontSize="medium" />
+                Cat Chat
+              </Typography>
+            ) : categoryID === "6" ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
+                }}
+              >
+                <HealthAndSafetyIcon sx={{ mr: 1 }} fontSize="medium" />
+                Cat Health and Nutrition
+              </Typography>
+            ) : categoryID === "7" ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
+                }}
+              >
+                <LocalLibraryIcon sx={{ mr: 1 }} fontSize="medium" />
+                Cat Training and Behaviour
+              </Typography>
+            ) : categoryID === "8" ? (
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "19px",
+                  fontWeight: "bolder",
+                  color: "#1d5b9d",
+                }}
+              >
+                <EmojiEventsIcon sx={{ mr: 1 }} fontSize="medium" />
+                Dog Services
+              </Typography>
+            ) : null}
+          </Breadcrumbs>
         </Box>
       </Box>
       <Footer />

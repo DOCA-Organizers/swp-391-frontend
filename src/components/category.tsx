@@ -396,7 +396,7 @@ const Category = () => {
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="Cat chat"
+                  primary="Cat Chat"
                   primaryTypographyProps={{
                     fontWeight: "bolder",
                     color: "#1d5b9d",
