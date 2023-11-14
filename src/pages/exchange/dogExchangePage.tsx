@@ -20,6 +20,11 @@ import {
   MenuItem,
   InputAdornment,
   OutlinedInput,
+  IconButton,
+  Avatar,
+  CardHeader,
+  Divider,
+  CardContent,
 } from "@mui/material";
 import SlideBar from "components/sidebar/Sidebar";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -40,6 +45,7 @@ import { styled } from "@mui/system";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import EastIcon from "@mui/icons-material/East";
 
 const blue = {
   100: "#DAECFF",
@@ -233,13 +239,13 @@ const DogExchangePage = () => {
         <Grid
           container
           sx={{
-            height: "800px",
+            height: "100%",
             width: "100%",
             color: "#f0f0f0",
             padding: "16px 32px",
           }}
         >
-          <Grid xs={10}>
+          <Grid xs={9}>
             <Grid
               container
               direction="row"
@@ -266,7 +272,157 @@ const DogExchangePage = () => {
               </Button>
             </Grid>
           </Grid>
-          <Grid xs={2} bgcolor="blue"></Grid>
+          <Grid xs={3}>
+            <Card sx={{ minWidth: 275 }}>
+              <CardContent>
+                <Typography
+                  variant="h5"
+                  component="div"
+                  fontWeight="bolder"
+                  sx={{ color: "#1d5b9d" }}
+                >
+                  Dog Exchange
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  <b>210</b> posts &#x2022; <b>8</b> members
+                </Typography>
+                <Typography variant="body2">
+                  Welcome to our Dog Exchange Forum, where canine enthusiasts
+                  come together to facilitate the exchange of dogs with care and
+                  responsibility. This platform provides a space for individuals
+                  looking to rehome their beloved pets or find new homes for
+                  dogs in need. Users can post adoption listings, share
+                  information about their dogs, and connect with potential
+                  adopters.
+                </Typography>
+              </CardContent>
+            </Card>
+            <Card sx={{ minWidth: 275, mt: "16px" }}>
+              <CardContent>
+                <Typography
+                  variant="h5"
+                  component="div"
+                  fontWeight="bolder"
+                  sx={{ color: "#1d5b9d" }}
+                >
+                  Community Staff
+                </Typography>
+                <Typography color="text.secondary">
+                  <b>4</b> staffs
+                </Typography>
+                <Divider />
+                <Button variant="text" endIcon={<EastIcon />}>
+                  View All
+                </Button>
+                <Card variant="outlined">
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/panda.png")} />
+                      </IconButton>
+                    }
+                    title="Ronaldo de lima"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+                <Card variant="outlined" sx={{ marginTop: "8px" }}>
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/man.png")} />
+                      </IconButton>
+                    }
+                    title="Messi"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+                <Card variant="outlined" sx={{ marginTop: "8px" }}>
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/girl.png")} />
+                      </IconButton>
+                    }
+                    title="Ronaldo"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+              </CardContent>
+            </Card>
+            <Card sx={{ minWidth: 275, mt: "16px" }}>
+              <CardContent>
+                <Typography
+                  variant="h5"
+                  component="div"
+                  fontWeight="bolder"
+                  sx={{ color: "#1d5b9d" }}
+                >
+                  Top Contributors
+                </Typography>
+                <Divider />
+                <Button variant="text" endIcon={<EastIcon />}>
+                  View All
+                </Button>
+                <Card variant="outlined">
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/girl.png")} />
+                      </IconButton>
+                    }
+                    title="Ronaldo de lima"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+                <Card variant="outlined" sx={{ marginTop: "8px" }}>
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/man.png")} />
+                      </IconButton>
+                    }
+                    title="Messi"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+                <Card variant="outlined" sx={{ marginTop: "8px" }}>
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/girl.png")} />
+                      </IconButton>
+                    }
+                    title="Ronaldo"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       </Box>
       <Dialog
