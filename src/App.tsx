@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AdminRoutes from "routes/AdminRoutes";
 import MemberRoutes from "routes/MemberRoutes";
 import StaffRoutes from "routes/StaffRoutes";
+import ProfilePage from "pages/profilePage";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             path="exchange-cat/:categoryID"
             element={<CatExchangePage />}
           />
+          <Route path="profile" element={<ProfilePage />} />
           <Route path={ROUTE_PATH.ADMIN} element={<AdminRoutes />} />
           <Route path={ROUTE_PATH.MEMBER} element={<MemberRoutes />} />
           <Route path={ROUTE_PATH.STAFF} element={<StaffRoutes />} />
