@@ -25,6 +25,11 @@ import {
   CardHeader,
   Divider,
   CardContent,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Tooltip,
 } from "@mui/material";
 import SlideBar from "components/sidebar/Sidebar";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -33,7 +38,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "components/footer/footer";
 import PaginationComponent from "components/pagination/paginationComponent";
-import { useState } from "react";
+import React, { useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import { USER_TOKEN_KEY } from "constant";
 import { ToastContainer, toast } from "react-toastify";
@@ -46,6 +51,8 @@ import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EastIcon from "@mui/icons-material/East";
+import CommentIcon from "@mui/icons-material/ModeComment";
+import ArticleIcon from "@mui/icons-material/Article";
 
 const blue = {
   100: "#DAECFF",
@@ -245,14 +252,12 @@ const DogExchangePage = () => {
             padding: "16px 32px",
           }}
         >
-          <Grid xs={9}>
+          <Grid xs={9} paddingRight="36px">
             <Grid
               container
               direction="row"
               justifyContent="space-between"
               alignItems="flex-start"
-              height="65px"
-              p={2}
             >
               <Button variant="text" sx={{ backgroundColor: "white" }}>
                 Most recent
@@ -270,6 +275,859 @@ const DogExchangePage = () => {
               >
                 Create New Post
               </Button>
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="start"
+              sx={{
+                mt: "32px",
+              }}
+              rowGap={2}
+            >
+              {/* Post Layout */}
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                sx={{
+                  backgroundColor: "#ffffff",
+                  width: "100%",
+                  height: "100px",
+                }}
+              >
+                <Grid xs={6}>
+                  <List>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: "red" }} variant="rounded">
+                          <img
+                            alt="avt"
+                            src={require("../../assets/man.png")}
+                          />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Link
+                              sx={{
+                                color: "#1d5b9d",
+                                fontWeight: "bolder",
+                                cursor: "pointer",
+                                textDecoration: "none",
+                                "&:hover": {
+                                  color: "#347ecd",
+                                  textDecoration: "underline",
+                                },
+                              }}
+                            >
+                              Labrador Retriever Jubilee: Embracing Boundless
+                              Affection
+                            </Link>
+                          </React.Fragment>
+                        }
+                        secondary={
+                          <React.Fragment>
+                            <Typography
+                              sx={{ display: "inline", width: "400px" }}
+                              variant="body2"
+                              noWrap
+                            >
+                              14/11/2023 - 12:18
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  </List>
+                </Grid>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  xs={3}
+                >
+                  <Tooltip title="123 Comments">
+                    <Grid container sx={{ width: "50px", marginRight: "16px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <CommentIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        123
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                  <Tooltip title="365 Posts">
+                    <Grid container sx={{ width: "50px" }}>
+                      <Grid xs={6} sx={{ color: "#686c6e86" }}>
+                        <ArticleIcon fontSize="small" color="inherit" />
+                      </Grid>
+                      <Grid
+                        xs={5}
+                        sx={{ fontWeight: "bolder", color: "#686c6e86" }}
+                      >
+                        365
+                      </Grid>
+                    </Grid>
+                  </Tooltip>
+                </Grid>
+                <Grid
+                  xs={3}
+                  container
+                  direction="column"
+                  justifyContent="flex-end"
+                  alignItems="flex-end"
+                  p={2}
+                >
+                  <Typography color="#1d5b9d">
+                    <b>Exchange Post</b>
+                  </Typography>
+                  <Typography color="#1d5b9d">
+                    By <i>iamsuperman</i>{" "}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="flex-end"
+              alignItems="flex-end"
+              mt={2}
+            >
+              <PaginationComponent />
             </Grid>
           </Grid>
           <Grid xs={3}>
