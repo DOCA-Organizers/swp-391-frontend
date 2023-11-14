@@ -160,7 +160,7 @@ const UserList = () => {
   useEffect(() => {
     const getUserList = async () => {
       const response: any = await userAPI.getUserList();
-      if (response.length > 0) {
+      if (response && response.length > 0) {
         let banList;
         setUserList(response);
         for (let index = 0; index < response.length; index++) {

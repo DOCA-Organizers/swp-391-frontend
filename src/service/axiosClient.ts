@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { USER_TOKEN_KEY } from "constant";
 import { isEmpty } from "lodash";
 
-const token = JSON.parse(localStorage.getItem(USER_TOKEN_KEY)!);
+const token = localStorage.getItem(USER_TOKEN_KEY);
 const axiosClient = axios.create({
   baseURL: "http://localhost:8080/api",
 });

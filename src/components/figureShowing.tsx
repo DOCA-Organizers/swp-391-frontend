@@ -47,7 +47,7 @@ const FigureShowing = () => {
   useEffect(() => {
     const getUserList = async () => {
       const response: any = await userAPI.getUserList();
-      if (response.length > 0) {
+      if (response && response.length > 0) {
         setUserList(response);
       } 
     };
