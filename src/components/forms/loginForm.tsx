@@ -94,6 +94,7 @@ const LoginForm = () => {
             break;
 
           case 2:
+            navigate("/staff");
             console.log("Go to Cat's Staff Page");
             break;
 

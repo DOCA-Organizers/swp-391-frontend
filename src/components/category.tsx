@@ -143,7 +143,6 @@ const Category = () => {
     };
     const getAll = async () => {
       const data: any = await userAPI.countUserIsActive();
-      console.log("Data: ", data);
     };
 
     const initUseEffect = async () => {

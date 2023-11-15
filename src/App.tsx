@@ -10,6 +10,7 @@ import DogExchangePage from "pages/exchange/dogExchangePage";
 import LoginPage from "pages/login/loginPage";
 import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
+import StaffPage from "pages/staff/staffPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import AdminRoutes from "routes/AdminRoutes";
@@ -51,6 +52,7 @@ function App() {
             element={<CatExchangePage />}
           />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="staff" element={<StaffPage />} />
           <Route path={ROUTE_PATH.ADMIN} element={<AdminRoutes />} />
           <Route path={ROUTE_PATH.MEMBER} element={<MemberRoutes />} />
           <Route path={ROUTE_PATH.STAFF} element={<StaffRoutes />} />

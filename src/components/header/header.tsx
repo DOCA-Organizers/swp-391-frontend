@@ -28,15 +28,19 @@ const buttonStyles = {
 };
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const userFullName = localStorage.getItem(USER_FULLNAME_KEY);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const userFullName = localStorage.getItem(USER_FULLNAME_KEY);
-  const navigate = useNavigate();
+  const handleNavigateProfile = () => {
+    navigate("/profile");
+    setAnchorEl(null);
+  };
   const handleLogout = () => {
     localStorage.removeItem(USER_FULLNAME_KEY);
     localStorage.removeItem(USER_ID_KEY);
@@ -57,8 +61,8 @@ const Header = () => {
       <Grid xs={4} alignContent="center" pl={2}>
         <img
           alt="Logo"
-          src={require("../../assets/Huy's logo.png")}
-          height={110}
+          src={require("../../assets/Huy's logoEdited-01.png")}
+          height={130}
           width={140}
         />
       </Grid>
@@ -115,7 +119,7 @@ const Header = () => {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem onClick={handleNavigateProfile}>
                 <Avatar /> Profile
               </MenuItem>
               <Divider />

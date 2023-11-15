@@ -50,6 +50,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import EastIcon from "@mui/icons-material/East";
 import CommentIcon from "@mui/icons-material/ModeComment";
 import ArticleIcon from "@mui/icons-material/Article";
+import { isEmpty } from "lodash";
 
 const blue = {
   100: "#DAECFF",
@@ -176,16 +177,14 @@ const DogExchangePage = () => {
     setSex(event.target.value as any);
   };
 
-
-
   const handleClickOpenFormCreatePost = () => {
-    setOpenOpenFormCreatePost(true);
-    // if (access_token && !isEmpty(access_token)) {
-    //   setOpenOpenFormCreatePost(true);
-    // }
-    // toast.warning("Please login before create new post!", {
-    //   position: toast.POSITION.TOP_CENTER,
-    // });
+    if (access_token && !isEmpty(access_token)) {
+      setOpenOpenFormCreatePost(true);
+      return;
+    }
+    toast.warning("Please login before create new post!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   };
 
   const handleCloseFormCreatePost = () => {

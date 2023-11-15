@@ -1,4 +1,5 @@
 import { Avatar, Container, Grid, Typography, styled } from "@mui/material";
+import { USER_ID_KEY } from "constant";
 import {
   CountResponse,
   Role,
@@ -23,6 +24,7 @@ const Profile = () => {
   const [role, setRole] = useState<Role>();
   const [dateStart, setDateStart] = useState();
   const [count, setCount] = useState<CountResponse>();
+  const userID = localStorage.getItem(USER_ID_KEY);
 
   // Assuming you have a Date object representing the given time
   const originalDate: Date = new Date("2023-10-15T10:44:46.655+00:00");
@@ -34,10 +36,8 @@ const Profile = () => {
   console.log(formattedDate);
 
   useEffect(() => {
-    const getMyProfile = async () => {
-      const data: any = await MyProfileAPI.getMyProfileAPI(
-        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
-      );
+    const getMyProfile = async (userID: string) => {
+      const data: any = await MyProfileAPI.getMyProfileAPI(userID);
       // console.log("tU", USER_ID_KEY);
 
       if (data) {
@@ -46,10 +46,8 @@ const Profile = () => {
         setDateStart(data.datestart);
       }
     };
-    const getPostFigure = async () => {
-      const data: any = await MyProfileAPI.getCountAPI(
-        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
-      );
+    const getPostFigure = async (userID: string) => {
+      const data: any = await MyProfileAPI.getCountAPI(userID);
 
       console.log("count:", data);
 
@@ -58,8 +56,9 @@ const Profile = () => {
       }
     };
     const initUseEffect = async () => {
-      await getMyProfile();
-      await getPostFigure();
+      if (userID) {
+        await Promise.all([getMyProfile(userID), getPostFigure(userID)]);
+      }
     };
     initUseEffect();
   }, []);
