@@ -1,6 +1,7 @@
 import { Avatar, Box } from "@mui/material";
-import { useEffect } from "react";
-import postAPI from "service/post/postAPI";
+import { UserProfile } from "interfaces/requestInterface/request";
+import { useEffect, useState } from "react";
+import MyProfileAPI from "service/myProfile/myProfileAPI";
 
 const listItemButtonStyles = {
   backgroundColor: "#F0F0F0",
@@ -19,28 +20,47 @@ const styled = {
   color: "black",
   borderRadius: "10px",
   fontWeight: "bold",
-  backgroundColor: "#F0F0F0",
+  backgroundColor: "#ffffff",
   padding: "8px",
   width: "1400px",
   height: 100,
+  marginTop: 5,
 };
 const Posts = () => {
+  const [profile, setProfile] = useState<UserProfile[]>([]);
   useEffect(() => {
     const getMyProfile = async () => {
-      const data: any = await postAPI.getPostByCategoryID;
+      const data: any = await MyProfileAPI.getMyProfileAPI(
+        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
+      );
       console.log(data);
+      if (data) {
+        setProfile(data.user);
+      }
     };
+
+    const getPost = async () => {
+      const data: any = await MyProfileAPI.getMyProfileAPI(
+        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
+      );
+      console.log(data);
+      if (data) {
+        setProfile(data.user);
+      }
+    };
+
     const initUseEffect = async () => {
       await getMyProfile();
+      await getPost();
     };
     initUseEffect();
   });
   return (
     <Box sx={styled}>
-      <Avatar sx={{ marginLeft: 10, height: 40, width: 40 }}>
-        <img src={require("../assets/Huy's logo.png")}></img>
-      </Avatar>
-      <Box></Box>
+      <Avatar
+        sx={{ marginLeft: 10 }}
+        src="https://cdn-icons-png.flaticon.com/128/706/706807.png"
+      />
     </Box>
   );
 };

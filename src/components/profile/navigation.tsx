@@ -18,7 +18,7 @@ const Navigation = () => {
     <Container>
       <BottomNavigation
         sx={{
-          backgroundColor: "#F9B572",
+          backgroundColor: "#ffffff",
           position: "relative",
           right: 125,
           top: 10,

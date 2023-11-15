@@ -1,5 +1,4 @@
 import { Avatar, Container, Grid, Typography, styled } from "@mui/material";
-import { USER_ID_KEY } from "constant";
 import {
   CountResponse,
   Role,
@@ -25,15 +24,26 @@ const Profile = () => {
   const [dateStart, setDateStart] = useState();
   const [count, setCount] = useState<CountResponse>();
 
+  // Assuming you have a Date object representing the given time
+  const originalDate: Date = new Date("2023-10-15T10:44:46.655+00:00");
+
+  // Format the date for display on UI
+  const formattedDate: string = originalDate.toLocaleString(); // You can customize this based on your requirements
+
+  // Now, 'formattedDate' contains the date in a user-friendly format
+  console.log(formattedDate);
+
   useEffect(() => {
     const getMyProfile = async () => {
       const data: any = await MyProfileAPI.getMyProfileAPI(
         "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
       );
-      console.log("tU", USER_ID_KEY);
-      console.log("data:", data);
+      // console.log("tU", USER_ID_KEY);
+
       if (data) {
-        setProfile(data);
+        setProfile(data.user);
+        setRole(data.role);
+        setDateStart(data.datestart);
       }
     };
     const getPostFigure = async () => {
@@ -44,9 +54,7 @@ const Profile = () => {
       console.log("count:", data);
 
       if (data) {
-        setProfile(data.user);
-        setRole(data.role);
-        setDateStart(data.datestart);
+        setCount(data);
       }
     };
     const initUseEffect = async () => {
@@ -266,7 +274,9 @@ const Profile = () => {
               top: 4,
             }}
           >
-            <Typography sx={style}>Number of posts: </Typography>
+            <Typography sx={style}>
+              Number of posts: {count?.numofpost}
+            </Typography>
           </Item>
         </Grid>
         <Grid xs={9} sx={{ width: 350 }}>
@@ -279,7 +289,9 @@ const Profile = () => {
               top: 4,
             }}
           >
-            <Typography sx={style}>Number of reactions: </Typography>
+            <Typography sx={style}>
+              Number of reactions: {count?.numofreact}
+            </Typography>
           </Item>
         </Grid>
         <Grid xs={9} sx={{ width: 350 }}>
@@ -292,7 +304,9 @@ const Profile = () => {
               top: 4,
             }}
           >
-            <Typography sx={style}>Number of comments: </Typography>
+            <Typography sx={style}>
+              Number of comments: {count?.numofcomment}
+            </Typography>
           </Item>
         </Grid>
       </Grid>
