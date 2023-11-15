@@ -1,10 +1,8 @@
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import MenuIcon from "@mui/icons-material/Menu";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -115,12 +113,16 @@ export default function SlideBar() {
               height: "100%",
               width: "auto",
             }}
+            onClick={() => {
+              navigate(0);
+            }}
           >
             <img
               src={require("../../assets/Huy's logo.png")}
               style={{ height: 150, width: 230 }}
             />
           </Box>
+
           <PrimarySearchAppBar />
         </Toolbar>
       </AppBar>
@@ -203,7 +205,12 @@ export default function SlideBar() {
                     <ListItemIcon>
                       <AccountBoxIcon />
                     </ListItemIcon>
-                    <ListItemText primary="My Profile" />
+                    <ListItemText
+                      primary="My Profile"
+                      onClick={() => {
+                        navigate(`/profile}`);
+                      }}
+                    />
                   </ListItemButton>
                 </NavLink>
               </ListItem>

@@ -1,5 +1,6 @@
 import { Box, Paper } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import Footer from "components/footer/footer";
 import Posts from "components/posts";
 import Navigation from "components/profile/navigation";
 import Profile from "components/profile/profile";
@@ -9,7 +10,7 @@ import SlideBar from "components/sidebar/Sidebar";
 const paperStyle = {
   width: 1400,
   height: 300,
-  marginTop: 180,
+  marginTop: 160,
 };
 
 const styleTyPo = {
@@ -29,7 +30,7 @@ const ProfilePage = () => {
       direction="column"
       style={{
         minHeight: "30vh",
-        backgroundColor: "rgba(25, 118, 210, 0.04)",
+        backgroundColor: "#F0F0F0",
       }}
     >
       <Paper elevation={20} style={paperStyle}>
@@ -49,9 +50,10 @@ const ProfilePage = () => {
       </Paper>
       <Box>
         <Navigation />
+        <Posts />
       </Box>
       <Box sx={{ marginTop: 7 }}>
-        <Posts />
+        <Footer />
       </Box>
     </Grid2>
   );

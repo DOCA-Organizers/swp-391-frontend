@@ -1,9 +1,6 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "GlobalStyles";
 import { ErrorBoundary } from "components/errorboundary/errorBoundary";
-import Report from "components/report";
-import { USER_KEY } from "constant";
-import AdminPage from "pages/admin/adminPage";
 import { ROUTE_PATH } from "configs";
 import CategoryPage from "pages/categoryPage";
 import DocaPage from "pages/docaPage";
@@ -11,13 +8,13 @@ import NotFoundPage from "pages/error/NotFoundPage";
 import CatExchangePage from "pages/exchange/catExchangePage";
 import DogExchangePage from "pages/exchange/dogExchangePage";
 import LoginPage from "pages/login/loginPage";
+import ProfilePage from "pages/profilePage";
 import RegistrationPage from "pages/register/registrationPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import AdminRoutes from "routes/AdminRoutes";
 import MemberRoutes from "routes/MemberRoutes";
 import StaffRoutes from "routes/StaffRoutes";
-import ProfilePage from "pages/profilePage";
 
 function App() {
   return (

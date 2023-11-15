@@ -5,7 +5,11 @@ import Header from "components/header/header";
 
 const CategoryPage = () => {
   return (
-    <Container disableGutters maxWidth={false}>
+    <Container
+      sx={{ backgroundColor: "#F0F0F0" }}
+      disableGutters
+      maxWidth={false}
+    >
       <Header />
       <Category />
       <Footer />
