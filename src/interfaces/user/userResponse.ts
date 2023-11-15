@@ -1,13 +1,27 @@
 export interface UserResponse {
     user:  User;
     role:  Role;
-    token: string;
+    token: Token;
 }
 
 export interface Role {
     id:   number;
-    name: string;
-    type: string;
+    name: Name;
+    type: Type;
+}
+
+export enum Name {
+    Ad = "AD",
+    Staff = "Staff",
+    User = "User",
+}
+
+export enum Type {
+    All = "All",
+}
+
+export enum Token {
+    Null = "",
 }
 
 export interface User {
@@ -15,19 +29,25 @@ export interface User {
     password:              string;
     fullName:              string;
     email:                 string;
-    dob:                   null;
+    dob:                   Date | null;
     gender:                boolean;
     avt:                   null;
     enabled:               boolean;
-    username:              string;
-    authorities:           Authority[] | null;
     isActive:              boolean;
     ban:                   boolean;
+    accountNonLocked:      boolean;
     credentialsNonExpired: boolean;
     accountNonExpired:     boolean;
-    accountNonLocked:      boolean;
+    username:              string;
+    authorities:           AuthorityElement[];
 }
 
-export interface Authority {
-    authority: string;
+export interface AuthorityElement {
+    authority: AuthorityEnum;
+}
+
+export enum AuthorityEnum {
+    RoleAd = "ROLE_AD",
+    RoleStaff = "ROLE_STAFF",
+    RoleUser = "ROLE_USER",
 }

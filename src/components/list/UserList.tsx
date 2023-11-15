@@ -38,32 +38,32 @@ const UserList = () => {
       width: 100,
     },
     {
-      field: "avatar",
+      field: "user.avt",
       headerName: "Avatar",
       width: 120,
       renderCell(params) {
-        if (params.row.avatar == null) {
+        if (params.row.avt == null) {
           return <Avatar src={require("../../assets/kittyFly.png")}></Avatar>;
         } else {
-          return <Avatar src={params.row.avatar}></Avatar>;
+          return <Avatar src={params.row.avt}></Avatar>;
         }
       },
     },
     {
-      field: "email",
+      field: "user.email",
       headerName: "Email",
-      width: 250,
+      width: 220,
     },
     {
-      field: "username",
+      field: "user.username",
       headerName: "Username",
-      width: 225,
+      width: 220,
     },
 
     {
-      field: "fullName",
+      field: "user.fullName",
       headerName: "Full Name",
-      width: 225,
+      width: 220,
     },
 
     {
@@ -160,28 +160,24 @@ const UserList = () => {
   useEffect(() => {
     const getUserList = async () => {
       const response: any = await userAPI.getUserList();
-      if (response && response.length > 0) {
-        let banList;
-        setUserList(response);
-        for (let index = 0; index < response.length; index++) {
-           banList = response[index].ban;
-            console.log(banList)
-        }
-        for (let index = 0; index < banList.length; index++) {
-          setBan(banList[index])  
-         }
+      console.log("Response: ",response);
+      if (response.length > 0) {
+         setUserList(response);
       }
+      
     };
     const initUseEffect = async () => {
       await getUserList();
     };
+    
     initUseEffect();
   }, []);
-  console.log("User List", userList);
-  console.log(ban);
+
+  console.log("UserList:",userList);
+  
 
   return (
-    <Box sx={{ height: 400, width: "100%" }}>
+    <Box sx={{ height: 400, width: "90%", marginLeft: 10 }}>
       <DataGrid
         sx={{
           marginRight: 6,
@@ -190,7 +186,7 @@ const UserList = () => {
         rows={userList.map((user, index) => {
           return { no: index + 1, ...user };
         })}
-        getRowId={(row) => row.id}
+        getRowId={(row) => row.user}
         columns={columns}
         initialState={{
           pagination: {

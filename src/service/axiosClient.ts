@@ -8,13 +8,14 @@ const axiosClient = axios.create({
 });
 
 axios.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    if (token !== null && !isEmpty(token)) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
+  // function (config) {
+  //   // Do something before request is sent
+   
+  //   if (token !== null && !isEmpty(token)) {
+  //     config.headers["Authorization"] = `Bearer ${token}`;
+  //   }
+  //   return config;
+  // },
   function (error) {
     // Do something with request error
     return Promise.reject(error);
