@@ -31,6 +31,7 @@ import { useEffect, useState } from "react";
 import { CategoryInfoResponse } from "interfaces/category/categoryResponse";
 import CategoryAPI from "service/category/categoryAPI";
 import { isEmpty } from "lodash";
+import userAPI from "service/user/userAPI";
 
 const listItemButtonStyles = {
   backgroundColor: "#ffffff",
@@ -56,6 +57,7 @@ const Category = () => {
   const [categoryInfo, setCategoryInfo] = useState<CategoryInfoResponse[]>([]);
   const [countAllPosts, setCountAllPost] = useState(0);
   const [countAllComments, setCountAllComments] = useState(0);
+  const [countAllMembers, setCountAllMembers] = useState(0);
   const handleNavigate = (categoryID: number) => {
     let num = 0;
     switch (categoryID) {
@@ -123,7 +125,6 @@ const Category = () => {
       let commentTemp: number = 0;
       if (data && data.length > 0) {
         data.map((category: CategoryInfoResponse) => {
-          console.log("Post Inside: ", category.numberpost);
           commentTemp += category.numbercomment;
           postTemp += category.numberpost;
           temp.push(category);
@@ -134,15 +135,19 @@ const Category = () => {
       }
     };
 
+    const getAllUser = async () => {
+      const data: any = await userAPI.countUserIsActive();
+      if (data ) {
+        setCountAllMembers(data);
+      }
+    };
+
     const initUseEffect = async () => {
-      await getCategoryInfo();
+      await Promise.all([getCategoryInfo(), getAllUser()]);
     };
 
     initUseEffect();
   }, []);
-  console.log("Comment:", countAllComments);
-  console.log("Posts: ", countAllPosts);
-
 
   return (
     <Container
@@ -675,7 +680,8 @@ const Category = () => {
                   DOCA Dog Cat Forums
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  <b>{countAllPosts}</b> posts &#x2022; <b>20</b> members
+                  <b>{countAllPosts}</b> posts &#x2022; <b>{countAllMembers}</b>{" "}
+                  members
                 </Typography>
                 <Typography variant="body2">
                   A forum community dedicated to dog and cat owners and dog and

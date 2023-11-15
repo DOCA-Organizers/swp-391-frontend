@@ -7,9 +7,11 @@ const axiosClient = axios.create({
   baseURL: "http://localhost:8080/api",
 });
 
+console.log("Token: ", token);
 
-axios.interceptors.request.use(
+axiosClient.interceptors.request.use(
   function (config) {
+    console.log("In");
     // Do something before request is sent
     if (token !== null && !isEmpty(token)) {
       config.headers["Authorization"] = `Bearer ${token}`;
