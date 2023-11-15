@@ -135,15 +135,19 @@ const Category = () => {
       }
     };
 
-    const getAllUser = async () => {
+    const countAllUser = async () => {
       const data: any = await userAPI.countUserIsActive();
-      if (data ) {
+      if (data) {
         setCountAllMembers(data);
       }
     };
+    const getAll = async () => {
+      const data: any = await userAPI.countUserIsActive();
+      console.log("Data: ", data);
+    };
 
     const initUseEffect = async () => {
-      await Promise.all([getCategoryInfo(), getAllUser()]);
+      await Promise.all([getCategoryInfo(), countAllUser(), getAll()]);
     };
 
     initUseEffect();
