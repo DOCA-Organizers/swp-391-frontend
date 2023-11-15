@@ -51,6 +51,8 @@ import EastIcon from "@mui/icons-material/East";
 import CommentIcon from "@mui/icons-material/ModeComment";
 import ArticleIcon from "@mui/icons-material/Article";
 import { isEmpty } from "lodash";
+import { PostRequest } from "interfaces/post/postRequest";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 const blue = {
   100: "#DAECFF",
@@ -190,6 +192,13 @@ const DogExchangePage = () => {
   const handleCloseFormCreatePost = () => {
     setOpenOpenFormCreatePost(false);
   };
+
+  const onSubmit: SubmitHandler<PostRequest> = async (params) => {};
+
+  const onError = (error: any) => {
+    console.log(error);
+  };
+
   return (
     <Container
       disableGutters
@@ -1275,6 +1284,9 @@ const DogExchangePage = () => {
           </Grid>
         </Grid>
       </Box>
+      {/* <form onSubmit={handleSubmit(onSubmit, onError)}>
+
+      </form> */}
       <Dialog
         open={openFormCreatePost}
         onClose={handleCloseFormCreatePost}
