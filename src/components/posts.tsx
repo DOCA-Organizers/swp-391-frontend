@@ -1,4 +1,5 @@
 import { Avatar, Box } from "@mui/material";
+import { USER_ID_KEY } from "constant";
 import { UserProfile } from "interfaces/requestInterface/request";
 import { useEffect, useState } from "react";
 import MyProfileAPI from "service/myProfile/myProfileAPI";
@@ -30,9 +31,7 @@ const Posts = () => {
   const [profile, setProfile] = useState<UserProfile[]>([]);
   useEffect(() => {
     const getMyProfile = async () => {
-      const data: any = await MyProfileAPI.getMyProfileAPI(
-        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
-      );
+      const data: any = await MyProfileAPI.getMyProfileAPI(USER_ID_KEY);
       console.log(data);
       if (data) {
         setProfile(data.user);
