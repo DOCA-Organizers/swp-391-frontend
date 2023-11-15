@@ -1,9 +1,11 @@
 
+import { User } from "interfaces/user/userResponse";
 import axiosClient from "service/axiosClient";
 
 const userAPI = {
   getUserList: () => {
-    return axiosClient.get("/userlist");
+    console.log("fffff");
+    return axiosClient.get<User[]>("userlist");
   }
 };
 
