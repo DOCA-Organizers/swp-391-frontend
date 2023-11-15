@@ -2,6 +2,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "GlobalStyles";
 import { ErrorBoundary } from "components/errorboundary/errorBoundary";
 import { ROUTE_PATH } from "configs";
+import CategoryPage from "pages/categoryPage";
 import DocaPage from "pages/docaPage";
 import NotFoundPage from "pages/error/NotFoundPage";
 import CatExchangePage from "pages/exchange/catExchangePage";
@@ -21,7 +22,7 @@ function App() {
       <BrowserRouter>
         <CssBaseline />
         <Routes>
-          <Route path="/" element={<ProfilePage />} />
+          <Route path="/" element={<CategoryPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="dog-chat/:categoryID" element={<DocaPage />} />

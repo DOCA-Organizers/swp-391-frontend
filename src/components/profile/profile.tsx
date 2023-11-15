@@ -1,5 +1,4 @@
 import { Avatar, Container, Grid, Typography, styled } from "@mui/material";
-import { USER_ID_KEY } from "constant";
 import {
   CountResponse,
   Role,
@@ -36,7 +35,9 @@ const Profile = () => {
 
   useEffect(() => {
     const getMyProfile = async () => {
-      const data: any = await MyProfileAPI.getMyProfileAPI(USER_ID_KEY);
+      const data: any = await MyProfileAPI.getMyProfileAPI(
+        "9cb04812-bc02-4a4c-b45e-501bfdaa956f"
+      );
       // console.log("tU", USER_ID_KEY);
 
       if (data) {
@@ -113,7 +114,6 @@ const Profile = () => {
           width: 900,
           position: "relative",
           left: 250,
-          bottom: 20,
         }}
       >
         <Grid xs={3}>
