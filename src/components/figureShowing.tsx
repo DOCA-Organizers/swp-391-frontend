@@ -105,7 +105,7 @@ const FigureShowing = () => {
     <Box
       sx={{
         marginRight: 6,
-        marginLeft: 28,
+        marginLeft: 5,
         borderRadius: 5,
         backgroundColor: "#336BA6",
       }}

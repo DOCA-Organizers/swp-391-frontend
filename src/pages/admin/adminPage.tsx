@@ -1,17 +1,25 @@
 import {
+  Avatar,
   Box,
+  CardContent,
   Chip,
   Container,
+  Divider,
   Grid,
+  IconButton,
   Stack,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
+  Card,
+  CardHeader,
+  Button
 } from "@mui/material";
 import FigureShowing from "components/figureShowing";
 import UserList from "components/list/UserList";
 import ReportList from "components/list/reportList";
 import SlideBar from "components/sidebar/Sidebar";
+import EastIcon from "@mui/icons-material/East";
 
 const AdminPage = () => {
   const handleClick = () => {
@@ -29,8 +37,8 @@ const AdminPage = () => {
             backgroundColor: "#F0F0F0",
             borderRadius: 5,
             marginTop: 1,
-            marginLeft: 25,
-            marginRight: 5,
+            marginRight: 3,
+            
           }}
         >
           <Box
@@ -45,12 +53,75 @@ const AdminPage = () => {
               marginLeft: 5
             }}
           >
+            {/* <Card sx={{ minWidth: 275, mt: "16px" }}>
+              <CardContent>
+                <Typography
+                  variant="h5"
+                  component="div"
+                  fontWeight="bolder"
+                  sx={{ color: "#1d5b9d" }}
+                >
+                  Community Staff
+                </Typography>
+                <Typography color="text.secondary">
+                  <b>4</b> staffs
+                </Typography>
+                <Divider />
+                <Button variant="text" endIcon={<EastIcon />}>
+                  View All
+                </Button>
+                <Card variant="outlined">
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/panda.png")} />
+                      </IconButton>
+                    }
+                    title="Ronaldo de lima"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+                <Card variant="outlined" sx={{ marginTop: "8px" }}>
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/man.png")} />
+                      </IconButton>
+                    }
+                    title="Messi"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+                <Card variant="outlined" sx={{ marginTop: "8px" }}>
+                  <CardHeader
+                    avatar={
+                      <IconButton>
+                        <Avatar src={require("../../assets/girl.png")} />
+                      </IconButton>
+                    }
+                    title="Ronaldo"
+                    titleTypographyProps={{
+                      fontWeight: "bolder",
+                      color: "#1d5b9d",
+                    }}
+                    subheader="Staff"
+                  />
+                </Card>
+              </CardContent>
+            </Card> */}
             <Typography gutterBottom variant="body1" color="#1D5B9D">
               Management
             </Typography>
             <Stack direction="row" spacing={1} >
               <Chip label="User Management" onClick={handleClick} />
-              <Chip label="Post Management" onClick={handleClick} />
             </Stack>
           </Box>
 
