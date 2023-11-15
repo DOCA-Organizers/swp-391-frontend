@@ -7,15 +7,16 @@ const axiosClient = axios.create({
   baseURL: "http://localhost:8080/api",
 });
 
-axios.interceptors.request.use(
-  // function (config) {
-  //   // Do something before request is sent
-   
-  //   if (token !== null && !isEmpty(token)) {
-  //     config.headers["Authorization"] = `Bearer ${token}`;
-  //   }
-  //   return config;
-  // },
+axiosClient.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    if (token !== null && !isEmpty(token)) {
+      console.log("In if");
+      console.log("Token: ", token);
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
   function (error) {
     // Do something with request error
     return Promise.reject(error);
